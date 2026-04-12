@@ -1,0 +1,53 @@
+body{
+    font-family:'Poppins', sans-serif !important;
+    background:#FAF9F6;
+    color:#4E6252;
+}
+
+.navbar{
+    background:#FAF9F6 !important;
+    border-bottom:1px solid #EDE7DD;
+}
+
+.navbar-brand{
+    font-family:'Cormorant Garamond', serif !important;
+    font-size:34px;
+    color:#4E6252 !important;
+    font-weight:700;
+}
+
+.nav-link{
+    color:#6F8573 !important;
+}
+
+.nav-link:hover{
+    color:#C9A86A !important;
+}
+
+h1,h2,h3,h4{
+    font-family:'Cormorant Garamond', serif !important;
+    color:#4E6252;
+}
+
+.btn-primary{
+    background:#6F8573;
+    border:none;
+    border-radius:30px;
+    padding:10px 22px;
+}
+
+.btn-primary:hover{
+    background:#4E6252;
+}
+
+.card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+
+.hero-img{
+    height:500px;
+    object-fit:contain;
+    background:#FAF9F6;
+}
