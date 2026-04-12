@@ -39,18 +39,78 @@
   </div>
 </nav>
 
-<section id="inicio">
-  <div id="hero" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-  <div class="carousel-item active"><img src="{{ asset('img/boxRegalo1.jpeg') }}"><div class="carousel-caption"><h2>Regalos con amor</h2><p>Detalles únicos para cada ocasión</p></div></div>
-  <div class="carousel-item"><img src="https://images.unsplash.com/photo-1512909006721-3d6018887383?q=80&w=1400&auto=format&fit=crop" class="d-block w-100 hero-img"></div>
-  <div class="carousel-item"><img src="https://images.unsplash.com/photo-1481391032119-d89fee407e44?q=80&w=1400&auto=format&fit=crop" class="d-block w-100 hero-img"></div>
-  </div>
-  <button class="carousel-control-prev" data-bs-target="#hero" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
-  <button class="carousel-control-next" data-bs-target="#hero" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
-  </div>
-</section>
+<section id="inicio" class="hero-premium py-5">
+<div class="container">
 
+<div class="row align-items-center gy-5">
+
+    <!-- COLUMNA IZQUIERDA -->
+    <div class="col-lg-7">
+
+        <div id="hero" class="carousel slide hero-box shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <img src="{{ asset('img/toallon.jpeg') }}" class="d-block w-100 hero-img" alt="Toallón">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="{{ asset('img/aritos.jpeg') }}" class="d-block w-100 hero-img" alt="Aritos">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="{{ asset('img/box.jpeg') }}" class="d-block w-100 hero-img" alt="Box regalo">
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#hero" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#hero" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- COLUMNA DERECHA -->
+    <div class="col-lg-5">
+
+        <span class="badge rounded-pill px-3 py-2 mb-3 hero-badge">
+            ✨ Regalos con amor
+        </span>
+
+        <h1 class="display-4 mb-3">
+            Ohana <br> Regalería
+        </h1>
+
+        <p class="lead mb-4">
+            Detalles únicos, productos personalizados y sorpresas pensadas para emocionar.
+        </p>
+
+        <p class="mb-4 text-muted">
+            Boxes, accesorios, regalos especiales y mucho más para cada ocasión.
+        </p>
+
+        <div class="d-flex gap-3 flex-wrap">
+            <a href="#" class="btn btn-primary btn-lg px-4">
+                Ver catálogo
+            </a>
+
+            <a href="#" class="btn btn-outline-secondary btn-lg px-4">
+                WhatsApp
+            </a>
+        </div>
+
+    </div>
+
+</div>
+</div>
+</section>
 <section id="productos" class="py-5">
 <div class="container">
 <h2 class="text-center mb-4">Destacados</h2>
