@@ -21,3 +21,7 @@ Route::get('/productos', function () {
 Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');
+
+Route::get('/terminos', function () {
+    return view('terminos');
+})->name('terminos');

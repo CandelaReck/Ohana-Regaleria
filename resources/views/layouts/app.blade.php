@@ -45,7 +45,8 @@
 
 <!-- FOOTER -->
 <footer class="text-center py-4 border-top">
-© 2026 Ohana Regalería - Todos los derechos reservados
+© 2026 Ohana Regalería - Todos los derechos reservados.
+Aprenda sobre nuestros <a href="{{ route('terminos') }}" class="btn btn-dark">Términos y Condiciones</a>
 </footer>
 
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
