@@ -17,3 +17,7 @@ Route::get('/quienes-somos', function () {
 Route::get('/productos', function () {
     return view('productos');
 })->name('productos');
+
+Route::get('/contacto', function () {
+    return view('contacto');
+})->name('contacto');

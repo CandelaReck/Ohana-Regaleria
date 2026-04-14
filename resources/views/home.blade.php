@@ -98,7 +98,7 @@
 <!-- CARD 2 -->
 <div class="col-md-4">
 <div class="card category-card h-100">
-<img src="{{ asset('img/pijamaPrint.jpeg') }}" class="card-img-top">
+<img src="{{ asset('img/boxRegalo1.jpeg') }}" class="card-img-top">
 
 <div class="card-body">
 <h5>Box Sorpresa</h5>
