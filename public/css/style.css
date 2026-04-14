@@ -40,14 +40,34 @@ h1,h2,h3,h4{
     background:#4E6252;
 }
 
-.card{
-    border:none;
-    border-radius:18px;
-    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+.category-card{
+overflow:hidden;
+border-radius:18px;
 }
 
+.category-card img{
+height:270px;
+object-fit:cover;
+}
+
+.category-card .card-body{
+display:flex;
+flex-direction:column;
+}
+
+.category-card .btn{
+margin-top:auto;
+}
 .hero-img{
     height:500px;
     object-fit:contain;
     background:#FAF9F6;
+}
+
+
+.logo-navbar{
+    width:34px;
+    height:34px;
+    object-fit:cover;
+    border-radius:50%;
 }
