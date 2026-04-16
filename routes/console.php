@@ -11,4 +11,3 @@ Artisan::command('inspire', function () {
 
 Route::get('home', function () {
 });
-Route::get
