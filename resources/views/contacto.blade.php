@@ -5,7 +5,7 @@
 <section id="contacto" class="py-5 contacto-section">
 <div class="container">
 
-<h2 class="text-center mb-5">Contacto</h2>
+<h2 class="text-center mb-5">Datos de Contacto</h2>
 
 <div class="row g-4">
 
