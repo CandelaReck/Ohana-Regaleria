@@ -13,28 +13,117 @@
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg shadow-sm">
+<!-- NAVBAR PREMIUM -->
+<nav class="navbar navbar-expand-lg shadow-sm py-3">
 <div class="container">
 
+<!-- LOGO -->
 <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
 
 <img src="{{ asset('img/logo.jpeg') }}"
-     alt="Logo Ohana"
-     class="logo-navbar me-2">
+     class="logo-navbar me-2"
+     alt="Logo">
 
 <span>Ohana Regalería</span>
 
 </a>
 
-<div class="navbar-nav ms-auto">
-<a class="nav-link" href="{{ route('home') }}">Inicio</a>
-<a class="nav-link" href="{{ route('comercializacion') }}">Comercialización</a>
-<a class="nav-link" href="{{ route('quienes-somos') }}">Quiénes somos</a>
-<a class="nav-link" href="{{ route('productos') }}">Productos</a>
-<a class="nav-link" href="{{ route('contacto') }}">Contacto</a>
+<!-- MOBILE -->
+<button class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#menuNavbar">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<!-- MENU -->
+<div class="collapse navbar-collapse" id="menuNavbar">
+
+<ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+
+<li class="nav-item">
+<a class="nav-link" href="{{ route('home') }}">
+Inicio
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ route('quienes-somos') }}">
+Quiénes somos
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ route('comercializacion') }}">
+Comercialización
+</a>
+</li>
+
+<!-- MEGA DROPDOWN -->
+<li class="nav-item dropdown position-static">
+
+<a class="nav-link dropdown-toggle"
+   href="#"
+   data-bs-toggle="dropdown">
+
+Productos
+</a>
+
+<div class="dropdown-menu mega-menu border-0 shadow p-4">
+
+<div class="row g-4">
+
+<!-- COL 1 -->
+<div class="col-md-4">
+
+<h6 class="mega-title">
+Categorías
+</h6>
+
+<a class="dropdown-item" href="#">
+Indumentaria
+</a>
+
+<a class="dropdown-item" href="#">
+Aritos & Accesorios
+</a>
+
+<a class="dropdown-item" href="#">
+Peluches
+</a>
+
+<a class="dropdown-item" href="#">
+Box Sorpresa
+</a>
+
+<a class="dropdown-item" href="#">
+Mates & Hogar
+</a>
+
 </div>
 
+
+</div>
+</div>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ route('contacto') }}">
+Contacto
+</a>
+</li>
+
+<!-- ICONO -->
+<li class="nav-item ms-lg-2">
+<a class="nav-link" href="#">
+🛒
+</a>
+</li>
+
+</ul>
+</div>
 </div>
 </nav>
 
