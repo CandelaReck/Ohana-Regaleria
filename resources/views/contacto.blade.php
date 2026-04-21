@@ -5,7 +5,11 @@
 <section id="contacto" class="py-5 contacto-section">
 <div class="container">
 
+<<<<<<< HEAD
 <h2 class="text-center mb-5" style="color:#4E6252;">Contacto</h2>
+=======
+<h2 class="text-center mb-5">Datos de Contacto</h2>
+>>>>>>> 7642a187d6ae4606fc5d85ebde9824162a021cb4
 
 <div class="row g-4 justify-content-center">
 

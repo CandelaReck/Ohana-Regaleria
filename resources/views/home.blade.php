@@ -127,6 +127,73 @@
 </div>
 </section>
 
+<!-- FRANJA BENEFICIOS -->
+<section class="beneficios-ohana py-5">
+
+<div class="container">
+
+<div class="row text-center g-4">
+
+<!-- ITEM -->
+<div class="col-6 col-lg-3">
+
+<div class="beneficio-box">
+
+<div class="icono-beneficio">🚚</div>
+
+<h4>Envíos a todo el país</h4>
+
+<p>Gratis superando $100.000</p>
+
+</div>
+</div>
+
+<!-- ITEM -->
+<div class="col-6 col-lg-3">
+
+<div class="beneficio-box">
+
+<div class="icono-beneficio">💳</div>
+
+<h4>Hasta 3 cuotas sin interés</h4>
+
+<p>Con tarjetas seleccionadas</p>
+
+</div>
+</div>
+
+<!-- ITEM -->
+<div class="col-6 col-lg-3">
+
+<div class="beneficio-box">
+
+<div class="icono-beneficio">💸</div>
+
+<h4>15% OFF en efectivo</h4>
+
+<p>10% OFF por transferencia</p>
+
+</div>
+</div>
+
+<!-- ITEM -->
+<div class="col-6 col-lg-3">
+
+<div class="beneficio-box">
+
+<div class="icono-beneficio">💚</div>
+
+<h4>Atención personalizada</h4>
+
+<p>Pedidos por WhatsApp</p>
+
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
 <section id="contacto" class="bg-light py-5">
 <div class="container">
 <div class="row">

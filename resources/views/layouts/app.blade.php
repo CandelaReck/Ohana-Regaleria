@@ -17,6 +17,7 @@
 <nav class="navbar navbar-expand-lg shadow-sm">
 <div class="container">
 
+<!-- LOGO -->
 <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
 
 <img src="{{ asset('img/logo.jpeg') }}"
@@ -27,17 +28,101 @@
 
 </a>
 
-<div class="navbar-nav ms-auto">
-<a class="nav-link" href="{{ route('home') }}">Inicio</a>
-<a class="nav-link" href="{{ route('comercializacion') }}">Comercialización</a>
-<a class="nav-link" href="{{ route('quienes-somos') }}">Quiénes somos</a>
-<a class="nav-link" href="{{ route('productos') }}">Productos</a>
-<a class="nav-link" href="{{ route('contacto') }}">Contacto</a>
+<!-- BOTON MOBILE -->
+<button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#menuNavbar">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<!-- MENU -->
+<div class="collapse navbar-collapse" id="menuNavbar">
+
+<div class="navbar-nav ms-auto align-items-lg-center">
+
+<a class="nav-link" href="{{ route('home') }}">
+Inicio
+</a>
+
+<a class="nav-link" href="{{ route('comercializacion') }}">
+Comercialización
+</a>
+
+<a class="nav-link" href="{{ route('quienes-somos') }}">
+Quiénes somos
+</a>
+
+<!-- DROPDOWN PRODUCTOS -->
+<div class="nav-item dropdown">
+
+<a class="nav-link dropdown-toggle"
+   href="#"
+   role="button"
+   data-bs-toggle="dropdown">
+
+Productos
+</a>
+
+<ul class="dropdown-menu shadow border-0">
+
+<li>
+<a class="dropdown-item" href="#">
+Indumentaria
+</a>
+</li>
+
+<li>
+<a class="dropdown-item" href="#">
+Accesorios y Bijou
+</a>
+</li>
+
+<li>
+<a class="dropdown-item" href="#">
+Deco y Hogar
+</a>
+</li>
+
+<li>
+<a class="dropdown-item" href="#">
+Papelería
+</a>
+</li>
+
+<li>
+<a class="dropdown-item" href="#">
+Boxes y Combos
+</a>
+</li>
+
+<li><hr class="dropdown-divider"></li>
+
+<li>
+<a class="dropdown-item" href="{{ route('productos') }}">
+Ver todos
+</a>
+</li>
+
+</ul>
 </div>
 
+<a class="nav-link" href="{{ route('contacto') }}">
+Contacto
+</a> 
+
+<!-- ICONO -->
+<li class="nav-item ms-lg-2">
+<a class="nav-link" href="#">
+🛒
+</a>
+</li>
+
+</div>
+</div>
 </div>
 </nav>
-
 <!-- CONTENIDO VARIABLE -->
 <main class="py-5">
 @yield('content')
