@@ -89,7 +89,7 @@
 <div class="card-body">
 <h5>Indumentaria</h5>
 <p>Ropa pensada para impresionar.</p>
-<a href="#" class="btn btn-dark">Ver más</a>
+<a href="{{ route('indumentaria') }}" class="btn btn-dark">Ver más</a>
 </div>
 
 </div>
@@ -103,7 +103,7 @@
 <div class="card-body">
 <h5>Box Sorpresa</h5>
 <p>Ideal para cumpleaños.</p>
-<a href="#" class="btn btn-dark">Ver más</a>
+<a href="{{ route('combos') }}" class="btn btn-dark">Ver más</a>
 </div>
 
 </div>
@@ -112,12 +112,12 @@
 <!-- CARD 3 -->
 <div class="col-md-4">
 <div class="card category-card h-100">
-<img src="{{ asset('img/peluche1.jpeg') }}" class="card-img-top">
+<img src="{{ asset('img/juegoSabanas.jpeg') }}" class="card-img-top">
 
 <div class="card-body">
-<h5>Peluches</h5>
+<h5>Deco y Hogar</h5>
 <p>El regalo clásico que nunca falla.</p>
-<a href="#" class="btn btn-dark">Ver más</a>
+<a href="{{ route('decoHogar') }}" class="btn btn-dark">Ver más</a>
 </div>
 
 </div>

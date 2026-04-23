@@ -18,4 +18,9 @@ class PaginaController extends Controller
     {
         return view('comercializacion');
     }
+
+    public function terminos()
+    {
+        return view('terminos');
+    }
 }
