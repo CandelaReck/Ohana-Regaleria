@@ -2,57 +2,39 @@
 
 @section('content')
 
-<section class="shop-page py-5">
+<section class="py-5">
 
 <div class="container">
 
-<!-- TITULO -->
-<div class="text-center mb-5">
-<h1 class="shop-title">Productos</h1>
-<p class="shop-subtitle">
+<h1 class="text-center mb-2">Nuestros Productos</h1>
+<p class="text-center text-muted mb-5">
 Regalos únicos pensados para sorprender
 </p>
-</div>
 
-<!-- FILTRO SIMPLE -->
-<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-
-<p class="m-0 text-muted">
-Mostrando 6 productos
-</p>
-
-<select class="form-select w-auto">
-<option>Ordenar por</option>
-<option>Menor precio</option>
-<option>Mayor precio</option>
-<option>Más vendidos</option>
-</select>
-
-</div>
-
-<!-- PRODUCTOS -->
 <div class="row g-4">
 
-<!-- PRODUCTO -->
-<div class="col-sm-6 col-lg-4">
+@foreach($productos as $producto)
 
-<div class="producto-box">
+<div class="col-md-6 col-lg-4">
 
-<div class="producto-img-box">
-<img src="{{ asset('img/pijamaPrint.jpeg') }}" class="producto-img">
-</div>
+<div class="card h-100 shadow border-0">
 
-<div class="producto-info">
+<img src="{{ asset('img/' . $producto['imagen']) }}"
+class="card-img-top producto-foto">
 
-<h5>Indumentaria</h5>
+<div class="card-body text-center d-flex flex-column">
 
-<p class="producto-desc">
-Ropa pensada para impresionar.
+<h5>{{ $producto['nombre'] }}</h5>
+
+<p class="text-muted">
+{{ $producto['descripcion'] }}
 </p>
 
-<p class="precio">$18.500</p>
+<h4 class="text-success mb-3">
+${{ number_format($producto['precio'],0,',','.') }}
+</h4>
 
-<a href="#" class="btn btn-dark w-100">
+<a href="#" class="btn btn-dark mt-auto">
 Comprar
 </a>
 
@@ -60,61 +42,7 @@ Comprar
 </div>
 </div>
 
-
-<!-- PRODUCTO -->
-<div class="col-sm-6 col-lg-4">
-
-<div class="producto-box">
-
-<div class="producto-img-box">
-<img src="{{ asset('img/aritos.jpeg') }}" class="producto-img">
-</div>
-
-<div class="producto-info">
-
-<h5>Aritos Boutique</h5>
-
-<p class="producto-desc">
-Detalles delicados y elegantes.
-</p>
-
-<p class="precio">$7.900</p>
-
-<a href="#" class="btn btn-dark w-100">
-Comprar
-</a>
-
-</div>
-</div>
-</div>
-
-
-<!-- PRODUCTO -->
-<div class="col-sm-6 col-lg-4">
-
-<div class="producto-box">
-
-<div class="producto-img-box">
-<img src="{{ asset('img/peluche3.jpeg') }}" class="producto-img">
-</div>
-
-<div class="producto-info">
-
-<h5>Peluche Teddy</h5>
-
-<p class="producto-desc">
-El clásico regalo que enamora.
-</p>
-
-<p class="precio">$12.500</p>
-
-<a href="#" class="btn btn-dark w-100">
-Comprar
-</a>
-
-</div>
-</div>
-</div>
+@endforeach
 
 </div>
 </div>

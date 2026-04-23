@@ -1,27 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PaginaController;
 
-Route::get('/', function () {
-    return view('home', ['title' => 'Inicio']);
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/comercializacion', function () {
-    return view('comercializacion');
-})->name('comercializacion');
+Route::get('/productos', [ProductoController::class, 'index'])
+    ->name('productos');
 
-Route::get('/quienes-somos', function () {
-    return view('quienes-somos');
-})->name('quienes-somos');
+Route::get('/contacto', [PaginaController::class, 'contacto'])
+    ->name('contacto');
 
-Route::get('/productos', function () {
-    return view('productos');
-})->name('productos');
+Route::get('/quienes-somos', [PaginaController::class, 'quienesSomos'])
+    ->name('quienes-somos');
 
-Route::get('/contacto', function () {
-    return view('contacto');
-})->name('contacto');
+Route::get('/comercializacion', [PaginaController::class, 'comercializacion'])
+    ->name('comercializacion');
 
-Route::get('/terminos', function () {
-    return view('terminos');
-})->name('terminos');
+Route::get('/terminos', [PaginaController::class, 'terminos'])
+    ->name('terminos');    
+
