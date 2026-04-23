@@ -500,3 +500,39 @@ box-shadow:0 14px 28px rgba(0,0,0,.10);
 .producto-info .btn{
     margin-top:auto;
 }
+
+.producto-foto{
+height: 160px;
+object-fit: cover;
+}
+
+.card{
+transition:.3s;
+border-radius:14px;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card-body{
+padding: 12px;
+}
+
+.card h5{
+font-size: 1rem;
+}
+
+.card p{
+font-size: 0.85rem;
+margin-bottom: 8px;
+}
+
+.card h4{
+font-size: 1.1rem;
+}
+
+.card .btn{
+font-size: 0.85rem;
+padding: 6px 10px;
+}

@@ -68,31 +68,31 @@ Productos
 <ul class="dropdown-menu shadow border-0">
 
 <li>
-<a class="dropdown-item" href="#">
+<a class="dropdown-item" href="{{ route('indumentaria') }}">
 Indumentaria
 </a>
 </li>
 
 <li>
-<a class="dropdown-item" href="#">
+<a class="dropdown-item" href="{{ route('accesorios') }}">
 Accesorios y Bijou
 </a>
 </li>
 
 <li>
-<a class="dropdown-item" href="#">
+<a class="dropdown-item" href="{{ route('decoHogar') }}">
 Deco y Hogar
 </a>
 </li>
 
 <li>
-<a class="dropdown-item" href="#">
+<a class="dropdown-item" href="{{ route('papeleria') }}">
 Papelería
 </a>
 </li>
 
 <li>
-<a class="dropdown-item" href="#">
+<a class="dropdown-item" href="#{{ route('combos') }}">
 Boxes y Combos
 </a>
 </li>

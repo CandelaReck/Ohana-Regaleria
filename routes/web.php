@@ -22,3 +22,17 @@ Route::get('/comercializacion', [PaginaController::class, 'comercializacion'])
 Route::get('/terminos', [PaginaController::class, 'terminos'])
     ->name('terminos');    
 
+Route::get('/decoHogar', [ProductoController::class, 'decoHogar'])
+    ->name('decoHogar');
+
+Route::get('/indumentaria', [ProductoController::class, 'indumentaria'])
+    ->name('indumentaria'); 
+
+Route::get('/combos', [ProductoController::class, 'combos'])
+    ->name('combos');
+
+Route::get('/papeleria', [ProductoController::class, 'papeleria'])
+    ->name('papeleria');
+
+Route::get('/accesorios', [ProductoController::class, 'accesorios'])
+    ->name('accesorios');
