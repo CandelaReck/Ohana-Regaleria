@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PaginaController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -36,3 +37,13 @@ Route::get('/papeleria', [ProductoController::class, 'papeleria'])
 
 Route::get('/accesorios', [ProductoController::class, 'accesorios'])
     ->name('accesorios');
+
+Route::get('/login', [AuthController::class, 'mostrarLogin'])->name('login');
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/registro', [AuthController::class, 'mostrarRegistro'])->name('registro');
+
+Route::post('/registro', [AuthController::class, 'registrar']);
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -112,15 +112,69 @@ Ver todos
 Contacto
 </a> 
 
-<!-- ICONO -->
+<!-- CARRITO -->
 <li class="nav-item ms-lg-2">
-<a class="nav-link" href="#">
-🛒
+    <a class="nav-link" href="#">
+        🛒
+    </a>
+</li>
+
+@if(session('usuario'))
+
+<!-- Usuario logueado -->
+
+<li class="nav-item dropdown">
+
+<a class="nav-link dropdown-toggle"
+href="#"
+data-bs-toggle="dropdown">
+
+👤
+
+</a>
+
+<ul class="dropdown-menu">
+
+<li>
+<form method="POST" action="{{ route('logout') }}">
+@csrf
+<button class="dropdown-item">
+Cerrar sesión
+</button>
+</form>
+</li>
+
+</ul>
+
+</li>
+
+@else
+
+<!-- No logueado -->
+
+<li class="nav-item dropdown">
+
+<a class="nav-link dropdown-toggle"
+href="#"
+data-bs-toggle="dropdown">
+
+👤
+
+</a>
+
+<ul class="dropdown-menu">
+
+<li>
+<a class="dropdown-item" href="{{ route('login') }}">
+Ingresar a mi cuenta
 </a>
 </li>
 
-</div>
-</div>
+</ul>
+
+</li>
+
+@endif
 </div>
 </nav>
 <!-- CONTENIDO VARIABLE -->
