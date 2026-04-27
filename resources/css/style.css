@@ -1,48 +1,98 @@
+/* ======================================================
+   OHANA REGALERIA - STYLE.CSS PRO
+   Boutique elegante + marca moderna
+====================================================== */
+
 /* RESET */
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
-    font-family:'Poppins', sans-serif;
-    background:#FAF9F6;
-    color:#4E6252;
-    line-height:1.6;
+font-family:'Poppins',sans-serif;
+background:#FFF9F2;
+color:#2E3A30;
+line-height:1.6;
+overflow-x:hidden;
 }
 
 a{
-    text-decoration:none;
-    transition:.3s;
+text-decoration:none;
+transition:.3s ease;
 }
 
 img{
-    max-width:100%;
-    display:block;
+max-width:100%;
+display:block;
 }
 
 /* ======================================================
-   TIPOGRAFÍA
+   VARIABLES
+====================================================== */
+
+:root{
+--verde:#5F7A61;
+--verde-oscuro:#3F5643;
+--dorado:#D4A94D;
+--crema:#FFF9F2;
+--blanco:#ffffff;
+--texto:#2E3A30;
+--gris:#6F7A70;
+--rosa:#E7B8B8;
+}
+
+/* ======================================================
+   TIPOGRAFIA
 ====================================================== */
 
 h1,h2,h3,h4,h5{
-    font-family:'Cormorant Garamond', serif;
-    color:#4E6252;
-    margin-bottom:10px;
+font-family:'Cormorant Garamond',serif;
+color:var(--verde-oscuro);
+font-weight:700;
+margin-bottom:12px;
+}
+
+h1{
+font-size:64px;
+line-height:1;
+}
+
+h2{
+font-size:48px;
+}
+
+h3{
+font-size:34px;
+}
+
+p{
+margin-bottom:12px;
+color:var(--gris);
 }
 
 .titulo-seccion{
-    font-size:52px;
-    text-align:center;
-    margin-bottom:10px;
+text-align:center;
+margin-bottom:10px;
 }
 
 .subtitulo-seccion{
-    text-align:center;
-    color:#6F8573;
-    margin-bottom:50px;
-    font-size:18px;
+text-align:center;
+margin-bottom:50px;
+font-size:18px;
+}
+
+/* ======================================================
+   SECCIONES
+====================================================== */
+
+section{
+padding:90px 0;
 }
 
 /* ======================================================
@@ -50,180 +100,161 @@ h1,h2,h3,h4,h5{
 ====================================================== */
 
 .btn{
-    border-radius:30px !important;
-    padding:10px 22px;
-    font-weight:500;
+border-radius:30px !important;
+padding:11px 24px;
+font-weight:600;
+transition:.3s;
 }
 
 .btn-primary{
-    background:#6F8573 !important;
-    border:none !important;
+background:var(--verde) !important;
+border:none !important;
 }
 
 .btn-primary:hover{
-    background:#4E6252 !important;
+background:var(--verde-oscuro) !important;
+transform:translateY(-2px);
 }
 
 .btn-dark{
-    border:none;
+background:var(--verde-oscuro);
+border:none;
+}
+
+.btn-dark:hover{
+transform:translateY(-2px);
 }
 
 .btn-outline-secondary{
-    border-radius:30px;
-    border:1px solid #C9A86A;
-    color:#4E6252;
+border:1px solid var(--dorado);
+color:var(--verde-oscuro);
+background:transparent;
 }
 
 .btn-outline-secondary:hover{
-    background:#C9A86A;
-    color:white;
+background:var(--dorado);
+color:white;
 }
 
 /* ======================================================
-   NAVBAR PREMIUM
+   NAVBAR
 ====================================================== */
 
 .navbar{
-    background:#FAF9F6 !important;
-    border-bottom:1px solid #EDE7DD;
-    padding:14px 0;
+background:rgba(255,249,242,.95) !important;
+backdrop-filter:blur(8px);
+padding:14px 0;
+border-bottom:1px solid #eee4d7;
+position:sticky;
+top:0;
+z-index:999;
 }
 
 .navbar-brand{
-    font-family:'Cormorant Garamond', serif;
-    font-size:34px;
-    color:#4E6252 !important;
-    font-weight:700;
+font-family:'Cormorant Garamond',serif;
+font-size:34px;
+font-weight:700;
+color:var(--verde-oscuro) !important;
 }
 
 .logo-navbar{
-    width:52px;
-    height:52px;
-    object-fit:cover;
-    border-radius:50%;
-    border:2px solid #C9A86A;
-    box-shadow:0 4px 10px rgba(0,0,0,.08);
+width:52px;
+height:52px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid var(--dorado);
+box-shadow:0 6px 14px rgba(0,0,0,.08);
 }
 
 .nav-link{
-    color:#6F8573 !important;
-    font-weight:500;
-    margin-left:10px;
+color:var(--verde) !important;
+font-weight:500;
+margin-left:10px;
+position:relative;
 }
 
 .nav-link:hover{
-    color:#C9A86A !important;
+color:var(--dorado) !important;
+}
+
+.nav-link::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-3px;
+width:0;
+height:2px;
+background:var(--dorado);
+transition:.3s;
+}
+
+.nav-link:hover::after{
+width:100%;
 }
 
 /* ======================================================
-   DROPDOWN PREMIUM
+   DROPDOWN
 ====================================================== */
 
-.mega-menu{
-    width:100%;
-    left:0;
-    right:0;
-    border:none;
-    border-radius:0 0 18px 18px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    padding:25px;
-}
-
-.mega-title{
-    font-weight:700;
-    color:#4E6252;
-    margin-bottom:14px;
+.dropdown-menu{
+border:none;
+border-radius:18px;
+padding:12px;
+box-shadow:0 16px 35px rgba(0,0,0,.08);
 }
 
 .dropdown-item{
-    padding:10px 14px;
-    border-radius:12px;
+padding:10px 14px;
+border-radius:12px;
+font-weight:500;
 }
 
 .dropdown-item:hover{
-    background:#FAF9F6;
-    color:#C9A86A;
+background:#f7efe4;
+color:var(--dorado);
 }
 
 @media(min-width:992px){
-    .navbar .dropdown:hover .dropdown-menu{
-        display:block;
-        margin-top:0;
-    }
+.navbar .dropdown:hover .dropdown-menu{
+display:block;
+margin-top:0;
+}
 }
 
 /* ======================================================
-   HERO PREMIUM
+   HERO
 ====================================================== */
 
 .hero-premium{
-    background:linear-gradient(180deg,#FAF9F6,#ffffff);
-    padding:80px 0;
+background:linear-gradient(180deg,#FFF9F2,#ffffff);
 }
 
 .hero-box{
-    background:#fff;
-    border-radius:24px;
-    overflow:hidden;
-    box-shadow:0 10px 28px rgba(0,0,0,.06);
+border-radius:24px;
+overflow:hidden;
+box-shadow:0 18px 38px rgba(0,0,0,.08);
+background:white;
 }
 
 .hero-img{
-    width:100%;
-    height:520px;
-    object-fit:cover;
+width:100%;
+height:540px;
+object-fit:cover;
 }
 
 .hero-badge{
-    display:inline-block;
-    background:#EDE7DD;
-    color:#4E6252;
-    padding:8px 16px;
-    border-radius:30px;
-    font-size:14px;
-    font-weight:500;
-}
-
-.hero-premium h1{
-    font-size:64px;
-    line-height:1;
+background:#f4ead8;
+color:var(--verde-oscuro);
+padding:8px 16px;
+border-radius:30px;
+font-size:14px;
+font-weight:600;
+display:inline-block;
+margin-bottom:15px;
 }
 
 .hero-premium p{
-    color:#6F8573;
-    font-size:18px;
-}
-
-/* ======================================================
-   BENEFICIOS
-====================================================== */
-
-.beneficios-ohana{
-    background:#6F8573;
-    padding:70px 0;
-}
-
-.beneficio-box{
-    color:white;
-    text-align:center;
-    padding:10px 20px;
-}
-
-.icono-beneficio{
-    font-size:42px;
-    margin-bottom:18px;
-}
-
-.beneficio-box h4{
-    font-size:28px;
-    color:white;
-    font-weight:700;
-    margin-bottom:10px;
-}
-
-.beneficio-box p{
-    color:rgba(255,255,255,.85);
-    margin:0;
+font-size:18px;
 }
 
 /* ======================================================
@@ -231,119 +262,152 @@ h1,h2,h3,h4,h5{
 ====================================================== */
 
 .card{
-    border:none;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 8px 22px rgba(0,0,0,.06);
+border:none;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.07);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 38px rgba(0,0,0,.10);
+}
+
+.card-body{
+padding:22px;
+}
+
+.card h5{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:15px;
 }
 
 /* ======================================================
-   PRODUCTOS PREMIUM
+   PRODUCTOS
 ====================================================== */
 
-.productos-page,
-.shop-page{
-    padding:80px 0;
-    background:#FAF9F6;
+.productos-page{
+background:#FFF9F2;
 }
 
-/* GRID */
-
-.producto-card,
 .producto-box{
-    background:#fff;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 10px 25px rgba(0,0,0,.06);
-    transition:.3s;
-    height:100%;
-    display:flex;
-    flex-direction:column;
+background:white;
+border-radius:22px;
+overflow:hidden;
+height:100%;
+display:flex;
+flex-direction:column;
+box-shadow:0 10px 24px rgba(0,0,0,.06);
+transition:.3s;
 }
 
-.producto-card:hover,
 .producto-box:hover{
-    transform:translateY(-8px);
-    box-shadow:0 18px 35px rgba(0,0,0,.10);
+transform:translateY(-8px);
+box-shadow:0 18px 35px rgba(0,0,0,.10);
 }
-
-/* Imagen */
 
 .producto-img-box{
-    width:100%;
-    height:300px;
-    overflow:hidden;
-    background:#fff;
+height:290px;
+overflow:hidden;
+background:white;
 }
 
 .producto-img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
-/* Info */
-
 .producto-info{
-    padding:22px;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    flex-grow:1;
+padding:20px;
+display:flex;
+flex-direction:column;
+flex-grow:1;
+text-align:center;
 }
 
 .producto-info h5{
-    font-size:24px;
-    font-weight:700;
-    color:#4E6252;
+font-size:26px;
 }
 
 .producto-desc{
-    color:#6F8573;
-    font-size:15px;
-    min-height:48px;
-    margin-bottom:10px;
+font-size:15px;
+min-height:48px;
 }
 
 .precio{
-    color:#C9A86A;
-    font-size:28px;
-    font-weight:700;
-    margin-bottom:18px;
+font-size:28px;
+font-weight:700;
+color:var(--dorado);
+margin:12px 0 18px;
 }
 
 .producto-info .btn{
-    margin-top:auto;
+margin-top:auto;
 }
 
-/* Badge oferta */
+/* ======================================================
+   CATEGORIAS HOME
+====================================================== */
 
-.badge-oferta{
-    position:absolute;
-    top:15px;
-    left:15px;
-    background:#C9A86A;
-    color:white;
-    padding:6px 12px;
-    border-radius:30px;
-    font-size:13px;
+.category-card img{
+height:320px;
+object-fit:cover;
+}
+
+.category-card .btn{
+margin-top:10px;
+}
+
+/* ======================================================
+   BENEFICIOS
+====================================================== */
+
+.beneficios-ohana{
+background:linear-gradient(135deg,var(--verde),var(--verde-oscuro));
+}
+
+.beneficio-box{
+text-align:center;
+padding:20px;
+color:white;
+}
+
+.icono-beneficio{
+font-size:42px;
+margin-bottom:16px;
+}
+
+.beneficio-box h4{
+color:white;
+font-size:26px;
+}
+
+.beneficio-box p{
+color:rgba(255,255,255,.88);
 }
 
 /* ======================================================
    FORMULARIOS
 ====================================================== */
 
-.form-control,
-.form-select{
-    border-radius:14px;
-    padding:12px 16px;
-    border:1px solid #ddd;
+form .form-control,
+form .form-select{
+border-radius:14px;
+padding:12px 16px;
+border:1px solid #ddd;
+box-shadow:none;
 }
 
-.form-control:focus,
-.form-select:focus{
-    box-shadow:none;
-    border-color:#6F8573;
+form .form-control:focus,
+form .form-select:focus{
+border-color:var(--verde);
+box-shadow:none;
 }
 
 /* ======================================================
@@ -351,12 +415,12 @@ h1,h2,h3,h4,h5{
 ====================================================== */
 
 footer{
-    background:#ffffff;
-    border-top:1px solid #EDE7DD;
-    padding:35px 0;
-    text-align:center;
-    color:#6F8573;
-    font-size:14px;
+background:white;
+border-top:1px solid #eee2d3;
+padding:40px 0;
+text-align:center;
+font-size:14px;
+color:var(--gris);
 }
 
 /* ======================================================
@@ -365,174 +429,78 @@ footer{
 
 @media(max-width:992px){
 
-.navbar-brand{
-    font-size:28px;
+h1{
+font-size:50px;
 }
 
-.hero-premium h1{
-    font-size:48px;
+h2{
+font-size:40px;
 }
 
 .hero-img{
-    height:400px;
+height:420px;
 }
 
-.titulo-seccion{
-    font-size:42px;
+.navbar-brand{
+font-size:28px;
+}
+
+section{
+padding:70px 0;
 }
 
 }
 
 @media(max-width:768px){
 
-.hero-premium{
-    padding:50px 0;
+h1{
+font-size:38px;
 }
 
-.hero-premium h1{
-    font-size:38px;
+h2{
+font-size:32px;
 }
 
 .hero-img{
-    height:280px;
+height:300px;
 }
 
 .logo-navbar{
-    width:42px;
-    height:42px;
-}
-
-.titulo-seccion{
-    font-size:34px;
-}
-
-.beneficio-box{
-    margin-bottom:30px;
-}
-
-.beneficio-box h4{
-    font-size:22px;
+width:42px;
+height:42px;
 }
 
 .producto-img-box{
-    height:240px;
+height:240px;
+}
+
+section{
+padding:55px 0;
 }
 
 }
 
 @media(max-width:576px){
 
-.navbar-brand{
-    font-size:24px;
-}
-
-.hero-premium h1{
-    font-size:32px;
+h1{
+font-size:32px;
 }
 
 .hero-img{
-    height:220px;
+height:240px;
 }
 
 .producto-img-box{
-    height:220px;
+height:220px;
 }
 
-}
-
-.producto-foto{
-height:320px;
-width:100%;
-object-fit:cover;
-}
-
-.card h5{
+.navbar-brand{
 font-size:24px;
-font-weight:700;
-color:#4E6252;
 }
 
-.card{
-border-radius:18px;
-overflow:hidden;
-transition:.3s;
+.btn{
+padding:10px 18px;
+font-size:.95rem;
 }
 
-.card:hover{
-transform:translateY(-6px);
-box-shadow:0 14px 28px rgba(0,0,0,.10);
-}
-
-/* GRID PRODUCTOS UNIFORME */
-
-.producto-box{
-    height:100%;
-    display:flex;
-    flex-direction:column;
-}
-
-/* Caja imagen igual para todos */
-.producto-img-box{
-    height:260px;        /* tamaño uniforme */
-    overflow:hidden;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-/* Imagen adaptada */
-.producto-img{
-    width:100%;
-    height:100%;
-    object-fit:cover;   /* recorta prolijo */
-}
-
-/* Texto ocupa mismo espacio */
-.producto-info{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    padding:18px;
-}
-
-/* botón abajo siempre */
-.producto-info .btn{
-    margin-top:auto;
-}
-
-.producto-foto{
-height: 160px;
-object-fit: cover;
-}
-
-.card{
-transition:.3s;
-border-radius:14px;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.card-body{
-padding: 12px;
-}
-
-.card h5{
-font-size: 1rem;
-}
-
-.card p{
-font-size: 0.85rem;
-margin-bottom: 8px;
-}
-
-.card h4{
-font-size: 1.1rem;
-}
-
-.card .btn{
-font-size: 0.85rem;
-padding: 6px 10px;
 }

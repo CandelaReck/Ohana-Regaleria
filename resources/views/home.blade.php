@@ -2,212 +2,494 @@
 
 @section('content')
 
-<section id="inicio" class="hero-premium py-5">
+<!-- HERO PREMIUM OHANA -->
+<section class="hero-premium">
+
 <div class="container">
 
 <div class="row align-items-center gy-5">
 
-    <!-- COLUMNA IZQUIERDA -->
-    <div class="col-lg-7">
+<!-- TEXTO -->
+<div class="col-lg-6">
 
-        <div id="hero" class="carousel slide hero-box shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel">
+<span class="hero-badge">
+✨ Regalos con amor
+</span>
 
-            <div class="carousel-inner">
+<h1>
+Regalos que <br> emocionan 💝
+</h1>
 
-                <div class="carousel-item active">
-                    <img src="{{ asset('img/toallonCapy.jpeg') }}" class="d-block w-100 hero-img" alt="Toallón">
-                </div>
+<p class="mt-4 mb-4">
+Boxes sorpresa, detalles únicos y productos personalizados para momentos especiales.
+</p>
 
-                <div class="carousel-item">
-                    <img src="{{ asset('img/aritos.jpeg') }}" class="d-block w-100 hero-img" alt="Aritos">
-                </div>
+<div class="d-flex gap-3 flex-wrap">
 
-                <div class="carousel-item">
-                    <img src="{{ asset('img/boxRegalo1.jpeg') }}" class="d-block w-100 hero-img" alt="Box regalo">
-                </div>
+<a href="{{ route('productos') }}" class="btn btn-primary btn-lg">
+Ver catálogo
+</a>
 
-            </div>
+<a href="#" class="btn btn-outline-light btn-lg hero-whatsapp">
+WhatsApp
+</a>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#hero" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
+</div>
 
-            <button class="carousel-control-next" type="button" data-bs-target="#hero" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
+<div class="hero-mini-info mt-5">
 
-        </div>
+<div>
+🚚 <span>Envíos a todo el país</span>
+</div>
 
-    </div>
+<div>
+🎁 <span>Packaging premium</span>
+</div>
 
-    <!-- COLUMNA DERECHA -->
-    <div class="col-lg-5">
+<div>
+💳 <span>Cuotas sin interés</span>
+</div>
 
-        <span class="badge rounded-pill px-3 py-2 mb-3 hero-badge">
-            ✨ Regalos con amor
-        </span>
+</div>
 
-        <h1 class="display-4 mb-3">
-            Ohana <br> Regalería
-        </h1>
+</div>
 
-        <p class="lead mb-4">
-            Detalles únicos, productos personalizados y sorpresas pensadas para emocionar.
-        </p>
+<!-- SLIDER -->
+<div class="col-lg-6">
 
-        <p class="mb-4 text-muted">
-            Boxes, accesorios, regalos especiales y mucho más para cada ocasión.
-        </p>
+<div id="heroSlider" class="carousel slide hero-slider" data-bs-ride="carousel">
 
-        <div class="d-flex gap-3 flex-wrap">
-            <a href="#" class="btn btn-primary btn-lg px-4">
-                Ver catálogo
-            </a>
+<div class="carousel-inner rounded-4 shadow-lg">
 
-            <a href="#" class="btn btn-outline-secondary btn-lg px-4">
-                WhatsApp
-            </a>
-        </div>
+<div class="carousel-item active">
+<img src="{{ asset('img/boxRegalo1.jpeg') }}" class="d-block w-100 hero-slider-img">
+</div>
 
-    </div>
+<div class="carousel-item">
+<img src="{{ asset('img/aritos.jpeg') }}" class="d-block w-100 hero-slider-img">
+</div>
+
+<div class="carousel-item">
+<img src="{{ asset('img/juegoSabanas.jpeg') }}" class="d-block w-100 hero-slider-img">
+</div>
+
+</div>
+
+<button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
+<span class="slider-btn">‹</span>
+</button>
+
+<button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
+<span class="slider-btn">›</span>
+</button>
+
+</div>
+
+</div>
 
 </div>
 </div>
 </section>
-<section id="productos" class="py-5">
+
+
+<!-- DESTACADOS -->
+<section class="py-5 bg-light">
 <div class="container">
 
-<h2 class="text-center mb-4">Destacados</h2>
+<h2 class="text-center mb-5">
+Productos destacados
+</h2>
 
 <div class="row g-4">
 
-<!-- CARD 1 -->
+@for($i=1;$i<=3;$i++)
 <div class="col-md-4">
-<div class="card category-card h-100">
+<div class="card card-premium h-100">
+
 <img src="{{ asset('img/pijamaPrint.jpeg') }}" class="card-img-top">
 
-<div class="card-body">
-<h5>Indumentaria</h5>
-<p>Ropa pensada para impresionar.</p>
-<a href="{{ route('indumentaria') }}" class="btn btn-dark">Ver más</a>
+<div class="card-body text-center">
+<h5>Pijama Print</h5>
+<p>$18.000</p>
+<a href="#" class="btn btn-dark">Comprar</a>
 </div>
 
 </div>
 </div>
-
-<!-- CARD 2 -->
-<div class="col-md-4">
-<div class="card category-card h-100">
-<img src="{{ asset('img/boxRegalo1.jpeg') }}" class="card-img-top">
-
-<div class="card-body">
-<h5>Box Sorpresa</h5>
-<p>Ideal para cumpleaños.</p>
-<a href="{{ route('combos') }}" class="btn btn-dark">Ver más</a>
-</div>
-
-</div>
-</div>
-
-<!-- CARD 3 -->
-<div class="col-md-4">
-<div class="card category-card h-100">
-<img src="{{ asset('img/juegoSabanas.jpeg') }}" class="card-img-top">
-
-<div class="card-body">
-<h5>Deco y Hogar</h5>
-<p>El regalo clásico que nunca falla.</p>
-<a href="{{ route('decoHogar') }}" class="btn btn-dark">Ver más</a>
-</div>
-
-</div>
-</div>
+@endfor
 
 </div>
 </div>
 </section>
 
-<!-- FRANJA BENEFICIOS -->
-<section class="beneficios-ohana py-5">
+
+<!-- ==========================================
+CATEGORIAS PREMIUM SLIDER
+========================================== -->
+
+<section class="categorias-premium py-5">
 
 <div class="container">
 
-<div class="row text-center g-4">
+<h2 class="titulo-seccion">
+Explorá nuestras categorías
+</h2>
 
-<!-- ITEM -->
-<div class="col-6 col-lg-3">
+<p class="subtitulo-seccion">
+Descubrí regalos únicos para cada ocasión
+</p>
 
+<div id="ohanaCategorias"
+class="carousel slide carousel-fade"
+data-bs-ride="carousel"
+data-bs-interval="3500">
+
+<!-- INDICADORES -->
+<div class="carousel-indicators">
+
+<button type="button"
+data-bs-target="#ohanaCategorias"
+data-bs-slide-to="0"
+class="active"></button>
+
+<button type="button"
+data-bs-target="#ohanaCategorias"
+data-bs-slide-to="1"></button>
+
+</div>
+
+<div class="carousel-inner">
+
+<!-- ==========================================
+SLIDE 1
+========================================== -->
+<div class="carousel-item active">
+
+<div class="row g-4">
+
+<!-- CARD -->
+<div class="col-lg-4">
+<a href="{{ route('decoHogar') }}" class="text-decoration-none">
+
+<div class="categoria-premium-card">
+
+<img src="{{ asset('img/juegoSabanas.jpeg') }}"
+class="categoria-premium-img">
+
+<div class="categoria-premium-overlay">
+
+<span class="categoria-tag">
+Hogar
+</span>
+
+<h3>Deco y Hogar</h3>
+
+<p>
+Detalles que transforman espacios.
+</p>
+
+<span class="btn-mini">
+Ver más →
+</span>
+
+</div>
+</div>
+
+</a>
+</div>
+
+<!-- CARD -->
+<div class="col-lg-4">
+<a href="{{ route('accesorios') }}" class="text-decoration-none">
+
+<div class="categoria-premium-card">
+
+<img src="{{ asset('img/aritos.jpeg') }}"
+class="categoria-premium-img">
+
+<div class="categoria-premium-overlay">
+
+<span class="categoria-tag">
+Brillá
+</span>
+
+<h3>Bijou</h3>
+
+<p>
+Accesorios para cada estilo.
+</p>
+
+<span class="btn-mini">
+Ver más →
+</span>
+
+</div>
+</div>
+
+</a>
+</div>
+
+<!-- CARD -->
+<div class="col-lg-4">
+<a href="{{ route('indumentaria') }}" class="text-decoration-none">
+
+<div class="categoria-premium-card">
+
+<img src="{{ asset('img/pijamaPrint.jpeg') }}"
+class="categoria-premium-img">
+
+<div class="categoria-premium-overlay">
+
+<span class="categoria-tag">
+Moda
+</span>
+
+<h3>Indumentaria</h3>
+
+<p>
+Comodidad con personalidad.
+</p>
+
+<span class="btn-mini">
+Ver más →
+</span>
+
+</div>
+</div>
+
+</a>
+</div>
+
+</div>
+</div>
+
+<!-- ==========================================
+SLIDE 2
+========================================== -->
+<div class="carousel-item">
+
+<div class="row g-4">
+
+<div class="col-lg-6">
+<a href="{{ route('papeleria') }}" class="text-decoration-none">
+
+<div class="categoria-premium-card">
+
+<img src="{{ asset('img/papeleria.jpeg') }}"
+class="categoria-premium-img">
+
+<div class="categoria-premium-overlay">
+
+<span class="categoria-tag">
+Diseño
+</span>
+
+<h3>Papelería</h3>
+
+<p>
+Organizá tus días con estilo.
+</p>
+
+<span class="btn-mini">
+Ver más →
+</span>
+
+</div>
+</div>
+
+</a>
+</div>
+
+<div class="col-lg-6">
+<a href="{{ route('combos') }}" class="text-decoration-none">
+
+<div class="categoria-premium-card">
+
+<img src="{{ asset('img/boxRegalo1.jpeg') }}"
+class="categoria-premium-img">
+
+<div class="categoria-premium-overlay">
+
+<span class="categoria-tag">
+Regalo ideal
+</span>
+
+<h3>Boxes y Combos</h3>
+
+<p>
+Sorpresas listas para emocionar.
+</p>
+
+<span class="btn-mini">
+Ver más →
+</span>
+
+</div>
+</div>
+
+</a>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<!-- FLECHAS -->
+<button class="carousel-control-prev"
+type="button"
+data-bs-target="#ohanaCategorias"
+data-bs-slide="prev">
+
+<span class="slider-arrow">
+‹
+</span>
+
+</button>
+
+<button class="carousel-control-next"
+type="button"
+data-bs-target="#ohanaCategorias"
+data-bs-slide="next">
+
+<span class="slider-arrow">
+›
+</span>
+
+</button>
+
+</div>
+</div>
+</section>
+
+
+<section class="beneficios-ohana">
+
+<div class="container">
+
+<div class="row g-4 text-center">
+
+<div class="col-md-3 col-6">
 <div class="beneficio-box">
-
 <div class="icono-beneficio">🚚</div>
-
-<h4>Envíos a todo el país</h4>
-
-<p>Gratis superando $100.000</p>
-
+<h4>Envíos rápidos</h4>
+<p>
+Despachamos a todo el país con seguimiento seguro.
+</p>
 </div>
 </div>
 
-<!-- ITEM -->
-<div class="col-6 col-lg-3">
-
+<div class="col-md-3 col-6">
 <div class="beneficio-box">
-
 <div class="icono-beneficio">💳</div>
-
-<h4>Hasta 3 cuotas sin interés</h4>
-
-<p>Con tarjetas seleccionadas</p>
-
+<h4>Pagá en cuotas</h4>
+<p>
+Hasta 3 cuotas sin interés en productos seleccionados.
+</p>
 </div>
 </div>
 
-<!-- ITEM -->
-<div class="col-6 col-lg-3">
-
+<div class="col-md-3 col-6">
 <div class="beneficio-box">
-
-<div class="icono-beneficio">💸</div>
-
-<h4>15% OFF en efectivo</h4>
-
-<p>10% OFF por transferencia</p>
-
+<div class="icono-beneficio">🎁</div>
+<h4>Packaging premium</h4>
+<p>
+Presentaciones listas para regalar y emocionar.
+</p>
 </div>
 </div>
 
-<!-- ITEM -->
-<div class="col-6 col-lg-3">
-
+<div class="col-md-3 col-6">
 <div class="beneficio-box">
-
 <div class="icono-beneficio">💚</div>
+<h4>Atención real</h4>
+<p>
+Te asesoramos por WhatsApp para elegir mejor.
+</p>
+</div>
+</div>
 
-<h4>Atención personalizada</h4>
+</div>
 
-<p>Pedidos por WhatsApp</p>
+</div>
+</section>
 
+
+
+<section class="reseñas-ohana py-5">
+
+<div class="container">
+
+<h2 class="titulo-seccion">
+Lo que dicen nuestros clientes
+</h2>
+
+<p class="subtitulo-seccion">
+Gracias por elegirnos en momentos especiales 💚
+</p>
+
+<div class="row g-4 mt-5">
+
+<div class="col-md-4">
+<div class="reseña-card">
+<div class="stars">★★★★★</div>
+
+<p>
+Pedí un box sorpresa para mi mamá y quedó emocionada. Todo hermoso.
+</p>
+
+<div class="reseña-footer">
+<div class="reseña-avatar">C</div>
+
+<div class="reseña-info">
+<h5>Camila R.</h5>
+<span>Corrientes</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="reseña-card">
+<div class="stars">★★★★★</div>
+
+<p>
+La atención fue excelente y el regalo llegó perfecto.
+</p>
+
+<div class="reseña-footer">
+<div class="reseña-avatar">L</div>
+
+<div class="reseña-info">
+<h5>Lucía M.</h5>
+<span>Resistencia</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="reseña-card">
+<div class="stars">★★★★★</div>
+
+<p>
+Compré bijou y superó mis expectativas.
+</p>
+
+<div class="reseña-footer">
+<div class="reseña-avatar">F</div>
+
+<div class="reseña-info">
+<h5>Florencia G.</h5>
+<span>Chaco</span>
+</div>
+</div>
 </div>
 </div>
 
 </div>
 </div>
 </section>
-
-<section id="contacto" class="bg-light py-5">
-<div class="container">
-<div class="row">
-<div class="col-lg-6 mx-auto">
-<h2 class="text-center mb-4">Contactanos</h2>
-<form>
-<div class="mb-3"><input class="form-control" placeholder="Nombre"></div>
-<div class="mb-3"><input class="form-control" placeholder="Email"></div>
-<div class="mb-3"><textarea class="form-control" rows="4" placeholder="Mensaje"></textarea></div>
-<button class="btn btn-dark w-100">Enviar</button>
-</form>
-</div>
-</div>
-</div>
 
 @endsection
 

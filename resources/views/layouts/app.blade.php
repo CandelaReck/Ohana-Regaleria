@@ -182,10 +182,86 @@ Ingresar a mi cuenta
 @yield('content')
 </main>
 
-<!-- FOOTER -->
-<footer class="text-center py-4 border-top">
-© 2026 Ohana Regalería - Todos los derechos reservados.
-Aprenda sobre nuestros <a href="{{ route('terminos') }}" class="btn btn-dark">Términos y Condiciones</a>
+<!-- FOOTER PREMIUM COMPLETO -->
+<footer class="footer-ohana">
+
+<div class="container">
+
+<!-- REDES -->
+<div class="footer-social text-center mb-4">
+
+<a href="#"><i class="bi bi-instagram"></i></a>
+
+<a href="#"><i class="bi bi-facebook"></i></a>
+
+<a href="#"><i class="bi bi-whatsapp"></i></a>
+
+</div>
+
+<!-- COLUMNAS -->
+<div class="row g-4 align-items-start">
+
+<!-- MARCA -->
+<div class="col-lg-4">
+<h3>Ohana Regalería</h3>
+
+<p>
+Detalles únicos pensados para sorprender, emocionar y acompañar momentos especiales.
+</p>
+</div>
+
+<!-- LINKS -->
+<div class="col-lg-4">
+<h5>Accesos rápidos</h5>
+
+<ul class="footer-links">
+<li><a href="{{ route('home') }}">Inicio</a></li>
+<li><a href="{{ route('productos') }}">Productos</a></li>
+<li><a href="{{ route('contacto') }}">Contacto</a></li>
+<li><a href="{{ route('quienes-somos') }}">Quiénes somos</a></li>
+</ul>
+</div>
+
+<!-- LEGAL -->
+<div class="col-lg-4">
+<h5>Información</h5>
+
+<p class="mb-3">
+Conocé nuestras políticas de compra, cambios y condiciones generales.
+</p>
+
+<a href="{{ route('terminos') }}" class="btn btn-footer">
+Términos y Condiciones
+</a>
+</div>
+
+</div>
+
+<!-- MEDIOS DE PAGO -->
+<div class="footer-pagos text-center mt-5">
+
+<h5 class="mb-3">Medios de pago</h5>
+
+<div class="pagos-grid">
+
+<span>💳 Visa</span>
+<span>💳 MasterCard</span>
+<span>💳 Naranja</span>
+<span>💳 Cabal</span>
+<span>💳 Mercado Pago</span>
+<span>🏦 Transferencia</span>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="footer-copy text-center">
+© 2026 Ohana Regalería · Todos los derechos reservados.
+</div>
+
+</div>
 </footer>
 
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
