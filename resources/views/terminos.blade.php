@@ -2,91 +2,132 @@
 
 @section('content')
 
-<div class="container py-5">
+<section class="terminos-premium py-5">
 
+<div class="container">
+
+    <!-- HERO -->
     <div class="text-center mb-5">
-        <h1 class="fw-bold" style="color:#4E6252;">Términos y Condiciones</h1>
-        <p style="color:#6F8573;">Lea atentamente la información antes de realizar una compra</p>
+        <span class="contact-badge">📄 Información importante</span>
+
+        <h1 class="mt-3">Términos y Condiciones</h1>
+
+        <p class="terminos-subtitle">
+            Te recomendamos leer esta información antes de realizar tu compra.
+            Queremos brindarte una experiencia clara, segura y transparente.
+        </p>
     </div>
 
-    <div class="card shadow-sm border-0" style="background:#ffffff; border:1px solid #EDE7DD;">
-        <div class="card-body p-4 p-md-5">
+    <!-- CARD PRINCIPAL -->
+    <div class="terminos-card">
 
-            <section class="mb-4">
-                <h5 class="fw-bold" style="color:#4E6252;">Información General</h5>
-                <p style="color:#6F8573;" class="mb-0">
-                    Ofrecemos una variedad de productos pensados para cada ocasión, incluyendo box de regalo,
-                    peluches, indumentaria y accesorios. Al realizar una compra, el cliente acepta los
-                    siguientes términos y condiciones.
+        <!-- INTRO -->
+        <div class="terminos-head">
+            <div class="terminos-icon">💚</div>
+
+            <div>
+                <h3>Compra con confianza</h3>
+                <p>
+                    En Ohana trabajamos con dedicación para ofrecer productos
+                    especiales y una atención personalizada.
                 </p>
-            </section>
+            </div>
+        </div>
 
-            <hr style="border-color:#EDE7DD;">
+        <!-- GRID -->
+        <div class="row g-4 mt-2">
 
-            <section class="mb-4">
-                <h5 class="fw-bold" style="color:#4E6252;">Productos</h5>
-                <ul style="color:#6F8573;" class="mb-0">
-                    <li>Las imágenes son ilustrativas.</li>
-                    <li>Los colores pueden variar según disponibilidad.</li>
-                    <li>Los productos están sujetos a stock.</li>
-                    <li>Algunos productos pueden ser armados a pedido.</li>
-                </ul>
-            </section>
+            <!-- BLOQUE -->
+            <div class="col-md-6">
+                <div class="termino-box h-100">
+                    <div class="mini-icon">🎁</div>
+                    <h5>Productos</h5>
 
-            <hr style="border-color:#EDE7DD;">
+                    <ul>
+                        <li>Las imágenes son ilustrativas.</li>
+                        <li>Los colores pueden variar según disponibilidad.</li>
+                        <li>Stock sujeto a cambios sin previo aviso.</li>
+                        <li>Algunos pedidos se preparan especialmente.</li>
+                    </ul>
+                </div>
+            </div>
 
-            <section class="mb-4">
-                <h5 class="fw-bold" style="color:#4E6252;">Formas de Pago</h5>
-                <ul style="color:#6F8573;" class="mb-0">
-                    <li>Transferencia bancaria</li>
-                    <li>Mercado Pago</li>
-                    <li>Efectivo (solo cuando se retira)</li>
-                </ul>
+            <!-- BLOQUE -->
+            <div class="col-md-6">
+                <div class="termino-box h-100">
+                    <div class="mini-icon">💳</div>
+                    <h5>Formas de Pago</h5>
 
-                <p class="mt-3" style="color:#6F8573;">
-                    Los pedidos se reservan por un período de 24 horas desde su realización.
-                    Pasado ese plazo, si no se recibe el comprobante de pago, el pedido será 
-                    cancelado automáticamente.
-                </p>
-            </section>
+                    <ul>
+                        <li>Transferencia bancaria.</li>
+                        <li>Mercado Pago.</li>
+                        <li>Efectivo en retiros acordados.</li>
+                        <li>Reservas válidas por 24 hs.</li>
+                    </ul>
+                </div>
+            </div>
 
-            <hr style="border-color:#EDE7DD;">
+            <!-- BLOQUE -->
+            <div class="col-md-6">
+                <div class="termino-box h-100">
+                    <div class="mini-icon">🚚</div>
+                    <h5>Envíos y Retiros</h5>
 
-            <section class="mb-4">
-                <h5 class="fw-bold" style="color:#4E6252;">Envíos y Retiros</h5>
-                <ul style="color:#6F8573;" class="mb-0">
-                    <li>Realizamos envíos a domicilio.</li>
-                    <li>También ofrecemos retiro por punto acordado.</li>
-                    <li>El costo de envío corre por cuenta del cliente.</li>
-                    <li>No nos responsabilizamos por demoras del servicio de mensajería.</li>
-                </ul>
-            </section>
+                    <ul>
+                        <li>Envíos dentro de la zona.</li>
+                        <li>Retiro por punto acordado.</li>
+                        <li>El costo de envío corre por cuenta del cliente.</li>
+                        <li>Las demoras externas no dependen de Ohana.</li>
+                    </ul>
+                </div>
+            </div>
 
-            <hr style="border-color:#EDE7DD;">
+            <!-- BLOQUE -->
+            <div class="col-md-6">
+                <div class="termino-box h-100">
+                    <div class="mini-icon">🔄</div>
+                    <h5>Cambios</h5>
 
-            <section class="mb-4">
-                <h5 class="fw-bold" style="color:#4E6252;">Cambios y Devoluciones</h5>
-                <ul style="color:#6F8573;" class="mb-0">
-                    <li>Los cambios deben solicitarse dentro de las 48 horas.</li>
-                    <li>El producto debe estar sin uso y en perfectas condiciones.</li>
-                    <li>El costo de envío por cambio corre por cuenta del cliente.</li>
-                    <li>No se realizan devoluciones de dinero.</li>
-                </ul>
-            </section>
+                    <ul>
+                        <li>Solicitar dentro de las 48 hs.</li>
+                        <li>Producto sin uso y en buen estado.</li>
+                        <li>El traslado corre por cuenta del cliente.</li>
+                        <li>No se realizan reintegros monetarios.</li>
+                    </ul>
+                </div>
+            </div>
 
-            <hr style="border-color:#EDE7DD;">
+            <!-- BLOQUE -->
+            <div class="col-md-12">
+                <div class="termino-box">
+                    <div class="mini-icon">❗</div>
+                    <h5>Cancelación de Pedidos</h5>
 
-            <section>
-                <h5 class="fw-bold" style="color:#4E6252;">Cancelación de Pedidos</h5>
-                <ul style="color:#6F8573;" class="mb-0">
-                    <li>Los pedidos pueden cancelarse antes del envío.</li>
-                    <li>Una vez enviado el pedido no se aceptan cancelaciones.</li>
-                </ul>
-            </section>
+                    <ul class="mb-0">
+                        <li>Puede cancelarse antes del despacho.</li>
+                        <li>Una vez enviado el pedido no se aceptan cancelaciones.</li>
+                    </ul>
+                </div>
+            </div>
 
         </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-5">
+        <p class="mb-3">
+            ¿Tenés dudas sobre compras, pagos o envíos?
+        </p>
+
+        <a href="https://wa.me/5493794032869"
+           target="_blank"
+           class="btn btn-dark px-4 py-3">
+           Consultar por WhatsApp
+        </a>
     </div>
 
 </div>
+</section>
 
 @endsection

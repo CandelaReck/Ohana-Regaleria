@@ -2,129 +2,215 @@
 
 @section('content')
 
-<div class="container py-5">
+<section class="com-hero-pro">
 
-    <!-- Titulo -->
-    <div class="text-center mb-5">
-        <h1 class="fw-bold">Comercialización</h1>
-        <p class="text-muted">
-            Ofrecemos distintas opciones de compra, envío y pago para 
-            facilitar la experiencia del cliente.
-        </p>
-    </div>
+<div class="container">
 
-    <!-- Tipos de Entrega -->
-    <h2>Tipos de Entrega</h2>
-    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 40px;">
-        <img src="{{ asset('img/imagenEntrega.png') }}"
-            alt="Entrega"
-            style="width:250px; border-radius:10px;">
+<div class="row align-items-center g-5">
 
-        <ul>
-            <li>Envíos a domicilio</li>
-            <li>Retiro en punto de entrega</li>
-        </ul>
-    </div>
+<!-- TEXTO -->
+<div class="col-lg-6">
 
-    <!-- Formas de Envío -->
-    <h2>Formas de Envío</h2>
-    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 40px;">
-        <img src="{{ asset('img/imagenEnvio.png') }}"
-            alt="Envio"
-            style="width:250px; border-radius:10px;">
+<span class="hero-badge">
+✨ Compra simple y segura
+</span>
 
-        <ul>
-            <li>Correo</li>
-            <li>Mensajería privada</li>
-            <li>Entrega coordinada con el cliente</li>
-        </ul>
-    </div>
+<h1 class="mt-3">
+Comprar regalos <br> nunca fue tan fácil
+</h1>
 
-    <!-- Formas de Pago -->
-    <h2>Formas de Pago</h2>
-    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 50px;">
-        <img src="{{ asset('img/imagenPago.png') }}"
-            alt="Pago"
-            style="width:250px; border-radius:10px;">
+<p class="hero-text mt-4">
+Elegí productos únicos, pagá como prefieras y recibí todo listo para sorprender.
+</p>
 
-        <ul>
-            <li>Efectivo</li>
-            <li>Transferencia bancaria</li>
-            <li>Mercado Pago</li>
-        </ul>
-    </div>
+<div class="d-flex gap-3 flex-wrap mt-4">
 
-    <!-- Como comprar -->
-<h2 class="text-center mt-5 mb-4">¿Cómo comprar?</h2>
+<a href="{{ route('productos') }}" class="btn btn-primary btn-lg px-4">
+Ver catálogo
+</a>
 
-<div class="row text-center mb-5">
+<a href="https://wa.me/5493794032869"
+class="btn btn-outline-dark btn-lg px-4"
+target="_blank">
 
-    <div class="col-md-4 mb-3">
-        <div class="border rounded p-4 h-100 shadow-sm">
-            <div style="font-size:40px; font-weight:bold; color:#198754;">1</div>
-            <h5 class="mt-2">Agregá al carrito</h5>
-            <p class="text-muted">
-                Seleccioná los productos que desees y agregalos al carrito de compras.
-            </p>
-        </div>
-    </div>
-
-    <div class="col-md-4 mb-3">
-        <div class="border rounded p-4 h-100 shadow-sm">
-            <div style="font-size:40px; font-weight:bold; color:#198754;">2</div>
-            <h5 class="mt-2">Completá tus datos</h5>
-            <p class="text-muted">
-                Ingresá tus datos personales y elegí la forma de envío y pago.
-            </p>
-        </div>
-    </div>
-
-    <div class="col-md-4 mb-3">
-        <div class="border rounded p-4 h-100 shadow-sm">
-            <div style="font-size:40px; font-weight:bold; color:#198754;">3</div>
-            <h5 class="mt-2">Confirmá tu compra</h5>
-            <p class="text-muted">
-                Una vez realizado el pago, podés compartir el comprobante para confirmar tu pedido.
-            </p>
-        </div>
-    </div>
+WhatsApp
+</a>
 
 </div>
 
-    <!-- Beneficios -->
-    <h2>Beneficios</h2>
+<div class="hero-features mt-5">
 
-    <div class="row mt-3 mb-5">
-        <div class="col-md-6">
-            <ul>
-                <li>Atención personalizada</li>
-                <li>Productos de calidad</li>
-                <li>Opciones de pago flexibles</li>
-            </ul>
-        </div>
+<div><i class="bi bi-truck"></i> Envíos rápidos</div>
+<div><i class="bi bi-shield-check"></i> Compra segura</div>
+<div><i class="bi bi-gift"></i> Packaging premium</div>
 
-        <div class="col-md-6">
-            <ul>
-                <li>Envíos rápidos</li>
-                <li>Regalos personalizados</li>
-                <li>Compra segura</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Boton -->
-    <div class="text-center mt-5">
-    <p class="mb-3">
-        Por cualquier consulta o duda comunicate con nosotros por WhatsApp
-    </p>
-
-    <a href="https://wa.me/5493794032869" 
-       class="btn btn-success btn-lg" 
-       target="_blank">
-        WhatsApp
-    </a>
 </div>
 
 </div>
+
+<!-- IMAGEN -->
+<div class="col-lg-6">
+
+<div class="hero-image-wrap">
+
+<img src="{{ asset('img/entrega.jpeg') }}"
+class="img-fluid hero-side-img">
+
+<div class="floating-mini fm1">
+💳 Pagos fáciles
+</div>
+
+<div class="floating-mini fm2">
+🚚 Entrega veloz
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PROCESO -->
+<section class="com-process">
+
+<div class="container">
+
+<div class="text-center mb-5">
+<h2>¿Cómo funciona?</h2>
+<p class="subtitulo-seccion">
+Todo pensado para que compres en minutos.
+</p>
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+<div class="process-card">
+<div class="step-number">1</div>
+<h4>Elegí productos</h4>
+<p>Recorré categorías y agregá tus favoritos.</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="process-card active-step">
+
+<div class="step-number">2</div>
+
+<h4>Completá datos</h4>
+
+<p>
+Indicá envío, contacto y método de pago de forma simple.
+</p>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="process-card">
+<div class="step-number">3</div>
+<h4>Recibí feliz</h4>
+<p>Coordinamos envío y seguimiento.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<section class="com-disclaimers">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2>Nuestro compromiso</h2>
+
+<p class="subtitulo-seccion">
+Detalles que hacen especial cada compra.
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-4 col-6">
+<div class="disclaimer-card">
+<div class="disc-icon"><i class="bi bi-flower1"></i></div>
+<h5>Productos Veganos</h5>
+<p>Opciones seleccionadas libres de origen animal.</p>
+</div>
+</div>
+
+<div class="col-md-4 col-6">
+<div class="disclaimer-card">
+<div class="disc-icon"><i class="bi bi-recycle"></i></div>
+<h5>Packaging Responsable</h5>
+<p>Materiales reutilizables y presentación cuidada.</p>
+</div>
+</div>
+
+<div class="col-md-4 col-6">
+<div class="disclaimer-card">
+<div class="disc-icon"><i class="bi bi-chat-heart"></i></div>
+<h5>Atención Humana</h5>
+<p>Respondemos personalmente cada consulta.</p>
+</div>
+</div>
+
+<div class="col-md-4 col-6">
+<div class="disclaimer-card">
+<div class="disc-icon"><i class="bi bi-gift"></i></div>
+<h5>Listo para Regalar</h5>
+<p>Presentación premium desde el primer momento.</p>
+</div>
+</div>
+
+<div class="col-md-4 col-6">
+<div class="disclaimer-card">
+<div class="disc-icon"><i class="bi bi-stars"></i></div>
+<h5>Hecho con Amor</h5>
+<p>Cada pedido se prepara con dedicación.</p>
+</div>
+</div>
+
+<div class="col-md-4 col-6">
+<div class="disclaimer-card">
+<div class="disc-icon"><i class="bi bi-shield-check"></i></div>
+<h5>Compra Segura</h5>
+<p>Pagos simples y protegidos.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- CTA -->
+<section class="com-cta-pro">
+
+<div class="container text-center">
+
+<h2>¿Necesitás ayuda?</h2>
+
+<p class="mb-4">
+Te asesoramos personalmente por WhatsApp.
+</p>
+
+<a href="https://wa.me/5493794032869"
+class="btn btn-warning btn-lg px-5"
+target="_blank">
+
+<i class="bi bi-whatsapp"></i> Escribinos
+
+</a>
+
+</div>
+</section>
 
 @endsection

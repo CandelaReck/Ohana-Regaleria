@@ -2,37 +2,63 @@
 
 @section('content')
 
-<div class="row g-4">
+<section class="categoria-hero py-5">
 
-@foreach($productos as $producto)
+<div class="container">
 
-<div class="col-md-6 col-lg-4">
+    <!-- TITULO PREMIUM -->
+    <div class="text-center mb-5">
 
-<div class="card h-100 shadow border-0">
+        <span class="contact-badge">✨ Colección Ohana</span>
 
-<img src="{{ asset('img/' . $producto['imagen']) }}"
-class="card-img-top producto-foto">
+        <h1 class="mt-3">Deco y Hogar</h1>
 
-<div class="card-body text-center d-flex flex-column">
+        <p class="categoria-subtitle">
+            Objetos decorativos y detalles para transformar tus espacios
+            con calidez, estilo y personalidad.
+        </p>
 
-<h5>{{ $producto['nombre'] }}</h5>
+    </div>
 
-<p class="text-muted">
-{{ $producto['descripcion'] }}
-</p>
+    <!-- PRODUCTOS -->
+    <div class="row g-4">
 
-<h4 class="text-success mb-3">
-${{ number_format($producto['precio'],0,',','.') }}
-</h4>
+        @foreach($productos as $producto)
 
-<a href="#" class="btn btn-dark mt-auto">
-Comprar
-</a>
+        <div class="col-6 col-md-4 col-lg-3">
+
+            <div class="card h-100 shadow border-0">
+
+                <img src="{{ asset('img/' . $producto['imagen']) }}"
+                     class="card-img-top producto-foto">
+
+                <div class="card-body text-center d-flex flex-column">
+
+                    <h5>{{ $producto['nombre'] }}</h5>
+
+                    <p class="text-muted">
+                        {{ $producto['descripcion'] }}
+                    </p>
+
+                    <h4 class="text-success mb-3">
+                        ${{ number_format($producto['precio'],0,',','.') }}
+                    </h4>
+
+                    <a href="#" class="btn btn-dark mt-auto">
+                        Comprar
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        @endforeach
+
+    </div>
 
 </div>
-</div>
-</div>
-
-@endforeach
+</section>
 
 @endsection

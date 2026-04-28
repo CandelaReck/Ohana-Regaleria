@@ -504,3 +504,178 @@ font-size:.95rem;
 }
 
 }
+
+/* =====================================================
+CONTACTO PREMIUM LIMPIO FINAL
+Reemplaza ambos bloques anteriores por ESTE SOLO
+===================================================== */
+
+/* GRID SUPERIOR */
+.contacto-premium .row.g-4.mb-5{
+align-items:stretch !important;
+}
+
+/* CARDS VERDES */
+.contacto-premium .staff-card{
+display:flex !important;
+height:100% !important;
+min-height:640px !important;
+border-radius:28px !important;
+overflow:hidden !important;
+}
+
+.contacto-premium .staff-card .staff-body{
+display:flex !important;
+flex-direction:column !important;
+justify-content:flex-start !important;
+align-items:stretch !important;
+height:100% !important;
+padding:42px !important;
+text-align:center !important;
+}
+
+/* ICONO GRANDE SUPERIOR */
+.contacto-premium .staff-icon{
+margin:0 auto 20px !important;
+flex-shrink:0 !important;
+}
+
+/* TITULOS */
+.contacto-premium .staff-card .staff-body h4{
+font-size:40px !important;
+line-height:1.1 !important;
+margin:0 0 8px 0 !important;
+color:#fff !important;
+font-weight:700 !important;
+}
+
+.contacto-premium .staff-card .staff-body span{
+display:block !important;
+font-size:15px !important;
+letter-spacing:1px !important;
+text-transform:uppercase !important;
+margin-bottom:28px !important;
+color:rgba(255,255,255,.78) !important;
+}
+
+/* LISTA INFO */
+.contacto-premium .contact-premium-list{
+list-style:none !important;
+padding:0 !important;
+margin:0 !important;
+display:flex !important;
+flex-direction:column !important;
+gap:16px !important;
+text-align:left !important;
+}
+
+.contacto-premium .contact-premium-list li{
+display:flex !important;
+align-items:center !important;
+gap:14px !important;
+font-size:18px !important;
+font-weight:500 !important;
+line-height:1.5 !important;
+color:#fff !important;
+}
+
+/* ICONOS MINI */
+.contacto-premium .contact-mini-icon{
+width:50px !important;
+height:50px !important;
+min-width:50px !important;
+border-radius:50% !important;
+display:flex !important;
+align-items:center !important;
+justify-content:center !important;
+font-size:20px !important;
+color:#fff !important;
+background:linear-gradient(135deg,#D4A94D,#b8892e) !important;
+box-shadow:0 12px 22px rgba(0,0,0,.18) !important;
+}
+
+/* BOTON ABAJO */
+.contacto-premium .staff-card .btn-light{
+margin-top:auto !important;
+font-size:17px !important;
+font-weight:700 !important;
+padding:14px 20px !important;
+border-radius:16px !important;
+}
+
+/* MAPA */
+.contacto-premium iframe{
+border-radius:18px !important;
+margin:8px 0 22px 0 !important;
+}
+
+/* HORARIOS */
+.contacto-premium .horarios-box{
+margin-top:auto !important;
+}
+
+.contacto-premium .horarios-box p{
+font-size:18px !important;
+line-height:1.5 !important;
+margin-bottom:6px !important;
+color:rgba(255,255,255,.92) !important;
+}
+
+/* FORMULARIO */
+.contacto-premium .premium-form{
+padding:45px !important;
+border-radius:28px !important;
+}
+
+.contacto-premium .premium-form h4{
+font-size:38px !important;
+margin-bottom:8px !important;
+}
+
+.contacto-premium .premium-form p{
+font-size:17px !important;
+margin-bottom:0 !important;
+}
+
+.contacto-premium .form-control{
+font-size:17px !important;
+padding:15px 18px !important;
+}
+
+/* MOBILE */
+@media(max-width:992px){
+
+.contacto-premium .staff-card{
+min-height:auto !important;
+}
+
+.contacto-premium .staff-card .staff-body{
+padding:34px !important;
+}
+
+}
+
+@media(max-width:768px){
+
+.contacto-premium .staff-card .staff-body h4,
+.contacto-premium .premium-form h4{
+font-size:30px !important;
+}
+
+.contacto-premium .contact-premium-list li,
+.contacto-premium .horarios-box p{
+font-size:16px !important;
+}
+
+.contacto-premium .contact-mini-icon{
+width:42px !important;
+height:42px !important;
+min-width:42px !important;
+font-size:17px !important;
+}
+
+.contacto-premium .premium-form{
+padding:28px !important;
+}
+
+}

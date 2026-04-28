@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactoController;
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -47,3 +49,6 @@ Route::get('/registro', [AuthController::class, 'mostrarRegistro'])->name('regis
 Route::post('/registro', [AuthController::class, 'registrar']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::post('/contacto/enviar', [ContactoController::class, 'enviar'])
+    ->name('contacto.enviar');

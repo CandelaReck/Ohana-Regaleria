@@ -2,50 +2,76 @@
 
 @section('content')
 
-<section class="py-5">
+<section class="productos-premium py-5">
 
 <div class="container">
 
-<h1 class="text-center mb-2">Nuestros Productos</h1>
-<p class="text-center text-muted mb-5">
-Regalos únicos pensados para sorprender
-</p>
+    <!-- ENCABEZADO -->
+    <div class="text-center mb-5">
+        <span class="categoria-badge">✨ Colección Ohana</span>
 
-<div class="row g-4">
+        <h1 class="mt-3">
+            Nuestros Productos
+        </h1>
 
-@foreach($productos as $producto)
+        <p class="categoria-subtitle">
+            Regalos únicos, detalles especiales y productos pensados
+            para sorprender en cada ocasión.
+        </p>
+    </div>
 
-<div class="col-md-6 col-lg-4">
+    <!-- GRID -->
+    <div class="row g-4">
 
-<div class="card h-100 shadow border-0">
+        @foreach($productos as $producto)
 
-<img src="{{ asset('img/' . $producto['imagen']) }}"
-class="card-img-top producto-foto">
+        <div class="col-6 col-md-4 col-lg-3">
 
-<div class="card-body text-center d-flex flex-column">
+            <div class="producto-box h-100">
 
-<h5>{{ $producto['nombre'] }}</h5>
+                <!-- FOTO -->
+                <div class="producto-img-box">
+                    <img
+                        src="{{ asset('img/' . $producto['imagen']) }}"
+                        class="producto-img"
+                        alt="{{ $producto['nombre'] }}">
+                </div>
 
-<p class="text-muted">
-{{ $producto['descripcion'] }}
-</p>
+                <!-- INFO -->
+                <div class="producto-info">
 
-<h4 class="text-success mb-3">
-${{ number_format($producto['precio'],0,',','.') }}
-</h4>
+                    <span class="producto-mini-tag">
+                        Destacado
+                    </span>
 
-<a href="#" class="btn btn-dark mt-auto">
-Comprar
-</a>
+                    <h4>
+                        {{ $producto['nombre'] }}
+                    </h4>
+
+                    <p>
+                        {{ $producto['descripcion'] }}
+                    </p>
+
+                    <div class="precio-producto">
+                        ${{ number_format($producto['precio'],0,',','.') }}
+                    </div>
+
+                    <a href="#" class="btn btn-dark w-100 mt-auto">
+                        Comprar
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        @endforeach
+
+    </div>
 
 </div>
-</div>
-</div>
 
-@endforeach
-
-</div>
-</div>
 </section>
 
 @endsection

@@ -2,37 +2,68 @@
 
 @section('content')
 
-<div class="row g-4">
+<section class="productos-premium py-5">
 
-@foreach($productos as $producto)
+<div class="container">
 
-<div class="col-md-6 col-lg-4">
+    <!-- ENCABEZADO -->
+    <div class="text-center mb-5">
+        <span class="categoria-badge">✨ Regalos exclusivos</span>
+        <h1 class="mt-3">Boxes y Combos</h1>
+        <p class="categoria-subtitle">
+            Opciones listas para sorprender con estilo, amor y detalles únicos.
+        </p>
+    </div>
 
-<div class="card h-100 shadow border-0">
+    <!-- GRID PRODUCTOS -->
+    <div class="row g-4">
 
-<img src="{{ asset('img/' . $producto['imagen']) }}"
-class="card-img-top producto-foto">
+        @foreach($productos as $producto)
 
-<div class="card-body text-center d-flex flex-column">
+        <div class="col-6 col-md-4 col-lg-3">
 
-<h5>{{ $producto['nombre'] }}</h5>
+            <div class="producto-box h-100">
 
-<p class="text-muted">
-{{ $producto['descripcion'] }}
-</p>
+                <!-- FOTO -->
+                <div class="producto-img-box">
+                    <img src="{{ asset('img/' . $producto['imagen']) }}"
+                         class="producto-img"
+                         alt="{{ $producto['nombre'] }}">
+                </div>
 
-<h4 class="text-success mb-3">
-${{ number_format($producto['precio'],0,',','.') }}
-</h4>
+                <!-- INFO -->
+                <div class="producto-info">
 
-<a href="#" class="btn btn-dark mt-auto">
-Comprar
-</a>
+                    <span class="producto-mini-tag">
+                        Combo Especial
+                    </span>
+
+                    <h4>{{ $producto['nombre'] }}</h4>
+
+                    <p>
+                        {{ $producto['descripcion'] }}
+                    </p>
+
+                    <div class="precio mb-3">
+                        ${{ number_format($producto['precio'],0,',','.') }}
+                    </div>
+
+                    <a href="#" class="btn btn-dark w-100 mt-auto">
+                        Comprar
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        @endforeach
+
+    </div>
 
 </div>
-</div>
-</div>
 
-@endforeach
+</section>
 
 @endsection

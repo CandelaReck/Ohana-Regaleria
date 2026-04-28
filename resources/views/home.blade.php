@@ -30,7 +30,8 @@ Boxes sorpresa, detalles únicos y productos personalizados para momentos especi
 Ver catálogo
 </a>
 
-<a href="#" class="btn btn-outline-light btn-lg hero-whatsapp">
+    
+<a href="https://wa.me/5493794032869" class="btn btn-outline-light btn-lg hero-whatsapp">
 WhatsApp
 </a>
 
@@ -62,11 +63,11 @@ WhatsApp
 <div class="carousel-inner rounded-4 shadow-lg">
 
 <div class="carousel-item active">
-<img src="{{ asset('img/boxRegalo1.jpeg') }}" class="d-block w-100 hero-slider-img">
+<img src="{{ asset('img/collarOro.jpeg') }}" class="d-block w-100 hero-slider-img">
 </div>
 
 <div class="carousel-item">
-<img src="{{ asset('img/aritos.jpeg') }}" class="d-block w-100 hero-slider-img">
+<img src="{{ asset('img/comboSilk.jpeg') }}" class="d-block w-100 hero-slider-img">
 </div>
 
 <div class="carousel-item">
@@ -102,21 +103,41 @@ Productos destacados
 
 <div class="row g-4">
 
-@for($i=1;$i<=3;$i++)
+@php
+$productos = [
+    [
+        'nombre' => 'Pijama Print',
+        'precio' => '18.500',
+        'imagen' => 'img/pijamaPrint.jpeg'
+    ],
+    [
+        'nombre' => 'Campera Gab',
+        'precio' => '22.900',
+        'imagen' => 'img/camperaGab.jpeg'
+    ],
+    [
+        'nombre' => 'Pijama Kids',
+        'precio' => '13.500',
+        'imagen' => 'img/pijamaKid.jpeg'
+    ],
+];
+@endphp
+
+@foreach($productos as $producto)
 <div class="col-md-4">
-<div class="card card-premium h-100">
+    <div class="card card-premium h-100">
 
-<img src="{{ asset('img/pijamaPrint.jpeg') }}" class="card-img-top">
+        <img src="{{ asset($producto['imagen']) }}" class="card-img-top">
 
-<div class="card-body text-center">
-<h5>Pijama Print</h5>
-<p>$18.000</p>
-<a href="#" class="btn btn-dark">Comprar</a>
-</div>
+        <div class="card-body text-center">
+            <h5>{{ $producto['nombre'] }}</h5>
+            <p>${{ $producto['precio'] }}</p>
+            <a href="#" class="btn btn-dark">Comprar</a>
+        </div>
 
+    </div>
 </div>
-</div>
-@endfor
+@endforeach
 
 </div>
 </div>
@@ -204,7 +225,7 @@ Ver más →
 
 <div class="categoria-premium-card">
 
-<img src="{{ asset('img/aritos.jpeg') }}"
+<img src="{{ asset('img/lentes.jpeg') }}"
 class="categoria-premium-img">
 
 <div class="categoria-premium-overlay">
@@ -235,7 +256,7 @@ Ver más →
 
 <div class="categoria-premium-card">
 
-<img src="{{ asset('img/pijamaPrint.jpeg') }}"
+<img src="{{ asset('img/camperaGab.jpeg') }}"
 class="categoria-premium-img">
 
 <div class="categoria-premium-overlay">
@@ -275,7 +296,7 @@ SLIDE 2
 
 <div class="categoria-premium-card">
 
-<img src="{{ asset('img/papeleria.jpeg') }}"
+<img src="{{ asset('img/agenda.jpeg') }}"
 class="categoria-premium-img">
 
 <div class="categoria-premium-overlay">

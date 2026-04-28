@@ -2,177 +2,348 @@
 
 @section('content')
 
-<div class="container py-5">
+<!-- HERO -->
+<section class="about-hero">
 
-    <!-- QUIENES SOMOS -->
-    <div class="text-center mb-5">
-        <h1>Quiénes Somos</h1>
-    </div>
+<div class="container">
 
-    <div class="row align-items-center mb-5">
-        <div class="col-md-5 text-center">
-            <img src="{{ asset('img/imagenFamilia.png') }}"
-                 class="img-fluid rounded"
-                 style="max-width:280px;">
-        </div>
+<div class="row align-items-center g-5">
 
-        <div class="col-md-7">
-            <p>
-                Somos un emprendimiento que nació con una idea simple pero muy especial:
-                pensar en cada miembro de la familia.
-            </p>
+<div class="col-lg-6">
 
-            <p>
-                Nuestro nombre "Ohana" significa familia, y refleja lo que somos y lo
-                que queremos brindar: un espacio cálido donde puedas encontrar ese detalle
-                perfecto para cada persona, haciendo de cada regalo un momento significativo.
-            </p>
-        </div>
-    </div>
+<span class="hero-badge">
+💚 Nuestra esencia
+</span>
+
+<h1 class="mt-3">
+Más que regalos, <br> momentos especiales
+</h1>
+
+<p class="mt-4">
+Ohana nació con una idea simple y poderosa: celebrar a cada persona importante en tu vida.
+</p>
+
+<p>
+Nuestro nombre significa familia, y representa el amor, la cercanía y los detalles que unen.
+</p>
+
+<a href="{{ route('productos') }}" class="btn btn-primary mt-3">
+Ver productos
+</a>
 
 </div>
 
+<div class="col-lg-6">
 
-<!-- OBJETIVOS -->
-<section style="background:#f8f9fa; padding:60px 0;">
-<div class="container">
+<img src="{{ asset('img/imagenFamilia.png') }}"
+class="img-fluid rounded-4 shadow-lg">
 
-    <h2 class="text-center mb-5">Nuestros Objetivos</h2>
+</div>
 
-    <div class="row text-center">
-
-        <div class="col-md-4">
-            <div class="p-4">
-                <div style="font-size:40px;">🎁</div>
-                <h5>Calidad</h5>
-                <p>Brindar productos de excelente calidad para cada ocasión.</p>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="p-4">
-                <div style="font-size:40px;">💬</div>
-                <h5>Atención personalizada</h5>
-                <p>Ofrecer atención enfocada en las necesidades de cada cliente.</p>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="p-4">
-                <div style="font-size:40px;">📈</div>
-                <h5>Mejora continua</h5>
-                <p>Mejorar constantemente nuestros productos y servicios.</p>
-            </div>
-        </div>
-
-    </div>
-
+</div>
 </div>
 </section>
 
+<!-- NUESTROS VALORES -->
+<section class="valores-ohana">
+<div class="container">
+
+<h2 class="text-center mb-5">Nuestros Valores</h2>
+
+<div class="row g-4 text-center">
+
+<div class="col-md-4">
+<div class="process-card">
+<div class="step-number">🎁</div>
+<h4>Calidad</h4>
+<p>
+Seleccionamos productos con dedicación para que cada regalo sea especial y memorable.
+</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="process-card">
+<div class="step-number">💬</div>
+<h4>Atención Personalizada</h4>
+<p>
+Acompañamos cada compra brindando cercanía, ayuda y asesoramiento real.
+</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="process-card">
+<div class="step-number">📈</div>
+<h4>Mejora Continua</h4>
+<p>
+Buscamos innovar constantemente para ofrecer una mejor experiencia.
+</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</section>
 
 <!-- TRAYECTORIA -->
-<!-- Trayectoria -->
-<div class="container py-5">
+<section class="about-history">
 
-    <h2 class="text-center mb-5">Nuestra Trayectoria</h2>
+<div class="container">
 
-    <div class="row align-items-center">
-        
-        <div class="col-md-5 text-center">
-            <img src="{{ asset('img/trayectoria.png') }}"
-                 class="img-fluid rounded"
-                 style="max-width:260px;">
-        </div>
+<div class="row align-items-center g-5">
 
-        <div class="col-md-7">
-            <p>
-                Ohana comenzó como un pequeño emprendimiento con muchas ganas de crecer,
-                enfocado en ofrecer detalles únicos para cada ocasión.
-            </p>
+<div class="col-lg-6">
+<img src="{{ asset('img/trayectoria.png') }}"
+class="img-fluid rounded-4 shadow-lg">
+</div>
 
-            <p>
-                Con el tiempo fuimos incorporando nuevos productos y mejorando nuestros
-                servicios, adaptándonos a las necesidades de nuestros clientes.
-            </p>
+<div class="col-lg-6">
 
-            <p class="mb-0">
-                Actualmente seguimos creciendo y trabajando con dedicación para brindar
-                una experiencia cálida y personalizada en cada compra.
-            </p>
-        </div>
+<h2>Nuestra Trayectoria</h2>
 
-    </div>
+<p>
+Comenzamos como un pequeño emprendimiento lleno de ilusión.
+</p>
+
+<p>
+Con el tiempo incorporamos nuevos productos, mejores procesos y más formas de acompañarte.
+</p>
+
+<p>
+Hoy seguimos creciendo con la misma esencia del primer día.
+</p>
 
 </div>
 
-
-<!-- PRODUCTOS -->
-<section style="background:#f8f9fa; padding:60px 0;">
-<div class="container">
-
-    <h2 class="text-center mb-5">Nuestros Productos</h2>
-
-    <div class="row align-items-center">
-        <div class="col-md-5 text-center">
-            <img src="{{ asset('img/boxRegalo.jpeg') }}"
-                 class="img-fluid rounded"
-                 style="max-width:260px;">
-        </div>
-
-        <div class="col-md-7">
-            <p>
-                Ofrecemos una variedad de productos pensados para cada ocasión,
-                incluyendo box de regalo, peluches, indumentaria y accesorios.
-            </p>
-
-            <p>
-                Cada detalle es preparado con dedicación buscando que cada regalo
-                transmita cariño y se convierta en un momento especial.
-            </p>
-        </div>
-    </div>
-
+</div>
 </div>
 </section>
 
 
-<!-- STAFF -->
-<div class="container py-5">
+<!-- ==========================================
+TIMELINE WOW OHANA
+Historia premium con animación
+Pegalo en quienes-somos.blade.php
+========================================== -->
 
-    <h2 class="text-center mb-5">Nuestro Equipo</h2>
+<section class="timeline-wow">
+<div class="container">
 
-    <div class="row text-center">
+<div class="text-center mb-5">
+    <h2 class="titulo-seccion">Nuestra Historia</h2>
+    <p class="subtitulo-seccion">
+        Un camino construido con amor, detalles y sueños compartidos.
+    </p>
+</div>
 
-        <div class="col-md-4">
-            <img src="{{ asset('img/Atencion al cliente.jpg') }}"
-                 class="img-fluid rounded mb-3"
-                 style="height:250px; object-fit:cover; width:100%;">
+<div class="timeline-luxury">
 
-            <h5>Belén</h5>
-            <p>Atención al cliente</p>
+    <!-- ITEM 1 -->
+    <div class="timeline-row left wow-show">
+        <div class="timeline-dot">2022</div>
+
+        <div class="timeline-box">
+            <img src="{{ asset('img/logo.jpeg') }}" class="timeline-img">
+
+            <div class="timeline-content">
+                <span class="timeline-tag">Inicio</span>
+                <h3>Nace Ohana</h3>
+                <p>
+                    Comenzamos como un pequeño emprendimiento familiar,
+                    creando regalos personalizados llenos de cariño.
+                </p>
+            </div>
         </div>
+    </div>
 
-        <div class="col-md-4">
-            <img src="{{ asset('img/ArmadoPedido.jpg') }}"
-                 class="img-fluid rounded mb-3"
-                 style="height:250px; object-fit:cover; width:100%;">
+    <!-- ITEM 2 -->
+    <div class="timeline-row right wow-show">
+        <div class="timeline-dot">2023</div>
 
-            <h5>Carla</h5>
-            <p>Armado de pedidos</p>
+        <div class="timeline-box">
+            <img src="{{ asset('img/boxRegalo1.jpeg') }}" class="timeline-img">
+
+            <div class="timeline-content">
+                <span class="timeline-tag">Expansión</span>
+                <h3>Llegan los Boxes</h3>
+                <p>
+                    Incorporamos cajas sorpresa y regalos premium
+                    para momentos especiales.
+                </p>
+            </div>
         </div>
+    </div>
 
-        <div class="col-md-4">
-            <img src="{{ asset('img/DiseñoPersonalizacion.jpg') }}"
-                 class="img-fluid rounded mb-3"
-                 style="height:250px; object-fit:cover; width:100%;">
+    <!-- ITEM 3 -->
+    <div class="timeline-row left wow-show">
+        <div class="timeline-dot">2024</div>
 
-            <h5>Axel</h5>
-            <p>Diseño y personalización</p>
+        <div class="timeline-box">
+            <img src="{{ asset('img/aritos.jpeg') }}" class="timeline-img">
+
+            <div class="timeline-content">
+                <span class="timeline-tag">Crecimiento</span>
+                <h3>Nuevas Categorías</h3>
+                <p>
+                    Sumamos deco hogar, papelería,
+                    accesorios e indumentaria.
+                </p>
+            </div>
         </div>
+    </div>
 
+    <!-- ITEM 4 -->
+    <div class="timeline-row right wow-show">
+        <div class="timeline-dot">2026</div>
+
+        <div class="timeline-box">
+            <img src="{{ asset('img/boxRegalo.jpeg') }}" class="timeline-img">
+
+            <div class="timeline-content">
+                <span class="timeline-tag">Nueva Etapa</span>
+                <h3>Tienda Online</h3>
+                <p>
+                    Lanzamos nuestra web para llegar más lejos
+                    y seguir creciendo con vos.
+                </p>
+            </div>
+        </div>
     </div>
 
 </div>
+
+<div class="text-center mt-5">
+    <a href="{{ route('productos') }}" class="btn btn-primary btn-lg px-5">
+        Descubrir Ohana
+    </a>
+</div>
+
+</div>
+</section>
+
+<!-- STAFF WOW PREMIUM OHANA -->
+<section class="staff-ohana py-5">
+<div class="container">
+
+<div class="text-center mb-5">
+<h2 class="titulo-seccion">Nuestro Equipo</h2>
+<p class="subtitulo-seccion">
+Personas que hacen posible cada detalle con dedicación y cariño.
+</p>
+</div>
+
+<div class="row g-4">
+
+<!-- CARD 1 -->
+<div class="col-md-4">
+<div class="staff-card">
+
+<div class="staff-img-box">
+<img src="{{ asset('img/Atencion al cliente.jpg') }}" class="staff-img">
+</div>
+
+<div class="staff-body">
+<div class="staff-icon">
+<i class="bi bi-chat-heart-fill"></i>
+</div>
+
+<h4>Belén</h4>
+<span>Atención al cliente</span>
+
+<p>
+Te acompaña en cada compra, responde consultas y ayuda a elegir el regalo ideal.
+</p>
+
+<div class="staff-social">
+<a href="#"><i class="bi bi-whatsapp"></i></a>
+<a href="#"><i class="bi bi-instagram"></i></a>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- CARD 2 -->
+<div class="col-md-4">
+<div class="staff-card">
+
+<div class="staff-img-box">
+<img src="{{ asset('img/ArmadoPedido.jpg') }}" class="staff-img">
+</div>
+
+<div class="staff-body">
+<div class="staff-icon">
+<i class="bi bi-gift-fill"></i>
+</div>
+
+<h4>Carla</h4>
+<span>Armado de pedidos</span>
+
+<p>
+Prepara cada box y presentación cuidando cada detalle para sorprender.
+</p>
+
+<div class="staff-social">
+<a href="#"><i class="bi bi-whatsapp"></i></a>
+<a href="#"><i class="bi bi-instagram"></i></a>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- CARD 3 -->
+<div class="col-md-4">
+<div class="staff-card">
+
+<div class="staff-img-box">
+<img src="{{ asset('img/DiseñoPersonalizacion.jpg') }}" class="staff-img">
+</div>
+
+<div class="staff-body">
+<div class="staff-icon">
+<i class="bi bi-stars"></i>
+</div>
+
+<h4>Axel</h4>
+<span>Diseño y personalización</span>
+
+<p>
+Convierte ideas en regalos únicos con creatividad y estilo Ohana.
+</p>
+
+<div class="staff-social">
+<a href="#"><i class="bi bi-whatsapp"></i></a>
+<a href="#"><i class="bi bi-instagram"></i></a>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- CTA -->
+<section class="about-cta">
+
+<div class="container text-center">
+
+<h2>Gracias por elegir Ohana</h2>
+
+<p class="mb-4">
+Cada compra es una oportunidad de crear alegría.
+</p>
+
+<a href="{{ route('productos') }}" class="btn btn-warning btn-lg px-5">
+Ver catálogo
+</a>
+
+</div>
+</section>
 
 @endsection

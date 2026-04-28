@@ -2,11 +2,31 @@
 
 @section('content')
 
-<div class="row g-4">
+<section class="categoria-hero py-5">
 
-    @foreach($productos as $producto)
+<div class="container">
 
-        <div class="col-md-6 col-lg-4">
+    <!-- TITULO PREMIUM -->
+    <div class="text-center mb-5">
+
+        <span class="contact-badge">✨ Colección Ohana</span>
+
+        <h1 class="mt-3">Accesorios</h1>
+
+        <p class="categoria-subtitle">
+            Detalles delicados, modernos y especiales para complementar tu estilo
+            o sorprender con un regalo único.
+        </p>
+
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div class="row g-4">
+
+        @foreach($productos as $producto)
+
+        <div class="col-6 col-md-4 col-lg-3">
+
             <div class="card h-100 shadow border-0">
 
                 <img src="{{ asset('img/' . $producto['imagen']) }}"
@@ -21,7 +41,7 @@
                     </p>
 
                     <h4 class="text-success mb-3">
-                        ${{ number_format($producto['precio'], 0, ',', '.') }}
+                        ${{ number_format($producto['precio'],0,',','.') }}
                     </h4>
 
                     <a href="#" class="btn btn-dark mt-auto">
@@ -29,11 +49,16 @@
                     </a>
 
                 </div>
+
             </div>
+
         </div>
 
-    @endforeach
+        @endforeach
+
+    </div>
 
 </div>
+</section>
 
 @endsection
