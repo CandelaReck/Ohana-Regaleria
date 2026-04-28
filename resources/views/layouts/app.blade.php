@@ -182,7 +182,7 @@ Ingresar a mi cuenta
 @yield('content')
 </main>
 
-<!-- FOOTER PREMIUM COMPLETO -->
+<!-- FOOTER -->
 <footer class="footer-ohana">
 
 <div class="container">
@@ -192,7 +192,6 @@ Ingresar a mi cuenta
 
 <a href="https://www.instagram.com/ohanaregalos64?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="bi bi-instagram"></i></a>
 
-<a href="#"><i class="bi bi-facebook"></i></a>
 
 <a href="https://wa.me/5493794032869"><i class="bi bi-whatsapp"></i></a>
 

@@ -145,7 +145,7 @@ background:#FFD98A;
 }
 
 /* ======================================================
-   NAVBAR PREMIUM OHANA - NUEVO
+   NAVBAR 
 ====================================================== */
 
 .navbar{
@@ -366,7 +366,7 @@ padding:10px 12px!important;
 
 }
 
-/* HERO PREMIUM NUEVO */
+/* HERO NUEVO */
 
 .hero-premium{
 background:linear-gradient(135deg,#86A987,#6E8E70);
@@ -2179,8 +2179,7 @@ font-size:16px;
 }
 
 /* =====================================================
-FIX GLOBAL PRODUCTOS OHANA
-Pegalo al FINAL de style.css
+PRODUCTOS OHANA
 Unifica todas las vistas de productos
 ===================================================== */
 

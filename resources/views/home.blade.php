@@ -2,7 +2,7 @@
 
 @section('content')
 
-<!-- HERO PREMIUM OHANA -->
+<!-- HERO OHANA -->
 <section class="hero-premium">
 
 <div class="container">
@@ -145,7 +145,7 @@ $productos = [
 
 
 <!-- ==========================================
-CATEGORIAS PREMIUM SLIDER
+CATEGORIAS SLIDER
 ========================================== -->
 
 <section class="categorias-premium py-5">
