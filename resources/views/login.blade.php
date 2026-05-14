@@ -15,6 +15,18 @@ Iniciar sesión
 @csrf
 
 <input 
+type="password"
+name="password"
+class="form-control mb-3"
+placeholder="Nombre">
+
+<input 
+type="password"
+name="password"
+class="form-control mb-3"
+placeholder="Apellido">
+
+<input 
 type="email"
 name="email"
 class="form-control mb-3"
@@ -25,6 +37,12 @@ type="password"
 name="password"
 class="form-control mb-3"
 placeholder="Contraseña">
+
+<input 
+type="password"
+name="password"
+class="form-control mb-3"
+placeholder="Repetir contraseña">
 
 <button class="btn btn-dark w-100">
 Ingresar

@@ -16,4 +16,16 @@ class ContactoController extends Controller
 
         return back()->with('success', 'Consulta enviada correctamente.');
     }
+
+    public function store_contact (ContactoRequest $request){
+    $datos = $request->validated();
+
+    $nombre = $datos['nombre'];
+    $email = $datos['email'];
+    $whatsapp = $datos['whatsapp'];
+    $consulta = $datos['consulta'];
+
+    return redirect()->back()->with('succes_message', 'Tu consulta ha sido enviada correctamente');
+    }
 }
+

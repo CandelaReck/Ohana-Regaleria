@@ -18,6 +18,10 @@ Crear cuenta
 class="form-control mb-3"
 placeholder="Nombre">
 
+<input name="apellido"
+class="form-control mb-3"
+placeholder="Apellido">
+
 <input name="email"
 class="form-control mb-3"
 placeholder="Correo">
@@ -26,6 +30,10 @@ placeholder="Correo">
 name="password"
 class="form-control mb-3"
 placeholder="Contraseña">
+
+<input name="password2"
+class="form-control mb-3"
+placeholder="Repetir contraseña>
 
 <button class="btn btn-primary w-100">
 Registrarme
