@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\CarritoController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -52,3 +53,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/contacto/enviar', [ContactoController::class, 'enviar'])
     ->name('contacto.enviar');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
+    Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+    Route::put('/carrito/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
+    Route::delete('/carrito/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+    Route::delete('/carrito', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
+});
