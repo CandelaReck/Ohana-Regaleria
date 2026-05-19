@@ -114,7 +114,7 @@ Contacto
 
 <!-- CARRITO -->
 <li class="nav-item ms-lg-2">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{{ route('carrito.index')}}">
         🛒
     </a>
 </li>
