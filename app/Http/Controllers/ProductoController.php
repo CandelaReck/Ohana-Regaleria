@@ -144,4 +144,19 @@ class ProductoController extends Controller
 
         return view('decoHogar', compact('productos'));
     }
+
+    //Display a listing of the resource
+    public function index(){
+        //$productos = Producto::all();
+        $productos = Producto::with('categoria')->get();
+
+        return view('pasar ruta de array productos', compact('productos'));
+    }
+
+    //show the form for creating a new resource
+    public function create(){
+        $categorias = Categoria::all();
+
+        return view('//pasar array de', compact('categorias'));
+    }
 }

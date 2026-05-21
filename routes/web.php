@@ -35,7 +35,7 @@ Route::post('/registro', [AuthController::class, 'registrar']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Rutas protegidas para cliente
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'rol:cliente'])->group(function () {
     Route::get('/cliente', [ClienteController::class, 'index'])->name('cliente');
     Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
     Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
@@ -45,6 +45,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Rutas protegidas para admin
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'menu_Adm'])->name('admin');
+Route::middleware(['auth', 'rol:admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
 });

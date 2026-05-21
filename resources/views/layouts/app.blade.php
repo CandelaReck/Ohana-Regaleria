@@ -119,62 +119,72 @@ Contacto
     </a>
 </li>
 
-@if(session('usuario'))
+<!-- CARRITO - solo para clientes logueados -->
+@auth
+    @if(Auth::user()->rol === 'cliente')
+        <li class="nav-item ms-lg-2">
+            <a class="nav-link" href="{{ route('carrito.index') }}">
+                🛒
+            </a>
+        </li>
+    @endif
+@endauth
 
-<!-- Usuario logueado -->
+<!-- USUARIO -->
+<li class="nav-item dropdown ms-lg-2">
+    <a class="nav-link dropdown-toggle"
+        href="#"
+        data-bs-toggle="dropdown">
+        👤
+        @auth {{ Auth::user()->name }} @endauth
+    </a>
 
-<li class="nav-item dropdown">
+    <ul class="dropdown-menu dropdown-menu-end">
 
-<a class="nav-link dropdown-toggle"
-href="#"
-data-bs-toggle="dropdown">
+        @auth
+            {{-- Si es admin --}}
+            @if(Auth::user()->rol === 'admin')
+                <li>
+                    <a class="dropdown-item" href="{{ route('admin') }}">
+                        Panel Admin
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+            @else
+                {{-- Si es cliente --}}
+                <li>
+                    <a class="dropdown-item" href="{{ route('cliente') }}">
+                        Mi cuenta
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+            @endif
 
-👤
+            <li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="dropdown-item">
+                        Cerrar sesión
+                    </button>
+                </form>
+            </li>
 
-</a>
+        @else
+            {{-- Sin sesión --}}
+            <li>
+                <a class="dropdown-item" href="{{ route('login') }}">
+                    Ingresar a mi cuenta
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="{{ route('registro') }}">
+                    Registrarse
+                </a>
+            </li>
+        @endauth
 
-<ul class="dropdown-menu">
-
-<li>
-<form method="POST" action="{{ route('logout') }}">
-@csrf
-<button class="dropdown-item">
-Cerrar sesión
-</button>
-</form>
+    </ul>
 </li>
-
-</ul>
-
-</li>
-
-@else
-
-<!-- No logueado -->
-
-<li class="nav-item dropdown">
-
-<a class="nav-link dropdown-toggle"
-href="#"
-data-bs-toggle="dropdown">
-
-👤
-
-</a>
-
-<ul class="dropdown-menu">
-
-<li>
-<a class="dropdown-item" href="{{ route('login') }}">
-Ingresar a mi cuenta
-</a>
-</li>
-
-</ul>
-
-</li>
-
-@endif
 </div>
 </nav>
 <!-- CONTENIDO VARIABLE -->

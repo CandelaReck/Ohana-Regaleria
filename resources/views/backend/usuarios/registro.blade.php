@@ -13,17 +13,20 @@
 <input name="name"
     type="text"
     class="form-control mb-3"
-    placeholder="Nombre">
+    placeholder="Nombre"
+    value="{{ old('name') }}">
 
 <input name="apellido"
     type="text"
     class="form-control mb-3"
-    placeholder="Apellido">
+    placeholder="Apellido"
+    value="{{ old('apellido') }}">
 
 <input name="email"
     type="email"
     class="form-control mb-3"
-    placeholder="Correo electrónico">
+    placeholder="Correo electrónico"
+    value="{{ old('email') }}">
 
 <input name="password"
     type="password"
