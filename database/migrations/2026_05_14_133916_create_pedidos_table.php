@@ -30,8 +30,8 @@ return new class extends Migration
             //pago
             $table->enum('metodo_pago', [
                 'efectivo', 'transferencia',
-                'tarjeta de debito', 'tarjeta de credito',
-                'mercado pago'
+                'tarjeta_debito', 'tarjeta_credito',
+                'mercado_pago'
             ])->nullable();
             $table->enum('estado_pago', [
                 'pendiente', 'pagado', 'rechazado'

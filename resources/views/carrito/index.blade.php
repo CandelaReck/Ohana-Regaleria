@@ -62,7 +62,37 @@
 
         <div class="text-end">
             <h4>Total: ${{ number_format($total, 2)}}</h4>
-            <a href="#" class="btn btn-success mt-2">Confirmar compra</a>
+            <form method="POST" action="{{ route('pedidos.store')}}">
+                @csrf 
+                <div class="mb-3">
+                    <label class="form-label">Nombre completo *</label>
+                    <input type="text" name="cliente_nombre" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="cliente_email" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Telefono</label>
+                    <input type="text" name="cliente_telefono" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Dirección de envío</label>
+                    <textarea name="cliente_direccion" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Método de pago *</label>
+                    <select name="metodo_pago" class="form-select" required>
+                        <option value="">Seleccioná uno</option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="transferencia">Transferencia</option>
+                        <option value="tarjeta_debito">Tarjeta de Debito</option>
+                        <option value="tarjeta_credito">Tarjeta de Credito</option>
+                        <option value="mercado_pago">Mercado Pago</option>
+                    </select>
+                </div>
+                <button class="btn btn-success w-100">Confirmar compra</button>
+            </form>
         </div>
     </div>
     @endif
