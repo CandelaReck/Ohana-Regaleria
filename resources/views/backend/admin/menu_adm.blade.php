@@ -1,18 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Panel Admin</title>
-</head>
-<body>
-    <h1>Panel de Administración</h1>
-    <p>Bienvenido, {{ Auth::user()->name }}</p>
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button type="submit">Cerrar sesión</button>
-    </form>
-</body>
-</html>
+
+<div class="container py-5">
+
+    <div class="card shadow p-5 rounded-4">
+
+        <h1 class="mb-3">Panel de Administración</h1>
+
+        <p class="mb-4">
+            Bienvenido, {{ Auth::user()->name }}
+        </p>
+
+        <div class="d-grid gap-3">
+
+            <a href="{{ route('admin.productos') }}"
+               class="btn btn-dark">
+                Gestionar productos
+            </a>
+
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+
+                <button type="submit"
+                        class="btn btn-outline-danger w-100">
+                    Cerrar sesión
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
 @endsection

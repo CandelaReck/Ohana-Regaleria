@@ -47,4 +47,13 @@ Route::middleware(['auth', 'rol:cliente'])->group(function () {
 // Rutas protegidas para admin
 Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+    Route::middleware(['auth', 'rol:admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+    Route::get('/admin/productos', [ProductoController::class, 'index'])->name('admin.productos');
+    Route::get('/admin/productos/crear', [ProductoController::class, 'create'])->name('admin.productos.create');
+    Route::post('/admin/productos', [ProductoController::class, 'store'])->name('admin.productos.store');
+    Route::get('/admin/productos/{id}/editar', [ProductoController::class, 'edit'])->name('admin.productos.edit');
+    Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
+    Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
+});
 });
