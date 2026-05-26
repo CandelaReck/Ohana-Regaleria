@@ -60,10 +60,65 @@ class ProductoController extends Controller
         return view('decoHogar', compact('productos'));
     }
 
-    // FORMULARIO CREAR PRODUCTO (solo admin)
+    // FORMULARIO CREAR PRODUCTO
     public function create()
     {
-        $categorias = Categoria::all();
-        return view('backend.admin.productos.create', compact('categorias'));
+    $categorias = Categoria::all();
+    return view('backend.admin.productos.nuevoproducto', compact('categorias'));
     }
+
+
+
+    // GUARDAR PRODUCTO NUEVO
+public function store(Request $request)
+{
+    $request->validate([
+        'nombre'      => 'required|string|max:150',
+        'descripcion' => 'nullable|string',
+        'precio'      => 'required|numeric|min:0',
+        'stock'       => 'required|integer|min:0',
+        'categoria_id'=> 'required|exists:categorias,id',
+        'url_imagen'  => 'nullable|string',
+        'activo'      => 'boolean',
+    ]);
+
+    Producto::create($request->validated());
+    return redirect()->route('admin.productos')->with('success', 'Producto creado correctamente.');
+}
+
+// FORMULARIO EDITAR
+public function edit($id)
+{
+    $producto   = Producto::findOrFail($id);
+    $categorias = Categoria::all();
+    return view('backend.admin.productos.editarproducto', compact('producto', 'categorias'));
+}
+
+// GUARDAR CAMBIOS
+public function update(Request $request, $id)
+{
+    $producto = Producto::findOrFail($id);
+
+    $request->validate([
+        'nombre'      => 'required|string|max:150',
+        'descripcion' => 'nullable|string',
+        'precio'      => 'required|numeric|min:0',
+        'stock'       => 'required|integer|min:0',
+        'categoria_id'=> 'required|exists:categorias,id',
+        'url_imagen'  => 'nullable|string',
+        'activo'      => 'boolean',
+    ]);
+
+    $producto->update($request->validated());
+    return redirect()->route('admin.productos')->with('success', 'Producto actualizado correctamente.');
+}
+
+// ELIMINAR
+public function destroy($id)
+{
+    $producto = Producto::findOrFail($id);
+    $producto->delete();
+    return redirect()->route('admin.productos')->with('success', 'Producto eliminado correctamente.');
+}
+
 }
