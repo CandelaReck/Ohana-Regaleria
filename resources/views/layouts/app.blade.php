@@ -112,13 +112,6 @@ Ver todos
 Contacto
 </a> 
 
-<!-- CARRITO -->
-<li class="nav-item ms-lg-2">
-    <a class="nav-link" href="{{ route('carrito.index')}}">
-        🛒
-    </a>
-</li>
-
 <!-- CARRITO - solo para clientes logueados -->
 @auth
     @if(Auth::user()->rol === 'cliente')
