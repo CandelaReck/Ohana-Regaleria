@@ -56,9 +56,15 @@
                         ${{ number_format($producto['precio'],0,',','.') }}
                     </div>
 
-                    <a href="#" class="btn btn-dark w-100 mt-auto">
-                        Comprar
-                    </a>
+                    <form method="POST" action="{{ route('carrito.agregar')}}">
+                        @csrf 
+                        <input type="hidden" name="producto_id" value="{{ $producto['id']}}">
+                        <input type="hidden" name="cantidad" value="1">
+                        <input type="hidden" name="precio_unitario" value="{{ $producto['precio']}}">
+                        <button type="submit" class="btn btn-dark w-100 mt_auto">
+                            Agregar al carrito 
+                        </button>
+                    </form>
 
                 </div>
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\PedidoController;
 
 // Rutas públicas
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -42,12 +43,13 @@ Route::middleware(['auth', 'rol:cliente'])->group(function () {
     Route::put('/carrito/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
     Route::delete('/carrito/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::delete('/carrito', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
+    Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
+    Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
+    Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
 });
 
 // Rutas protegidas para admin
 Route::middleware(['auth', 'rol:admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
-    Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
     Route::get('/admin/productos', [ProductoController::class, 'index'])->name('admin.productos');
     Route::get('/admin/productos/crear', [ProductoController::class, 'create'])->name('admin.productos.create');
@@ -55,5 +57,4 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::get('/admin/productos/{id}/editar', [ProductoController::class, 'edit'])->name('admin.productos.edit');
     Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
     Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
-});
 });
