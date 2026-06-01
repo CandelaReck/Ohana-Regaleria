@@ -145,11 +145,6 @@ Contacto
                 <li><hr class="dropdown-divider"></li>
             @else
                 {{-- Si es cliente --}}
-                <li>
-                    <a class="dropdown-item" href="{{ route('cliente') }}">
-                        Mi cuenta
-                    </a>
-                </li>
                 </li>
                     <a class="dropdown-item" href="{{ route('cliente.perfil')}}">
                         Mi perfil 
@@ -164,7 +159,7 @@ Contacto
             @endif
 
             <li>
-                <form method="POST" action="{{ route('logout') }}">
+                <orm method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button class="dropdown-item">
                         Cerrar sesión
@@ -255,7 +250,7 @@ Términos y Condiciones
 <h5 class="mb-3">Medios de pago</h5>
 
 <div class="pagos-grid">
-
+f
 <span>💳 Visa</span>
 <span>💳 MasterCard</span>
 <span>💳 Naranja</span>

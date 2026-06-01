@@ -8,7 +8,6 @@
 
     <div class="text-center mb-5">
         <h2>Mi Perfil</h2>
-        <p>Actualizá tus datos personales</p>
     </div>
 
     @if(session('success'))
@@ -17,8 +16,21 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-6">
-            <div class="carrito-card">
 
+            {{-- VISTA DE DATOS --}}
+            <div class="carrito-card" id="vista-datos">
+                <p><strong>Nombre:</strong> {{ $usuario->name }}</p>
+                <p><strong>Email:</strong> {{ $usuario->email }}</p>
+                <p class="mb-0"><strong>Contraseña:</strong> ••••••••</p>
+                <div class="mt-4">
+                    <button class="btn btn-primary" onclick="mostrarFormulario()">
+                        Editar perfil
+                    </button>
+                </div>
+            </div>
+
+            {{-- FORMULARIO DE EDICION --}}
+            <div class="carrito-card" id="formulario-edicion" style="display:none;">
                 <form method="POST" action="{{ route('cliente.perfil.actualizar') }}">
                     @csrf
                     @method('PUT')
@@ -57,19 +69,35 @@
                         <input type="password" name="password_confirmation" class="form-control">
                     </div>
 
-                    <button class="btn btn-primary w-100">Guardar cambios</button>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary">Guardar cambios</button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="ocultarFormulario()">
+                            Cancelar
+                        </button>
+                    </div>
                 </form>
-
-                <div class="mt-3 text-center">
-                    <a href="{{ route('pedidos.index') }}" class="btn btn-outline-secondary">
-                        Ver mis pedidos
-                    </a>
-                </div>
-
             </div>
+
         </div>
     </div>
 
 </div>
 </section>
+
+<script>
+function mostrarFormulario() {
+    document.getElementById('vista-datos').style.display = 'none';
+    document.getElementById('formulario-edicion').style.display = 'block';
+}
+function ocultarFormulario() {
+    document.getElementById('formulario-edicion').style.display = 'none';
+    document.getElementById('vista-datos').style.display = 'block';
+}
+
+// Si hay errores de validación, mostrar el formulario directamente
+@if($errors->any())
+    mostrarFormulario();
+@endif
+</script>
+
 @endsection
