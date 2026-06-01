@@ -46,6 +46,8 @@ Route::middleware(['auth', 'rol:cliente'])->group(function () {
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
+    Route::get('/cliente/perfil', [ClienteController::class, 'perfil'])->name('cliente.perfil');
+    Route::put('/cliente/perfil', [ClienteController::class, 'actualizarPerfil'])->name('cliente.perfil.actualizar');
 });
 
 // Rutas protegidas para admin

@@ -37,6 +37,7 @@ class PedidoController extends Controller
         $subtotal = $items->sum(fn($item) => $item->precio_unitario * $item->cantidad);
 
         $pedido = Pedido::create([
+            'user_id'           => auth()->id(),
             'cliente_nombre'    => $request->cliente_nombre,
             'cliente_email'     => $request->cliente_email,
             'cliente_telefono'  => $request->cliente_telefono,

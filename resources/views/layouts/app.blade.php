@@ -150,6 +150,16 @@ Contacto
                         Mi cuenta
                     </a>
                 </li>
+                </li>
+                    <a class="dropdown-item" href="{{ route('cliente.perfil')}}">
+                        Mi perfil 
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('pedidos.index')}}">
+                        Mis pedidos 
+                    </a>
+                </li>
                 <li><hr class="dropdown-divider"></li>
             @endif
 
