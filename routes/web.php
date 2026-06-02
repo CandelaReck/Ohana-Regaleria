@@ -10,6 +10,7 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\Admin\PedidoAdminController;
 
 // Rutas públicas
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -59,4 +60,6 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::get('/admin/productos/{id}/editar', [ProductoController::class, 'edit'])->name('admin.productos.edit');
     Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
     Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
+    Route::get('/admin/pedidos', [PedidoAdminController::class, 'index'])->name('admin.pedidos');
+    Route::put('/admin/pedidos/{id}', [PedidoAdminController::class, 'cambiarEstado'])->name('admin.pedidos.estado');
 });

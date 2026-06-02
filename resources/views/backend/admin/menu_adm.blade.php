@@ -18,6 +18,10 @@
                class="btn btn-dark">
                 Gestionar productos
             </a>
+            <a href="{{ route('admin.pedidos') }}"
+               class="btn btn-dark">
+               Gestionar pedidos 
+            </a>
 
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
