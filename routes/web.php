@@ -36,14 +36,21 @@ Route::get('/registro', [AuthController::class, 'formularioRegistro'])->name('re
 Route::post('/registro', [AuthController::class, 'registrar']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Rutas protegidas para cliente
-Route::middleware(['auth', 'rol:cliente'])->group(function () {
-    Route::get('/cliente', [ClienteController::class, 'index'])->name('cliente');
-    Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
+// Rutas del carrito (públicas pero requieren auth solo al confirmar)
+ Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
     Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
     Route::put('/carrito/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
     Route::delete('/carrito/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::delete('/carrito', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
+
+//Solo confirmar compra requiere auth
+Route::post('/pedidos', [PedidoController::class, 'store'])
+  ->middleware(['auth', 'rol:cliente'])
+  ->name('pedidos.store');
+
+// Rutas protegidas para cliente
+Route::middleware(['auth', 'rol:cliente'])->group(function () {
+    Route::get('/cliente', [ClienteController::class, 'index'])->name('cliente');
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
@@ -54,12 +61,15 @@ Route::middleware(['auth', 'rol:cliente'])->group(function () {
 // Rutas protegidas para admin
 Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+    Route::get('/admin/usuarios', [AdminController::class, 'usuarios'])->name('admin.usuarios');
+    Route::get('/admin/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');
+    Route::post('/admin/consultas/{id}/leida', [AdminController::class, 'marcarLeida'])->name('admin.consultas.leida');
+    Route::get('/admin/ventas', [AdminController::class, 'ventas'])->name('admin.ventas');
+
     Route::get('/admin/productos', [ProductoController::class, 'index'])->name('admin.productos');
     Route::get('/admin/productos/crear', [ProductoController::class, 'create'])->name('admin.productos.create');
     Route::post('/admin/productos', [ProductoController::class, 'store'])->name('admin.productos.store');
     Route::get('/admin/productos/{id}/editar', [ProductoController::class, 'edit'])->name('admin.productos.edit');
     Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
-    Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
-    Route::get('/admin/pedidos', [PedidoAdminController::class, 'index'])->name('admin.pedidos');
-    Route::put('/admin/pedidos/{id}', [PedidoAdminController::class, 'cambiarEstado'])->name('admin.pedidos.estado');
+    Route::patch('/admin/productos/{id}/desactivar', [ProductoController::class, 'desactivar'])->name('admin.productos.desactivar');
 });
