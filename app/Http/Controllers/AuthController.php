@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Http\Controllers\CarritoController;
 
 class AuthController extends Controller
 {
@@ -33,6 +34,10 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
+
+        //Fusion carrito de sesion con DB
+        app(CarritoController::class)->fusionarSesionConDB();
+
         return redirect('/cliente');
     }
 
@@ -45,6 +50,8 @@ class AuthController extends Controller
 
         if (Auth::attempt($credenciales)) {
             $request->session()->regenerate();
+
+            app(CarritoController::class)->fusionarSesionConDB();
 
             if (Auth::user()->rol === 'admin') {
                 return redirect('/admin');

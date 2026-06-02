@@ -61,6 +61,7 @@
                         <input type="hidden" name="producto_id" value="{{ $producto['id']}}">
                         <input type="hidden" name="cantidad" value="1">
                         <input type="hidden" name="precio_unitario" value="{{ $producto['precio']}}">
+                        <input type="hidden" name="nombre" value="{{ $producto['nombre']}}">
                         <button type="submit" class="btn btn-dark w-100 mt_auto">
                             Agregar al carrito 
                         </button>

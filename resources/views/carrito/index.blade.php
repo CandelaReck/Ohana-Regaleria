@@ -25,24 +25,33 @@
         <div class="col-lg-8">
             <div class="carrito-card">
                 @foreach($items as $item)
+
+                @php
+                    $esArray  = is_array($item);
+                    $itemId   = $esArray ? $item['producto_id'] : $item->id;
+                    $nombre   = $esArray ? ($item['nombre'] ?? 'Producto') : $item->producto->nombre;
+                    $precio   = $esArray ? $item['precio_unitario'] : $item->precio_unitario;
+                    $cantidad = $esArray ? $item['cantidad'] : $item->cantidad;
+                @endphp
+
                 <div class="carrito-item">
                     <div class="carrito-item-info">
-                        <h5>{{ $item->producto->nombre }}</h5>
-                        <span class="carrito-precio">${{ number_format($item->precio_unitario, 0, ',', '.') }}</span>
+                        <h5>{{ $nombre }}</h5>
+                        <span class="carrito-precio">${{ number_format($precio, 0, ',', '.') }}</span>
                     </div>
                     <div class="carrito-item-acciones">
-                        <form method="POST" action="{{ route('carrito.actualizar', $item->id) }}" class="d-flex align-items-center gap-2">
+                        <form method="POST" action="{{ route('carrito.actualizar', $itemId) }}" class="d-flex align-items-center gap-2">
                             @csrf
                             @method('PUT')
                             <input type="number" name="cantidad"
-                                   value="{{ $item->cantidad }}"
+                                   value="{{ $cantidad }}"
                                    min="1" class="form-control carrito-cantidad">
                             <button class="btn btn-sm btn-outline-secondary">Actualizar</button>
                         </form>
                         <div class="carrito-subtotal">
-                            ${{ number_format($item->precio_unitario * $item->cantidad, 0, ',', '.') }}
+                            ${{ number_format($precio * $cantidad, 0, ',', '.') }}
                         </div>
-                        <form method="POST" action="{{ route('carrito.eliminar', $item->id) }}">
+                        <form method="POST" action="{{ route('carrito.eliminar', $itemId) }}">
                             @csrf
                             @method('DELETE')
                             <button class="btn-eliminar">✕</button>
@@ -71,6 +80,8 @@
                     <span class="resumen-monto">${{ number_format($total, 0, ',', '.') }}</span>
                 </div>
                 <hr>
+
+                @auth
                 <form method="POST" action="{{ route('pedidos.store') }}">
                     @csrf
                     <h5 class="mb-3">Datos de envío</h5>
@@ -103,6 +114,22 @@
                     </div>
                     <button class="btn btn-primary w-100">Confirmar compra</button>
                 </form>
+
+                @else
+                <div class="text-center py-3">
+                    <p class="mb-3">Para confirmar tu compra necesitás iniciar sesión.</p>
+                    <a href="{{ route('login') }}" class="btn btn-primary w-100 mb-2">
+                        Iniciar sesión
+                    </a>
+                    <a href="{{ route('registro') }}" class="btn btn-outline-secondary w-100">
+                        Crear cuenta
+                    </a>
+                    <p class="text-muted mt-3" style="font-size:13px">
+                        Tu carrito se guardará al iniciar sesión 🛍️
+                    </p>
+                </div>
+                @endauth
+
             </div>
         </div>
 

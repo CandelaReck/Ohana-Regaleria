@@ -112,16 +112,25 @@ Ver todos
 Contacto
 </a> 
 
-<!-- CARRITO - solo para clientes logueados -->
-@auth
-    @if(Auth::user()->rol === 'cliente')
-        <li class="nav-item ms-lg-2">
-            <a class="nav-link" href="{{ route('carrito.index') }}">
-                🛒
-            </a>
-        </li>
-    @endif
-@endauth
+{{-- AHORA: visible para todos, pero no para admin --}}
+@if(!auth()->check() || Auth::user()->rol === 'cliente')
+<li class="nav-item ms-lg-2">
+    <a class="nav-link position-relative" href="{{ route('carrito.index') }}">
+        🛒
+        @php
+            $cantidadCarrito = auth()->check()
+                ? \App\Models\CarritoItem::where('user_id', auth()->id())->sum('cantidad')
+                : collect(session()->get('carrito', []))->sum('cantidad');
+        @endphp
+        @if($cantidadCarrito > 0)
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style="font-size:10px">
+                {{ $cantidadCarrito }}
+            </span>
+        @endif
+    </a>
+</li>
+@endif
 
 <!-- USUARIO -->
 <li class="nav-item dropdown ms-lg-2">
@@ -159,7 +168,7 @@ Contacto
             @endif
 
             <li>
-                <orm method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button class="dropdown-item">
                         Cerrar sesión
@@ -250,7 +259,6 @@ Términos y Condiciones
 <h5 class="mb-3">Medios de pago</h5>
 
 <div class="pagos-grid">
-f
 <span>💳 Visa</span>
 <span>💳 MasterCard</span>
 <span>💳 Naranja</span>
