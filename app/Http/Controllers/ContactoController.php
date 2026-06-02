@@ -3,29 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Consulta;
+use App\Http\Requests\ContactoRequest;
 
 class ContactoController extends Controller
 {
-    public function enviar(Request $request)
+    public function enviar(ContactoRequest $request)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'email' => 'required|email',
-            'mensaje' => 'required'
+        Consulta::create([
+            'nombre'   => $request->nombre,
+            'email'    => $request->email,
+            'whatsapp' => $request->whatsapp,
+            'consulta' => $request->consulta,
         ]);
 
-        return back()->with('success', 'Consulta enviada correctamente.');
-    }
-
-    public function store_contact (ContactoRequest $request){
-    $datos = $request->validated();
-
-    $nombre = $datos['nombre'];
-    $email = $datos['email'];
-    $whatsapp = $datos['whatsapp'];
-    $consulta = $datos['consulta'];
-
-    return redirect()->back()->with('succes_message', 'Tu consulta ha sido enviada correctamente');
+        return redirect()->back()->with('success_message', 'Tu consulta ha sido enviada correctamente.');
     }
 }
 
