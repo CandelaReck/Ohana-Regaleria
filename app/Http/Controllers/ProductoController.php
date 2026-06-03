@@ -67,22 +67,30 @@ class ProductoController extends Controller
     return view('backend.admin.productos.nuevoproducto', compact('categorias'));
     }
 
+    // VISTA ADMIN - LISTA DE PRODUCTOS
+    public function adminIndex()
+    {   
+    $productos = Producto::with('categoria')->get();
+    return view('backend.admin.productos.indexproductos', compact('productos'));
+    }
 
 
     // GUARDAR PRODUCTO NUEVO
 public function store(Request $request)
 {
-    $request->validate([
-        'nombre'      => 'required|string|max:150',
-        'descripcion' => 'nullable|string',
-        'precio'      => 'required|numeric|min:0',
-        'stock'       => 'required|integer|min:0',
-        'categoria_id'=> 'required|exists:categorias,id',
-        'url_imagen'  => 'nullable|string',
-        'activo'      => 'boolean',
+    $validated = $request->validate([
+        'nombre'       => 'required|string|max:150',
+        'descripcion'  => 'nullable|string',
+        'precio'       => 'required|numeric|min:0',
+        'stock'        => 'required|integer|min:0',
+        'categoria' => 'required|in:Accesorios,Indumentaria,Combos,Papeleria,Deco Hogar',
+        'url_imagen'   => 'nullable|string',
+        'activo'       => 'nullable|boolean',
     ]);
 
-    Producto::create($request->validated());
+    $validated['activo'] = $request->has('activo') ? (bool) $request->activo : false;
+
+    Producto::create($validated);
     return redirect()->route('admin.productos')->with('success', 'Producto creado correctamente.');
 }
 
@@ -99,26 +107,40 @@ public function update(Request $request, $id)
 {
     $producto = Producto::findOrFail($id);
 
-    $request->validate([
+    $validated = $request->validate([
         'nombre'      => 'required|string|max:150',
         'descripcion' => 'nullable|string',
         'precio'      => 'required|numeric|min:0',
         'stock'       => 'required|integer|min:0',
-        'categoria_id'=> 'required|exists:categorias,id',
+        'categoria'   => 'required|string|max:50',
         'url_imagen'  => 'nullable|string',
-        'activo'      => 'boolean',
+        'activo'      => 'nullable|boolean',
     ]);
 
-    $producto->update($request->validated());
+    $validated['activo'] = $request->has('activo') ? (bool) $request->activo : false;
+
+    $producto->categoria    = $validated['categoria'];
+    $producto->nombre       = $validated['nombre'];
+    $producto->descripcion  = $validated['descripcion'];
+    $producto->precio       = $validated['precio'];
+    $producto->stock        = $validated['stock'];
+    $producto->url_imagen   = $validated['url_imagen'];
+    $producto->activo       = $validated['activo'];
+    $producto->save();
+
     return redirect()->route('admin.productos')->with('success', 'Producto actualizado correctamente.');
 }
 
-// ELIMINAR
-public function destroy($id)
+
+
+
+
+// BAJA LÓGICA
+public function desactivar($id)
 {
     $producto = Producto::findOrFail($id);
-    $producto->delete();
-    return redirect()->route('admin.productos')->with('success', 'Producto eliminado correctamente.');
+    $producto->update(['activo' => false]);
+    return redirect()->route('admin.productos')->with('success', 'Producto desactivado correctamente.');
 }
 
 }

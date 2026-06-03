@@ -64,12 +64,15 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::get('/admin/usuarios', [AdminController::class, 'usuarios'])->name('admin.usuarios');
     Route::get('/admin/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');
     Route::post('/admin/consultas/{id}/leida', [AdminController::class, 'marcarLeida'])->name('admin.consultas.leida');
-    Route::get('/admin/ventas', [AdminController::class, 'ventas'])->name('admin.ventas');
+    Route::get('/admin/consultas/{id}', [AdminController::class, 'verConsulta'])->name('admin.consultas.ver');
+    Route::get('/admin/pedidos', [AdminController::class, 'pedidos'])->name('admin.pedidos');
+    Route::put('/admin/pedidos/{id}/estado', [AdminController::class, 'actualizarEstadoPedido'])->name('admin.pedidos.estado');
 
-    Route::get('/admin/productos', [ProductoController::class, 'index'])->name('admin.productos');
+    Route::get('/admin/productos', [ProductoController::class, 'adminIndex'])->name('admin.productos');
     Route::get('/admin/productos/crear', [ProductoController::class, 'create'])->name('admin.productos.create');
     Route::post('/admin/productos', [ProductoController::class, 'store'])->name('admin.productos.store');
     Route::get('/admin/productos/{id}/editar', [ProductoController::class, 'edit'])->name('admin.productos.edit');
     Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
     Route::patch('/admin/productos/{id}/desactivar', [ProductoController::class, 'desactivar'])->name('admin.productos.desactivar');
+    
 });

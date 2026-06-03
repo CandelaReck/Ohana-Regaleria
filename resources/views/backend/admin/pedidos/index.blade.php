@@ -34,7 +34,7 @@
                     @foreach($pedidos as $pedido)
                     <tr>
                         <td>{{ $pedido->id }}</td>
-                        <td>{{ $pedido->cliente_nombre }}</td>
+                        <td>{{ $pedido->user->name ?? 'Sin usuario' }}</td>
                         <td>{{ $pedido->created_at->format('d/m/Y H:i') }}</td>
                         <td>${{ number_format($pedido->total, 0, ',', '.') }}</td>
                         <td>{{ ucfirst(str_replace('_', ' ', $pedido->metodo_pago)) }}</td>
@@ -54,3 +54,21 @@
                                         <option value="en_preparacion" {{ $pedido->estado == 'en_preparacion' ? 'selected' : '' }}>En preparación</option>
                                         <option value="enviado" {{ $pedido->estado == 'enviado' ? 'selected' : '' }}>Enviado</option>
                                         <option value="entregado" {{ $pedido->estado == 'entregado' ? 'selected' : '' }}>Entregado</option>
+                                        <option value="cancelado" {{ $pedido->estado == 'cancelado' ? 'selected' : '' }}>Cancelado</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-dark">
+                                        Actualizar
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
+
+</div>
+</section>
+@endsection

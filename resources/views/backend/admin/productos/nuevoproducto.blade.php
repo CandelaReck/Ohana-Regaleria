@@ -33,20 +33,19 @@
             value="{{ old('precio') }}">
 
         <label class="form-label">Stock</label>
-        <input name="stock" type="number"
+        <input name="stock" type="number" min="0"
             class="form-control mb-3"
             value="{{ old('stock') }}">
 
         <label class="form-label">Categoría</label>
-        <select name="categoria_id" class="form-select mb-3">
+            <select name="categoria" class="form-select mb-3">
             <option value="">Seleccioná una categoría</option>
-            @foreach($categorias as $categoria)
-                <option value="{{ $categoria->id }}"
-                    {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
-                    {{ $categoria->nombre }}
-                </option>
-            @endforeach
-        </select>
+            <option value="Accesorios" {{ old('categoria', $producto->categoria ?? '') == 'Accesorios' ? 'selected' : '' }}>Accesorios</option>
+            <option value="Indumentaria" {{ old('categoria', $producto->categoria ?? '') == 'Indumentaria' ? 'selected' : '' }}>Indumentaria</option>
+            <option value="Combos" {{ old('categoria', $producto->categoria ?? '') == 'Combos' ? 'selected' : '' }}>Combos</option>
+            <option value="Papeleria" {{ old('categoria', $producto->categoria ?? '') == 'Papeleria' ? 'selected' : '' }}>Papeleria</option>
+            <option value="Deco Hogar" {{ old('categoria', $producto->categoria ?? '') == 'Deco Hogar' ? 'selected' : '' }}>Deco Hogar</option>
+            </select>
 
         <label class="form-label">URL Imagen</label>
         <input name="url_imagen" type="text"

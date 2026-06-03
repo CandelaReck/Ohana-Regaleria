@@ -44,9 +44,23 @@ class AdminController extends Controller
         return redirect()->route('admin.consultas')->with('success', 'Consulta marcada como leída.');
     }
 
-    public function ventas()
+    public function verConsulta($id)
     {
-        $pedidos = Pedido::with('user')->orderBy('created_at', 'desc')->get();
-        return view('backend.admin.ventas', compact('pedidos'));
+    $consulta = Consulta::findOrFail($id);
+    $consulta->update(['leida' => true]);
+    return view('backend.admin.consulta_detalle', compact('consulta'));
     }
+
+    public function pedidos()
+{
+    $pedidos = Pedido::with('user')->orderBy('created_at', 'desc')->get();
+    return view('backend.admin.pedidos.index', compact('pedidos'));
+}
+
+public function actualizarEstadoPedido(Request $request, $id)
+{
+    $pedido = Pedido::findOrFail($id);
+    $pedido->update(['estado' => $request->estado]);
+    return redirect()->route('admin.pedidos')->with('success', 'Estado actualizado correctamente.');
+}
 }

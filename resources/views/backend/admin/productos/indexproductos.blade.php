@@ -31,7 +31,7 @@
             <tr>
                 <td>{{ $producto->id }}</td>
                 <td>{{ $producto->nombre }}</td>
-                <td>{{ $producto->categoria->nombre ?? 'Sin categoría' }}</td>
+                <td>{{ $producto->categoria ?? 'Sin categoría' }}</td>
                 <td>${{ number_format($producto->precio, 2) }}</td>
                 <td>{{ $producto->stock }}</td>
                 <td>{{ $producto->activo ? 'Sí' : 'No' }}</td>
@@ -39,13 +39,13 @@
                     <a href="{{ route('admin.productos.edit', $producto->id) }}" 
                        class="btn btn-sm btn-warning">Editar</a>
 
-                    <form action="{{ route('admin.productos.destroy', $producto->id) }}" 
-                          method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
+                    <form action="{{ route('admin.productos.desactivar', $producto->id) }}" 
+                    method="POST" class="d-inline">
+                    @csrf
+                    @method('PATCH')
                         <button class="btn btn-sm btn-danger"
-                                onclick="return confirm('¿Eliminar este producto?')">
-                            Eliminar
+                        onclick="return confirm('¿Desactivar este producto?')">
+                        Desactivar
                         </button>
                     </form>
                 </td>

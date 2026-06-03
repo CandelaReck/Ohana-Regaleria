@@ -48,14 +48,16 @@ class PedidoController extends Controller
         ]);
 
         foreach ($items as $item) {
-            $pedido->items()->create([
-                'producto_id'     => $item->producto_id,
-                'producto_nombre' => $item->producto->nombre,
-                'precio_unitario' => $item->precio_unitario,
-                'cantidad'        => $item->cantidad,
-                'subtotal'        => $item->precio_unitario * $item->cantidad,
-
+          $pedido->items()->create([
+            'producto_id'     => $item->producto_id,
+            'producto_nombre' => $item->producto->nombre,
+            'precio_unitario' => $item->precio_unitario,
+            'cantidad'        => $item->cantidad,
+            'subtotal'        => $item->precio_unitario * $item->cantidad,
             ]);
+
+        // ← Actualizar stock
+            $item->producto->decrement('stock', $item->cantidad);
         }
 
         CarritoItem::where('user_id', auth()->id())->delete();
