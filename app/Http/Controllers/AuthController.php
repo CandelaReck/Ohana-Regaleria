@@ -38,7 +38,7 @@ class AuthController extends Controller
         //Fusion carrito de sesion con DB
         app(CarritoController::class)->fusionarSesionConDB();
 
-        return redirect('/cliente');
+        return redirect()->route('carrito.index');
     }
 
     public function autenticar(Request $request)
@@ -57,7 +57,7 @@ class AuthController extends Controller
                 return redirect('/admin');
             }
 
-            return redirect('/cliente');
+            return redirect()->route('carrito.index');
         }
 
         return back()->withErrors([

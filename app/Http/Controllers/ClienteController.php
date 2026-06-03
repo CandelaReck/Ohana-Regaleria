@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
-    public function index()
-    {
-        return view('backend.usuarios.cliente');
-    }
     
     public function perfil(){
         $usuario = auth()->user();
