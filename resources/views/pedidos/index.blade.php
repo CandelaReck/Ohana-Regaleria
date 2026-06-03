@@ -35,9 +35,10 @@
                     <td>${{ number_format($pedido->total, 2) }}</td>
                     <td>
                         <a href="{{ route('pedidos.show', $pedido->id) }}" 
-                           class="btn btn-sm btn-outline-primary">
-                            Ver detalle
+                        class="btn btn-sm btn-outline-primary">
+                             Ver detalle
                         </a>
+                        
                     </td>
                 </tr>
                 @endforeach

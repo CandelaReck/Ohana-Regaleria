@@ -72,5 +72,21 @@ class PedidoController extends Controller
         return view('pedidos.show', compact('pedido'));
     }
 
+    public function cancelar($id){
+        $pedido = Pedido::where('user_id', auth()->id())
+                  ->findOrFail($id);
+
+        if (in_array($pedido->estado, ['enviado', 'entregado'])) {
+            return redirect()->route('pedidos.index')
+                    ->with('error', 'No podes cancelar un pedido que ya fue enviado o entregado.');
+        }
+
+        $pedido->estado = 'cancelado';
+        $pedido->save();
+
+        return redirect()->route('pedidos.index')
+                ->with('success', 'Pedido cancelado correctamente.');
+    }
+
 
 }

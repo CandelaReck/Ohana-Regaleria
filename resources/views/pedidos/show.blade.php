@@ -64,10 +64,21 @@
         </table>
     </div>
 
-    <div class="mt-4">
-        <a href="{{ route('pedidos.index') }}" class="btn btn-outline-secondary">
-            Volver a mis pedidos
-        </a>
+    <div class="mt-4 d-flex gap-3">
+    <a href="{{ route('pedidos.index') }}" class="btn btn-outline-secondary">
+        Volver a mis pedidos
+    </a>
+
+    @if(!in_array($pedido->estado, ['enviado', 'entregado', 'cancelado']))
+    <form method="POST" action="{{ route('pedidos.cancelar', $pedido->id) }}">
+        @csrf
+        @method('PATCH')
+        <button class="btn btn-outline-danger"
+                onclick="return confirm('¿Seguro que querés cancelar este pedido?')">
+            Cancelar pedido
+        </button>
+    </form>
+    @endif
     </div>
 
 </div>

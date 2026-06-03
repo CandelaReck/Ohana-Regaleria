@@ -154,7 +154,7 @@ Contacto
                 <li><hr class="dropdown-divider"></li>
             @else
                 {{-- Si es cliente --}}
-                </li>
+                <li>
                     <a class="dropdown-item" href="{{ route('cliente.perfil')}}">
                         Mi perfil 
                     </a>

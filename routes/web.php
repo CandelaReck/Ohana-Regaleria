@@ -52,10 +52,10 @@ Route::post('/pedidos', [PedidoController::class, 'store'])
 Route::middleware(['auth', 'rol:cliente'])->group(function () {
     Route::get('/cliente', [ClienteController::class, 'index'])->name('cliente');
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
-    Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
     Route::get('/cliente/perfil', [ClienteController::class, 'perfil'])->name('cliente.perfil');
     Route::put('/cliente/perfil', [ClienteController::class, 'actualizarPerfil'])->name('cliente.perfil.actualizar');
+    Route::patch('/pedidos/{id}/cancelar', [PedidoController::class, 'cancelar'])->name('pedidos.cancelar');
 });
 
 // Rutas protegidas para admin
@@ -65,6 +65,8 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::get('/admin/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');
     Route::post('/admin/consultas/{id}/leida', [AdminController::class, 'marcarLeida'])->name('admin.consultas.leida');
     Route::get('/admin/ventas', [AdminController::class, 'ventas'])->name('admin.ventas');
+    Route::get('/admin/pedidos', [PedidoAdminController::class, 'index'])->name('admin.pedidos');
+    Route::put('/admin/pedidos/{id}', [PedidoAdminController::class, 'cambiarEstado'])->name('admin.pedidos.estado');
 
     Route::get('/admin/productos', [ProductoController::class, 'index'])->name('admin.productos');
     Route::get('/admin/productos/crear', [ProductoController::class, 'create'])->name('admin.productos.create');
