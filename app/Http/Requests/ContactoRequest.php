@@ -13,10 +13,10 @@ class ContactoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre'   => 'required|string|max:100',
-            'email'    => 'required|email|max:100',
-            'whatsapp' => 'required|string|max:50',
-            'consulta' => 'required|string|min:10|max:200',
+        'nombre'   => 'required|string|max:255',
+        'email'    => 'required|email',
+        'telefono' => 'nullable|string|max:30',
+        'mensaje'  => 'required|string',
         ];
     }
 

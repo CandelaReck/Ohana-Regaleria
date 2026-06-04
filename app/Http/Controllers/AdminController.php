@@ -37,12 +37,6 @@ class AdminController extends Controller
         return view('backend.admin.consultas', compact('consultas'));
     }
 
-    public function marcarLeida($id)
-    {
-        $consulta = Consulta::findOrFail($id);
-        $consulta->update(['leida' => true]);
-        return redirect()->route('admin.consultas')->with('success', 'Consulta marcada como leída.');
-    }
 
     public function verConsulta($id)
     {
@@ -62,5 +56,41 @@ public function actualizarEstadoPedido(Request $request, $id)
     $pedido = Pedido::findOrFail($id);
     $pedido->update(['estado' => $request->estado]);
     return redirect()->route('admin.pedidos')->with('success', 'Estado actualizado correctamente.');
+}
+
+public function responderConsulta(Request $request, $id)
+{
+    $consulta = Consulta::findOrFail($id);
+
+    // guardar respuesta
+    $consulta->respuesta = $request->respuesta;
+    $consulta->respondida = true;
+    $consulta->save();
+
+    return redirect()
+        ->route('admin.consultas')
+        ->with('success', 'Respuesta enviada correctamente');
+} 
+
+public function marcarLeida($id)
+{
+    $consulta = Consulta::findOrFail($id);
+
+    $consulta->update([
+        'leida' => true
+    ]);
+
+    return back();
+}
+
+public function marcarNoLeida($id)
+{
+    $consulta = Consulta::findOrFail($id);
+
+    $consulta->update([
+        'leida' => false
+    ]);
+
+    return back();
 }
 }

@@ -64,6 +64,9 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::get('/admin/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');
     Route::post('/admin/consultas/{id}/leida', [AdminController::class, 'marcarLeida'])->name('admin.consultas.leida');
     Route::get('/admin/consultas/{id}', [AdminController::class, 'verConsulta'])->name('admin.consultas.ver');
+    Route::post('/admin/consultas/{id}/responder', [AdminController::class, 'responderConsulta'])->name('admin.consultas.responder');
+    Route::post('/admin/consultas/{id}/estado', [AdminController::class, 'cambiarEstado'])->name('admin.consultas.estado');
+    Route::post('/admin/consultas/{id}/no-leida', [AdminController::class, 'marcarNoLeida'])->name('admin.consultas.marcarNoLeida');
     Route::get('/admin/pedidos', [PedidoAdminController::class, 'index'])->name('admin.pedidos');
     Route::put('/admin/pedidos/{id}', [PedidoAdminController::class, 'cambiarEstado'])->name('admin.pedidos.estado');
 
