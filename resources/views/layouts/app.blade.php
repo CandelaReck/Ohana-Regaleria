@@ -280,5 +280,30 @@ Términos y Condiciones
 </footer>
 
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('compra_exitosa'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: '🎁 ¡Pedido realizado!',
+    text: 'Tu compra fue registrada correctamente.',
+    confirmButtonColor: '#355E3B',
+    background: '#FFF9F2'
+});
+</script>
+@endif
+
+@if(session('success_message'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: '🌿 ¡Gracias por contactarnos!',
+    text: '{{ session('success_message') }}',
+    confirmButtonColor: '#355E3B',
+    background: '#FFF9F2'
+});
+</script>
+@endif
 </body>
 </html>

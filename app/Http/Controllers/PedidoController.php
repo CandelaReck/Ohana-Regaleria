@@ -63,7 +63,8 @@ class PedidoController extends Controller
         CarritoItem::where('user_id', auth()->id())->delete();
 
         return redirect()->route('pedidos.show', $pedido->id)
-                 ->with('success', '¡Pedido realizado con éxito!');
+         ->with('compra_exitosa', true)
+         ->with('success', '¡Pedido realizado con éxito!');
     }
 
     public function show($id){
