@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\PedidoItem;
+use App\Models\User;
 
 class Pedido extends Model
 {
@@ -19,5 +20,9 @@ class Pedido extends Model
     ];
     public function items(){
         return $this->hasMany(PedidoItem::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }
