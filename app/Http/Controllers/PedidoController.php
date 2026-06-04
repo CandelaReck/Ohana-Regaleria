@@ -21,7 +21,7 @@ class PedidoController extends Controller
             'cliente_email'     => 'nullable|email|max:150',
             'cliente_telefono'  => 'nullable|string|max:20',
             'cliente_direccion' => 'nullable|string',
-            'metodo_pago'       => 'required|in:efectivo, transferencia, tarjeta_debito, tarjeta_credito, mercado_pago',
+            'metodo_pago'       => 'required|in:efectivo,transferencia,tarjeta_debito,tarjeta_credito,mercado_pago',
 
         ]);
 
