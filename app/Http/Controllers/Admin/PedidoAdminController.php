@@ -10,7 +10,7 @@ class PedidoAdminController extends Controller
 {
     public function index()
     {
-        $pedidos = Pedido::orderBy('created_at', 'desc')->get();
+        $pedidos = Pedido::with('user')->orderBy('created_at', 'desc')->get();
         return view('backend.admin.pedidos.index', compact('pedidos'));
     }
 
