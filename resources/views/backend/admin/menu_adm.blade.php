@@ -76,7 +76,14 @@
             <div class="col-md-4">
                 <a href="{{ route('admin.pedidos') }}"
                    class="btn btn-dark w-100">
-                    Ver pedidos y ventas
+                    Ver pedidos
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="{{ route('admin.ventas') }}"
+                   class="btn btn-dark w-100">
+                    Ver ventas
                 </a>
             </div>
 

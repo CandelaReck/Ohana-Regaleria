@@ -78,5 +78,6 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::patch('/admin/productos/{id}/desactivar', [ProductoController::class, 'desactivar'])->name('admin.productos.desactivar');
     Route::patch('/admin/productos/{id}/activar', [ProductoController::class, 'activar'])->name('admin.productos.activar');
     Route::get('/admin/pedidos/{id}', [AdminController::class, 'verPedido'])->name('admin.pedidos.ver');
+    Route::get('/admin/ventas', [AdminController::class, 'ventas'])->name('admin.ventas');
     
 });

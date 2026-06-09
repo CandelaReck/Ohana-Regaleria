@@ -154,4 +154,42 @@ public function marcarNoLeida($id)
 
     return back();
 }
+
+public function ventas(Request $request)
+{
+    $query = Pedido::with('user')
+        ->where('estado', '!=', 'pendiente')
+        ->orderBy('created_at', 'desc');
+
+    // Filtro por estado
+    if ($request->filled('estado')) {
+        $query->where('estado', $request->estado);
+    }
+
+    // Filtro por cliente
+    if ($request->filled('cliente')) {
+        $query->whereHas('user', fn($q) =>
+            $q->where('name', 'like', '%' . $request->cliente . '%')
+        );
+    }
+
+    // Filtro por fecha desde
+    if ($request->filled('fecha_desde')) {
+        $query->whereDate('created_at', '>=', $request->fecha_desde);
+    }
+
+    // Filtro por fecha hasta
+    if ($request->filled('fecha_hasta')) {
+        $query->whereDate('created_at', '<=', $request->fecha_hasta);
+    }
+
+    // Filtro por método de pago
+    if ($request->filled('metodo_pago')) {
+        $query->where('metodo_pago', $request->metodo_pago);
+    }
+
+    $pedidos = $query->get();
+
+    return view('backend.admin.pedidos.index', compact('pedidos'));
+}
 }
