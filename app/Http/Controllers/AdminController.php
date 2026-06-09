@@ -228,7 +228,7 @@ public function ventas(Request $request)
         ->limit(5)
         ->get();
 
-    return view('admin.ventas', compact(
+    return view('backend.admin.productos.ventas', compact(
         'ventas', 'periodo',
         'totalVentas', 'ingresoTotal', 'ticketPromedio', 'cancelados',
         'ingresosPorDia', 'porMetodoPago', 'topProductos'
