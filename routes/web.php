@@ -76,5 +76,7 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::get('/admin/productos/{id}/editar', [ProductoController::class, 'edit'])->name('admin.productos.edit');
     Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
     Route::patch('/admin/productos/{id}/desactivar', [ProductoController::class, 'desactivar'])->name('admin.productos.desactivar');
+    Route::patch('/admin/productos/{id}/activar', [ProductoController::class, 'activar'])->name('admin.productos.activar');
+    Route::get('/admin/pedidos/{id}', [AdminController::class, 'verPedido'])->name('admin.pedidos.ver');
     
 });

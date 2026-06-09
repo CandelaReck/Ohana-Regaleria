@@ -14,7 +14,8 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('admin.productos.update', $producto->id) }}">
+    <form method="POST" action="{{ route('admin.productos.update', $producto->id) }}"
+          enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -24,9 +25,9 @@
             value="{{ old('nombre', $producto->nombre) }}">
 
         <label class="form-label">Descripción</label>
-        <textarea name="descripcion"
-            class="form-control mb-3"
-            rows="3">{{ old('descripcion', $producto->descripcion) }}</textarea>
+<textarea name="descripcion"
+    class="form-control mb-3"
+    rows="3">{{ old('descripcion', $producto->descripcion) }}</textarea>
 
         <label class="form-label">Precio</label>
         <input name="precio" type="number" step="0.01"
@@ -36,21 +37,39 @@
         <label class="form-label">Stock</label>
         <input name="stock" type="number" min="0"
             class="form-control mb-3"
-            value="{{ old('stock') }}">
+            value="{{ old('stock', $producto->stock) }}">
 
         <label class="form-label">Categoría</label>
         <select name="categoria" class="form-select mb-3">
             <option value="">Seleccioná una categoría</option>
-            <option value="Accesorios" {{ old('categoria', $producto->categoria ?? '') == 'Accesorios' ? 'selected' : '' }}>Accesorios</option>
+            <option value="Accesorios"   {{ old('categoria', $producto->categoria ?? '') == 'Accesorios'   ? 'selected' : '' }}>Accesorios</option>
             <option value="Indumentaria" {{ old('categoria', $producto->categoria ?? '') == 'Indumentaria' ? 'selected' : '' }}>Indumentaria</option>
-            <option value="Combos" {{ old('categoria', $producto->categoria ?? '') == 'Combos' ? 'selected' : '' }}>Combos</option>
-            <option value="Papeleria" {{ old('categoria', $producto->categoria ?? '') == 'Papeleria' ? 'selected' : '' }}>Papeleria</option>
-            <option value="Deco Hogar" {{ old('categoria', $producto->categoria ?? '') == 'Deco Hogar' ? 'selected' : '' }}>Deco Hogar</option>
+            <option value="Combos"       {{ old('categoria', $producto->categoria ?? '') == 'Combos'       ? 'selected' : '' }}>Combos</option>
+            <option value="Papeleria"    {{ old('categoria', $producto->categoria ?? '') == 'Papeleria'    ? 'selected' : '' }}>Papelería</option>
+            <option value="Deco Hogar"   {{ old('categoria', $producto->categoria ?? '') == 'Deco Hogar'   ? 'selected' : '' }}>Deco Hogar</option>
         </select>
 
-        <label class="form-label">URL Imagen</label>
+        <label class="form-label">Imagen</label>
+
+        {{-- Mostrar imagen actual --}}
+        @if($producto->url_imagen)
+            <div class="mb-2">
+                <img src="{{ $producto->url_imagen }}"
+                     alt="Imagen actual"
+                     style="height: 100px; object-fit: cover; border-radius: 8px;">
+                <p class="text-muted small mt-1">Imagen actual</p>
+            </div>
+        @endif
+
+        {{-- Subir nueva imagen --}}
+        <input name="imagen" type="file"
+            class="form-control mb-2"
+            accept="image/*">
+
+        {{-- O pegar URL --}}
         <input name="url_imagen" type="text"
             class="form-control mb-3"
+            placeholder="O pegá una URL de imagen"
             value="{{ old('url_imagen', $producto->url_imagen) }}">
 
         <label class="form-label">Activo</label>
@@ -61,7 +80,7 @@
 
         <button class="btn btn-dark w-100">Guardar cambios</button>
 
-        <a href="{{ route('admin.productos') }}" 
+        <a href="{{ route('admin.productos') }}"
            class="btn btn-outline-secondary w-100 mt-2">Cancelar</a>
 
     </form>

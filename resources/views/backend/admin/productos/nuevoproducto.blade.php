@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('admin.productos.store') }}">
+    <form method="POST" action="{{ route('admin.productos.store') }}" enctype="multipart/form-data">
     @csrf
 
         <label class="form-label">Nombre</label>
@@ -47,10 +47,16 @@
             <option value="Deco Hogar" {{ old('categoria', $producto->categoria ?? '') == 'Deco Hogar' ? 'selected' : '' }}>Deco Hogar</option>
             </select>
 
-        <label class="form-label">URL Imagen</label>
-        <input name="url_imagen" type="text"
-            class="form-control mb-3"
-            value="{{ old('url_imagen') }}">
+        <label class="form-label">Imagen</label>
+
+            <input name="imagen" type="file"
+                class="form-control mb-2"
+                accept="image/*">
+
+            <input name="url_imagen" type="text"
+                class="form-control mb-3"
+                placeholder="O pegá una URL de imagen"
+                value="{{ old('url_imagen') }}">
 
         <label class="form-label">Activo</label>
         <select name="activo" class="form-select mb-4">

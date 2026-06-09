@@ -29,26 +29,27 @@
 
             <div class="card h-100 shadow border-0">
 
-                <img src="{{ asset('img/' . $producto['imagen']) }}"
-                     class="card-img-top producto-foto">
+                <img src="{{ $producto->url_imagen ?? asset('img/placeholder.jpg') }}"
+     class="card-img-top producto-foto"
+     alt="{{ $producto->nombre }}">
 
-                <div class="card-body text-center d-flex flex-column">
-
-                    <h5>{{ $producto['nombre'] }}</h5>
-
-                    <p class="text-muted">
-                        {{ $producto['descripcion'] }}
-                    </p>
-
-                    <h4 class="text-success mb-3">
-                        ${{ number_format($producto['precio'],0,',','.') }}
-                    </h4>
-
-                    <a href="#" class="btn btn-dark mt-auto">
-                        Comprar
-                    </a>
-
-                </div>
+<div class="card-body text-center d-flex flex-column">
+    <h5>{{ $producto->nombre }}</h5>
+    <p class="text-muted">{{ $producto->descripcion }}</p>
+    <h4 class="text-success mb-3">
+        ${{ number_format($producto->precio, 0, ',', '.') }}
+    </h4>
+    <form method="POST" action="{{ route('carrito.agregar') }}">
+        @csrf
+        <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+        <input type="hidden" name="cantidad" value="1">
+        <input type="hidden" name="precio_unitario" value="{{ $producto->precio }}">
+        <input type="hidden" name="nombre" value="{{ $producto->nombre }}">
+        <button type="submit" class="btn btn-dark w-100 mt-auto">
+            Agregar al carrito
+        </button>
+    </form>
+</div>
 
             </div>
 
