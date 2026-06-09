@@ -112,10 +112,12 @@ Ver todos
 Contacto
 </a> 
 
-{{-- AHORA: visible para todos, pero no para admin --}}
+{{-- CARRITO OFFCANVAS --}}
 @if(!auth()->check() || Auth::user()->rol === 'cliente')
 <li class="nav-item ms-lg-2">
-    <a class="nav-link position-relative" href="{{ route('carrito.index') }}">
+    <a class="nav-link position-relative" href="#" 
+       data-bs-toggle="offcanvas" 
+       data-bs-target="#offcanvasCarrito">
         🛒
         @php
             $cantidadCarrito = auth()->check()
@@ -305,5 +307,32 @@ Swal.fire({
 });
 </script>
 @endif
+
+{{-- OFFCANVAS CARRITO --}}
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" style="width:380px">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" style="font-family:'Cormorant Garamond',serif; color:var(--verde-oscuro)">
+            🛒 Mi Carrito
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body" id="carritoMiniContenido">
+        <div class="text-center py-4">
+            <div class="spinner-border spinner-border-sm" role="status"></div>
+            <p class="mt-2">Cargando...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('offcanvasCarrito').addEventListener('show.bs.offcanvas', function() {
+    fetch('{{ route("carrito.mini") }}')
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById('carritoMiniContenido').innerHTML = html;
+        });
+});
+</script>
+
 </body>
 </html>

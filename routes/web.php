@@ -42,6 +42,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::put('/carrito/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
     Route::delete('/carrito/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::delete('/carrito', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
+    Route::get('/carrito/mini', [CarritoController::class, 'mini'])->name('carrito.mini');
 
 //Solo confirmar compra requiere auth
 Route::post('/pedidos', [PedidoController::class, 'store'])

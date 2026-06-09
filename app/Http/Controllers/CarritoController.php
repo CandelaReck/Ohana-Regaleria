@@ -66,7 +66,11 @@ class CarritoController extends Controller
             session()->put('carrito', $carrito);
         }
 
-        return redirect()->route('carrito.index');
+        if ($request->ajax()) {
+            return response()->json(['ok' => true]);
+        }
+        
+        return redirect()->back();
     }
 
     public function actualizar(Request $request, $id)
@@ -141,5 +145,19 @@ class CarritoController extends Controller
         }
 
         session()->forget('carrito');
+    }
+
+    public function mini(){
+    if (auth()->check()) {
+        $items = CarritoItem::with('producto')
+            ->where('user_id', auth()->id())
+            ->get();
+        $total = $items->sum(fn($item) => $item->precio_unitario * $item->cantidad);
+    } else {
+        $items = collect(session()->get('carrito', []));
+        $total = $items->sum(fn($item) => $item['precio_unitario'] * $item['cantidad']);
+    }
+
+    return view('carrito.mini', compact('items', 'total'));
     }
 }

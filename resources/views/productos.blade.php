@@ -54,16 +54,16 @@
         ${{ number_format($producto->precio, 0, ',', '.') }}
     </div>
 
-    <form method="POST" action="{{ route('carrito.agregar') }}">
-        @csrf
-        <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-        <input type="hidden" name="cantidad" value="1">
-        <input type="hidden" name="precio_unitario" value="{{ $producto->precio }}">
-        <input type="hidden" name="nombre" value="{{ $producto->nombre }}">
-        <button type="submit" class="btn btn-dark w-100 mt_auto">
-            Agregar al carrito
-        </button>
-    </form>
+    <form class="form-agregar-carrito">
+    @csrf
+    <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+    <input type="hidden" name="cantidad" value="1">
+    <input type="hidden" name="precio_unitario" value="{{ $producto->precio }}">
+    <input type="hidden" name="nombre" value="{{ $producto->nombre }}">
+    <button type="submit" class="btn btn-dark w-100 mt-auto">
+        Agregar al carrito
+    </button>
+</form>
 
 </div>
 
@@ -78,5 +78,40 @@
 </div>
 
 </section>
+
+<script>
+document.querySelectorAll('.form-agregar-carrito').forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const data = new FormData(form);
+        const btn = form.querySelector('button');
+        btn.disabled = true;
+        btn.textContent = '✓ Agregado';
+
+        fetch('{{ route("carrito.agregar") }}', {
+            method: 'POST',
+            body: data,
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(() => fetch('{{ route("carrito.mini") }}'))
+        .then(res => res.text())
+        .then(html => {
+            const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasCarrito'));
+            document.getElementById('carritoMiniContenido').innerHTML = html;
+            offcanvas.show();
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.textContent = 'Agregar al carrito';
+            }, 2000);
+        })
+        .catch(() => {
+            btn.disabled = false;
+            btn.textContent = 'Agregar al carrito';
+        });
+    });
+});
+</script>
 
 @endsection
