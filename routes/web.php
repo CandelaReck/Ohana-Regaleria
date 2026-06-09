@@ -42,6 +42,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::put('/carrito/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
     Route::delete('/carrito/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::delete('/carrito', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
+    Route::get('/carrito/mini', [CarritoController::class, 'mini'])->name('carrito.mini');
 
 //Solo confirmar compra requiere auth
 Route::post('/pedidos', [PedidoController::class, 'store'])
@@ -55,6 +56,7 @@ Route::middleware(['auth', 'rol:cliente'])->group(function () {
     Route::get('/cliente/perfil', [ClienteController::class, 'perfil'])->name('cliente.perfil');
     Route::put('/cliente/perfil', [ClienteController::class, 'actualizarPerfil'])->name('cliente.perfil.actualizar');
     Route::patch('/pedidos/{id}/cancelar', [PedidoController::class, 'cancelar'])->name('pedidos.cancelar');
+    Route::get('/pedidos/{id}/factura', [PedidoController::class, 'factura'])->name('pedidos.factura');
 });
 
 // Rutas protegidas para admin
