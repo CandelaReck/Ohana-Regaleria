@@ -68,6 +68,9 @@
     <a href="{{ route('pedidos.index') }}" class="btn btn-outline-secondary">
         Volver a mis pedidos
     </a>
+    <a href="{{ route('pedidos.factura', $pedido->id) }}" class="btn btn-outline-secondary">
+    Descargar factura
+</a>
 
     @if(!in_array($pedido->estado, ['enviado', 'entregado', 'cancelado']))
     <form method="POST" action="{{ route('pedidos.cancelar', $pedido->id) }}">

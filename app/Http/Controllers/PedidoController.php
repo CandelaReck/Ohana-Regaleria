@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pedido;
 use App\Models\CarritoItem;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PedidoController extends Controller
 {
@@ -89,6 +90,20 @@ class PedidoController extends Controller
 
         return redirect()->route('pedidos.index')
                 ->with('success', 'Pedido cancelado correctamente.');
+    }
+
+    public function factura($id){
+    $pedido = Pedido::with('items')
+                ->where('user_id', auth()->id())
+                ->findOrFail($id);
+
+    $logoPath = public_path('img/Logo.jpeg');
+    $logoBase64 = base64_encode(file_get_contents($logoPath));
+    $logoSrc = 'data:image/jpeg;base64,' . $logoBase64;
+
+    $pdf = Pdf::loadView('pedidos.factura', compact('pedido', 'logoSrc'));
+
+    return $pdf->download('factura-pedido-' . $pedido->id . '.pdf');
     }
 
 

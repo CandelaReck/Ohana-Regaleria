@@ -56,6 +56,7 @@ Route::middleware(['auth', 'rol:cliente'])->group(function () {
     Route::get('/cliente/perfil', [ClienteController::class, 'perfil'])->name('cliente.perfil');
     Route::put('/cliente/perfil', [ClienteController::class, 'actualizarPerfil'])->name('cliente.perfil.actualizar');
     Route::patch('/pedidos/{id}/cancelar', [PedidoController::class, 'cancelar'])->name('pedidos.cancelar');
+    Route::get('/pedidos/{id}/factura', [PedidoController::class, 'factura'])->name('pedidos.factura');
 });
 
 // Rutas protegidas para admin
