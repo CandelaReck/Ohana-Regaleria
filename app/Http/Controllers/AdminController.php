@@ -228,10 +228,23 @@ public function ventas(Request $request)
         ->limit(5)
         ->get();
 
+    // Datos listos para Chart.js
+    $chartLabels = $ingresosPorDia
+        ->pluck('fecha')
+        ->map(fn($f) => \Carbon\Carbon::parse($f)->format('d/m'))
+        ->values();
+
+    $chartData = $ingresosPorDia
+        ->pluck('total')
+        ->map(fn($v) => (int) $v)
+        ->values();
+
     return view('backend.admin.productos.ventas', compact(
         'ventas', 'periodo',
         'totalVentas', 'ingresoTotal', 'ticketPromedio', 'cancelados',
-        'ingresosPorDia', 'porMetodoPago', 'topProductos'
+        'ingresosPorDia', 'porMetodoPago', 'topProductos',
+        'chartLabels', 'chartData'
     ));
+    
 }
 }

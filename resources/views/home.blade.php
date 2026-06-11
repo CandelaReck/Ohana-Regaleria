@@ -103,36 +103,16 @@ Productos destacados
 
 <div class="row g-4">
 
-@php
-$productos = [
-    [
-        'nombre' => 'Pijama Print',
-        'precio' => '18.500',
-        'imagen' => 'img/pijamaPrint.jpeg'
-    ],
-    [
-        'nombre' => 'Campera Gab',
-        'precio' => '22.900',
-        'imagen' => 'img/camperaGab.jpeg'
-    ],
-    [
-        'nombre' => 'Pijama Kids',
-        'precio' => '13.500',
-        'imagen' => 'img/pijamaKid.jpeg'
-    ],
-];
-@endphp
-
-@foreach($productos as $producto)
+@foreach($destacados as $producto)
 <div class="col-md-4">
     <div class="card card-premium h-100">
 
-        <img src="{{ asset($producto['imagen']) }}" class="card-img-top">
+        <img src="{{ asset($producto->url_imagen) }}" class="card-img-top">
 
         <div class="card-body text-center">
-            <h5>{{ $producto['nombre'] }}</h5>
-            <p>${{ $producto['precio'] }}</p>
-            <a href="#" class="btn btn-dark">Comprar</a>
+            <h5>{{ $producto->nombre }}</h5>
+            <p>${{ number_format($producto->precio, 0, ',', '.') }}</p>
+            <a href="{{ route('productos') }}" class="btn btn-dark">Comprar</a>
         </div>
 
     </div>
