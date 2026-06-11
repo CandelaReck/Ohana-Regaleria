@@ -5,6 +5,22 @@
 @section('content')
 <div class="container">
     <h2 class="mb-4">Mis pedidos</h2>
+    <form method="GET" action="{{ route('pedidos.index') }}" class="row g-3 mb-4">
+    <div class="col-md-4">
+        <label class="form-label">Desde</label>
+        <input type="date" name="fecha_desde" class="form-control" 
+               value="{{ request('fecha_desde') }}">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Hasta</label>
+        <input type="date" name="fecha_hasta" class="form-control"
+               value="{{ request('fecha_hasta') }}">
+    </div>
+    <div class="col-md-4 d-flex align-items-end gap-2">
+        <button class="btn btn-primary">Filtrar</button>
+        <a href="{{ route('pedidos.index') }}" class="btn btn-outline-secondary">Limpiar</a>
+    </div>
+</form>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

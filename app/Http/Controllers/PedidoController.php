@@ -9,10 +9,20 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class PedidoController extends Controller
 {
-    public function index(){
-        $pedidos = Pedido::where('user_id', auth()->id())
-                    ->orderBy('created_at', 'desc')
-                    ->get();
+    public function index(Request $request){
+        $query = Pedido::where('user_id', auth()->id())
+                ->orderBy('created_at', 'desc');
+                
+                if ($request->filled('fecha_desde')) {
+                    $query->whereDate('created_at', '>=', $request->fecha_desde);
+                }
+
+                if ($request->filled('fecha_hasta')) {
+                    $query->whereDate('created_at', '<=', $request->fecha_hasta);
+                }
+
+        $pedidos = $query->get();
+
         return view('pedidos.index', compact('pedidos'));
     }
 
