@@ -16,7 +16,7 @@ class ContactoRequest extends FormRequest
         'nombre'   => 'required|string|max:255',
         'email'    => 'required|email',
         'telefono' => 'nullable|string|max:30',
-        'mensaje'  => 'required|string',
+        'mensaje'  => 'required|string|min:10',
         ];
     }
 
@@ -26,7 +26,9 @@ class ContactoRequest extends FormRequest
             'nombre.required' => 'El nombre es obligatorio.',
             'email.required'  => 'El email es obligatorio.',
             'email.email'     => 'Formato de email inválido.',
-            'consulta.min'    => 'La consulta debe tener al menos 10 caracteres.',
+            'mensaje.min'    => 'La consulta debe tener al menos 10 caracteres.',
+            'mensaje.required' => 'La consulta es obligatoria.',
+            'mensaje.string'   => 'La consulta debe ser texto.',
         ];
     }
 }

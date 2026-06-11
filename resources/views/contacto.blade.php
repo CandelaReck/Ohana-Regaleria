@@ -142,49 +142,58 @@
                 </div>
 
                 <form action="{{ route('contacto.enviar') }}" method="POST">
-                    @csrf
+    @csrf
 
-                    <div class="row g-3">
+    <div class="row g-3">
 
-                        <div class="col-md-6">
-                            <input type="text"
-                                   name="nombre"
-                                   class="form-control"
-                                   placeholder="Tu nombre"
-                                   required>
-                        </div>
+        <div class="col-md-6">
+            <input type="text"
+                   name="nombre"
+                   class="form-control @error('nombre') is-invalid @enderror"
+                   placeholder="Tu nombre"
+                   value="{{ old('nombre') }}">
+            @error('nombre')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
-                        <div class="col-md-6">
-                            <input type="email"
-                                   name="email"
-                                   class="form-control"
-                                   placeholder="Tu email"
-                                   required>
-                        </div>
+        <div class="col-md-6">
+            <input type="email"
+                   name="email"
+                   class="form-control @error('email') is-invalid @enderror"
+                   placeholder="Tu email"
+                   value="{{ old('email') }}">
+            @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
-                        <div class="col-md-12">
-                            <input type="text"
-                                   name="telefono"
-                                   class="form-control"
-                                   placeholder="WhatsApp (opcional)">
-                        </div>
+        <div class="col-md-12">
+            <input type="text"
+                   name="telefono"
+                   class="form-control"
+                   placeholder="WhatsApp (opcional)"
+                   value="{{ old('telefono') }}">
+        </div>
 
-                        <div class="col-md-12">
-                            <textarea name="mensaje"
-                                      rows="6"
-                                      class="form-control"
-                                      placeholder="Escribinos tu consulta..."
-                                      required></textarea>
-                        </div>
+        <div class="col-md-12">
+            <textarea name="mensaje"
+                      rows="6"
+                      class="form-control @error('mensaje') is-invalid @enderror"
+                      placeholder="Escribinos tu consulta...">{{ old('mensaje') }}</textarea>
+            @error('mensaje')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
-                        <div class="col-md-12">
-                            <button class="btn btn-dark w-100">
-                                Enviar Consulta
-                            </button>
-                        </div>
+        <div class="col-md-12">
+            <button class="btn btn-dark w-100">
+                Enviar Consulta
+            </button>
+        </div>
 
-                    </div>
-                </form>
+    </div>
+</form>
 
             </div>
         </div>
