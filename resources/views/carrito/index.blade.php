@@ -82,40 +82,67 @@
                 <hr>
 
                 @auth
-                <form method="POST" action="{{ route('pedidos.store') }}">
-                    @csrf
-                    <h5 class="mb-3">Datos de envío</h5>
-                    <div class="mb-3">
-                        <label class="form-label">Nombre completo *</label>
-                        <input type="text" name="cliente_nombre" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" name="cliente_email" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Teléfono</label>
-                        <input type="text" name="cliente_telefono" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Dirección de envío</label>
-                        <textarea name="cliente_direccion" class="form-control" rows="2"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Método de pago *</label>
-                        <select name="metodo_pago" class="form-select" required>
-                            <option value="">Seleccioná uno</option>
-                            <option value="efectivo">Efectivo</option>
-                            <option value="transferencia">Transferencia</option>
-                            <option value="tarjeta_debito">Tarjeta de Débito</option>
-                            <option value="tarjeta_credito">Tarjeta de Crédito</option>
-                            <option value="mercado_pago">Mercado Pago</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-primary w-100">Confirmar compra</button>
-                </form>
+<form method="POST" action="{{ route('pedidos.store') }}">
+    @csrf
+    <h5 class="mb-3">Datos de envío</h5>
 
-                @else
+    <div class="mb-3">
+        <label class="form-label">Nombre completo *</label>
+        <input type="text" name="cliente_nombre" 
+               class="form-control @error('cliente_nombre') is-invalid @enderror"
+               value="{{ old('cliente_nombre') }}">
+        @error('cliente_nombre')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email *</label>
+        <input type="email" name="cliente_email"
+               class="form-control @error('cliente_email') is-invalid @enderror"
+               value="{{ old('cliente_email') }}">
+        @error('cliente_email')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Teléfono *</label>
+        <input type="text" name="cliente_telefono"
+               class="form-control @error('cliente_telefono') is-invalid @enderror"
+               value="{{ old('cliente_telefono') }}">
+        @error('cliente_telefono')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Dirección de envío *</label>
+        <textarea name="cliente_direccion" rows="2"
+                  class="form-control @error('cliente_direccion') is-invalid @enderror">{{ old('cliente_direccion') }}</textarea>
+        @error('cliente_direccion')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="mb-4">
+        <label class="form-label">Método de pago *</label>
+        <select name="metodo_pago" class="form-select @error('metodo_pago') is-invalid @enderror">
+            <option value="">Seleccioná uno</option>
+            <option value="efectivo" {{ old('metodo_pago') == 'efectivo' ? 'selected' : '' }}>Efectivo</option>
+            <option value="transferencia" {{ old('metodo_pago') == 'transferencia' ? 'selected' : '' }}>Transferencia</option>
+            <option value="tarjeta_debito" {{ old('metodo_pago') == 'tarjeta_debito' ? 'selected' : '' }}>Tarjeta de Débito</option>
+            <option value="tarjeta_credito" {{ old('metodo_pago') == 'tarjeta_credito' ? 'selected' : '' }}>Tarjeta de Crédito</option>
+            <option value="mercado_pago" {{ old('metodo_pago') == 'mercado_pago' ? 'selected' : '' }}>Mercado Pago</option>
+        </select>
+        @error('metodo_pago')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <button class="btn btn-primary w-100">Confirmar compra</button>
+</form>
+@else
                 <div class="text-center py-3">
                     <p class="mb-3">Para confirmar tu compra necesitás iniciar sesión.</p>
                     <a href="{{ route('login') }}" class="btn btn-primary w-100 mb-2">

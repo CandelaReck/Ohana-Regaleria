@@ -19,11 +19,16 @@ class PedidoController extends Controller
     public function store(Request $request){
         $request->validate([
             'cliente_nombre'    => 'required|string|max:100',
-            'cliente_email'     => 'nullable|email|max:150',
-            'cliente_telefono'  => 'nullable|string|max:20',
-            'cliente_direccion' => 'nullable|string',
+            'cliente_email'     => 'required|email|max:150',
+            'cliente_telefono'  => 'required|string|max:20',
+            'cliente_direccion' => 'required|string',
             'metodo_pago'       => 'required|in:efectivo,transferencia,tarjeta_debito,tarjeta_credito,mercado_pago',
-
+        ], [], [
+            'cliente_nombre'    => 'nombre completo',
+            'cliente_email'     => 'email',
+            'cliente_telefono'  => 'teléfono',
+            'cliente_direccion' => 'dirección de envío',
+            'metodo_pago'       => 'método de pago',
         ]);
 
         $items = CarritoItem::with('producto')
