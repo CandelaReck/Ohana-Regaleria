@@ -25,47 +25,45 @@
 
         @foreach($productos as $producto)
 
-        <p>{{ $producto->url_imagen }}</p>
-
         <div class="col-6 col-md-4 col-lg-3">
 
             <div class="producto-box h-100">
 
                 <!-- FOTO -->
-<div class="producto-img-box">
-    <img
-        src="{{ $producto->url_imagen ?? asset('img/placeholder.jpg') }}"
-        class="producto-img"
-        alt="{{ $producto->nombre }}">
-</div>
+                <div class="producto-img-box">
+                    <img
+                        src="{{ $producto->url_imagen ?? asset('img/placeholder.jpg') }}"
+                        class="producto-img"
+                        alt="{{ $producto->nombre }}">
+                </div>
 
 <!-- INFO -->
-<div class="producto-info">
+                <div class="producto-info">
 
-    <span class="producto-mini-tag">
-        Destacado
-    </span>
+                    <span class="producto-mini-tag">
+                        Destacado
+                    </span>
 
-    <h4>{{ $producto->nombre }}</h4>
+                    <h4>{{ $producto->nombre }}</h4>
 
-    <p>{{ $producto->descripcion }}</p>
+                    <p>{{ $producto->descripcion }}</p>
 
-    <div class="precio-producto">
-        ${{ number_format($producto->precio, 0, ',', '.') }}
-    </div>
+                    <div class="precio-producto">
+                        ${{ number_format($producto->precio, 0, ',', '.') }}
+                    </div>
 
-    <form class="form-agregar-carrito">
-    @csrf
-    <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-    <input type="hidden" name="cantidad" value="1">
-    <input type="hidden" name="precio_unitario" value="{{ $producto->precio }}">
-    <input type="hidden" name="nombre" value="{{ $producto->nombre }}">
-    <button type="submit" class="btn btn-dark w-100 mt-auto">
-        Agregar al carrito
-    </button>
-</form>
+                    <form method="POST" action="{{ route('carrito.agregar') }}">
+                        @csrf
+                        <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                        <input type="hidden" name="cantidad" value="1">
+                        <input type="hidden" name="precio_unitario" value="{{ $producto->precio }}">
+                        <input type="hidden" name="nombre" value="{{ $producto->nombre }}">
+                        <button type="submit" class="btn btn-dark w-100 mt-auto">
+                            Agregar al carrito
+                        </button>
+                    </form>
 
-</div>
+                </div>
 
             </div>
 
@@ -78,40 +76,5 @@
 </div>
 
 </section>
-
-<script>
-document.querySelectorAll('.form-agregar-carrito').forEach(function(form) {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const data = new FormData(form);
-        const btn = form.querySelector('button');
-        btn.disabled = true;
-        btn.textContent = '✓ Agregado';
-
-        fetch('{{ route("carrito.agregar") }}', {
-            method: 'POST',
-            body: data,
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
-        })
-        .then(() => fetch('{{ route("carrito.mini") }}'))
-        .then(res => res.text())
-        .then(html => {
-            const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasCarrito'));
-            document.getElementById('carritoMiniContenido').innerHTML = html;
-            offcanvas.show();
-
-            setTimeout(() => {
-                btn.disabled = false;
-                btn.textContent = 'Agregar al carrito';
-            }, 2000);
-        })
-        .catch(() => {
-            btn.disabled = false;
-            btn.textContent = 'Agregar al carrito';
-        });
-    });
-});
-</script>
 
 @endsection

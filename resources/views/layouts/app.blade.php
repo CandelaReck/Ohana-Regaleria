@@ -17,266 +17,177 @@
 <nav class="navbar navbar-expand-lg shadow-sm">
 <div class="container">
 
-<!-- LOGO -->
-<a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
-
-<img src="{{ asset('img/logo.jpeg') }}"
-     alt="Logo Ohana"
-     class="logo-navbar me-2">
-
-<span>Ohana Regalería</span>
-
-</a>
-
-<!-- BOTON MOBILE -->
-<button class="navbar-toggler" type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#menuNavbar">
-
-<span class="navbar-toggler-icon"></span>
-
-</button>
-
-<!-- MENU -->
-<div class="collapse navbar-collapse" id="menuNavbar">
-
-<div class="navbar-nav ms-auto align-items-lg-center">
-
-<a class="nav-link" href="{{ route('home') }}">
-Inicio
-</a>
-
-<a class="nav-link" href="{{ route('comercializacion') }}">
-Comercialización
-</a>
-
-<a class="nav-link" href="{{ route('quienes-somos') }}">
-Quiénes somos
-</a>
-
-<!-- DROPDOWN PRODUCTOS -->
-<div class="nav-item dropdown">
-
-<a class="nav-link dropdown-toggle"
-   href="#"
-   role="button"
-   data-bs-toggle="dropdown">
-
-Productos
-</a>
-
-<ul class="dropdown-menu shadow border-0">
-
-<li>
-<a class="dropdown-item" href="{{ route('indumentaria') }}">
-Indumentaria
-</a>
-</li>
-
-<li>
-<a class="dropdown-item" href="{{ route('accesorios') }}">
-Accesorios y Bijou
-</a>
-</li>
-
-<li>
-<a class="dropdown-item" href="{{ route('decoHogar') }}">
-Deco y Hogar
-</a>
-</li>
-
-<li>
-<a class="dropdown-item" href="{{ route('papeleria') }}">
-Papelería
-</a>
-</li>
-
-<li>
-<a class="dropdown-item" href="{{ route('combos') }}">
-Boxes y Combos
-</a>
-</li>
-
-<li><hr class="dropdown-divider"></li>
-
-<li>
-<a class="dropdown-item" href="{{ route('productos') }}">
-Ver todos
-</a>
-</li>
-
-</ul>
-</div>
-
-<a class="nav-link" href="{{ route('contacto') }}">
-Contacto
-</a> 
-
-{{-- CARRITO OFFCANVAS --}}
-@if(!auth()->check() || Auth::user()->rol === 'cliente')
-<li class="nav-item ms-lg-2">
-    <a class="nav-link position-relative" href="#" 
-       data-bs-toggle="offcanvas" 
-       data-bs-target="#offcanvasCarrito">
-        🛒
-        @php
-            $cantidadCarrito = auth()->check()
-                ? \App\Models\CarritoItem::where('user_id', auth()->id())->sum('cantidad')
-                : collect(session()->get('carrito', []))->sum('cantidad');
-        @endphp
-        @if($cantidadCarrito > 0)
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                  style="font-size:10px">
-                {{ $cantidadCarrito }}
-            </span>
-        @endif
-    </a>
-</li>
-@endif
-
-<!-- USUARIO -->
-<li class="nav-item dropdown ms-lg-2">
-    <a class="nav-link dropdown-toggle"
-        href="#"
-        data-bs-toggle="dropdown">
-        👤
-        @auth {{ Auth::user()->name }} @endauth
+    <!-- LOGO -->
+    <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
+        <img src="{{ asset('img/logo.jpeg') }}"
+             alt="Logo Ohana"
+             class="logo-navbar me-2">
+        <span>Ohana Regalería</span>
     </a>
 
-    <ul class="dropdown-menu dropdown-menu-end">
+    <!-- BOTON MOBILE -->
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menuNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        @auth
-            {{-- Si es admin --}}
-            @if(Auth::user()->rol === 'admin')
-                <li>
-                    <a class="dropdown-item" href="{{ route('admin') }}">
-                        Panel Admin
-                    </a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-            @else
-                {{-- Si es cliente --}}
-                <li>
-                    <a class="dropdown-item" href="{{ route('cliente.perfil')}}">
-                        Mi perfil 
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="{{ route('pedidos.index')}}">
-                        Mis pedidos 
-                    </a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
+    <!-- MENU -->
+    <div class="collapse navbar-collapse" id="menuNavbar">
+        <div class="navbar-nav ms-auto align-items-lg-center">
+
+            <a class="nav-link" href="{{ route('home') }}">Inicio</a>
+
+            <a class="nav-link" href="{{ route('comercializacion') }}">Comercialización</a>
+
+            <a class="nav-link" href="{{ route('quienes-somos') }}">Quiénes somos</a>
+
+            <!-- DROPDOWN PRODUCTOS -->
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                   href="#"
+                   role="button"
+                   data-bs-toggle="dropdown">
+                    Productos
+                </a>
+                <ul class="dropdown-menu shadow border-0">
+                    <li><a class="dropdown-item" href="{{ route('indumentaria') }}">Indumentaria</a></li>
+                    <li><a class="dropdown-item" href="{{ route('accesorios') }}">Accesorios y Bijou</a></li>
+                    <li><a class="dropdown-item" href="{{ route('decoHogar') }}">Deco y Hogar</a></li>
+                    <li><a class="dropdown-item" href="{{ route('papeleria') }}">Papelería</a></li>
+                    <li><a class="dropdown-item" href="{{ route('combos') }}">Boxes y Combos</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{ route('productos') }}">Ver todos</a></li>
+                </ul>
+            </div>
+
+            <a class="nav-link" href="{{ route('contacto') }}">Contacto</a>
+
+            {{-- CARRITO --}}
+            @if(!auth()->check() || Auth::user()->rol === 'cliente')
+            <li class="nav-item ms-lg-2">
+                <a class="nav-link position-relative" href="#"
+                   data-bs-toggle="offcanvas"
+                   data-bs-target="#offcanvasCarrito">
+                    🛒
+                    @php
+                        $cantidadCarrito = auth()->check()
+                            ? \App\Models\CarritoItem::where('user_id', auth()->id())->sum('cantidad')
+                            : collect(session()->get('carrito', []))->sum('cantidad');
+                    @endphp
+                    @if($cantidadCarrito > 0)
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                              style="font-size:10px">
+                            {{ $cantidadCarrito }}
+                        </span>
+                    @endif
+                </a>
+            </li>
             @endif
 
-            <li>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="dropdown-item">
-                        Cerrar sesión
-                    </button>
-                </form>
+            <!-- USUARIO -->
+            <li class="nav-item dropdown ms-lg-2">
+                <a class="nav-link dropdown-toggle"
+                    href="#"
+                    data-bs-toggle="dropdown">
+                    👤
+                    @auth {{ Auth::user()->name }} @endauth
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+                    @auth
+                        @if(Auth::user()->rol === 'admin')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('admin') }}">Panel Admin</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                        @else
+                            <li>
+                                <a class="dropdown-item" href="{{ route('cliente.perfil') }}">Mi perfil</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('pedidos.index') }}">Mis pedidos</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                        @endif
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="dropdown-item">Cerrar sesión</button>
+                            </form>
+                        </li>
+                    @else
+                        <li>
+                            <a class="dropdown-item" href="{{ route('login') }}">Ingresar a mi cuenta</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('registro') }}">Registrarse</a>
+                        </li>
+                    @endauth
+                </ul>
             </li>
 
-        @else
-            {{-- Sin sesión --}}
-            <li>
-                <a class="dropdown-item" href="{{ route('login') }}">
-                    Ingresar a mi cuenta
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item" href="{{ route('registro') }}">
-                    Registrarse
-                </a>
-            </li>
-        @endauth
+        </div>
+    </div>
 
-    </ul>
-</li>
 </div>
 </nav>
+
 <!-- CONTENIDO VARIABLE -->
-<main class="py-5">
+<main>
 @yield('content')
 </main>
 
 <!-- FOOTER -->
 <footer class="footer-ohana">
-
 <div class="container">
 
-<!-- REDES -->
-<div class="footer-social text-center mb-4">
+    <!-- REDES -->
+    <div class="footer-social text-center mb-4">
+        <a href="https://www.instagram.com/ohanaregalos64"><i class="bi bi-instagram"></i></a>
+        <a href="https://wa.me/5493794032869"><i class="bi bi-whatsapp"></i></a>
+    </div>
 
-<a href="https://www.instagram.com/ohanaregalos64?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="bi bi-instagram"></i></a>
+    <!-- COLUMNAS -->
+    <div class="row g-4 align-items-start">
+        <div class="col-lg-4">
+            <h3>Ohana Regalería</h3>
+            <p>Detalles únicos pensados para sorprender, emocionar y acompañar momentos especiales.</p>
+        </div>
+        <div class="col-lg-4">
+            <h5>Accesos rápidos</h5>
+            <ul class="footer-links">
+                <li><a href="{{ route('home') }}">Inicio</a></li>
+                <li><a href="{{ route('productos') }}">Productos</a></li>
+                <li><a href="{{ route('contacto') }}">Contacto</a></li>
+                <li><a href="{{ route('quienes-somos') }}">Quiénes somos</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <h5>Información</h5>
+            <p class="mb-3">Conocé nuestras políticas de compra, cambios y condiciones generales.</p>
+            <a href="{{ route('terminos') }}" class="btn btn-footer">Términos y Condiciones</a>
+        </div>
+    </div>
 
+    <!-- MEDIOS DE PAGO -->
+    <div class="footer-pagos text-center mt-5">
+        <h5 class="mb-3">Medios de pago</h5>
+        <div class="pagos-grid">
+            <span>💳 Visa</span>
+            <span>💳 MasterCard</span>
+            <span>💳 Naranja</span>
+            <span>💳 Cabal</span>
+            <span>💳 Mercado Pago</span>
+            <span>🏦 Transferencia</span>
+        </div>
+    </div>
 
-<a href="https://wa.me/5493794032869"><i class="bi bi-whatsapp"></i></a>
+    <hr>
 
-</div>
-
-<!-- COLUMNAS -->
-<div class="row g-4 align-items-start">
-
-<!-- MARCA -->
-<div class="col-lg-4">
-<h3>Ohana Regalería</h3>
-
-<p>
-Detalles únicos pensados para sorprender, emocionar y acompañar momentos especiales.
-</p>
-</div>
-
-<!-- LINKS -->
-<div class="col-lg-4">
-<h5>Accesos rápidos</h5>
-
-<ul class="footer-links">
-<li><a href="{{ route('home') }}">Inicio</a></li>
-<li><a href="{{ route('productos') }}">Productos</a></li>
-<li><a href="{{ route('contacto') }}">Contacto</a></li>
-<li><a href="{{ route('quienes-somos') }}">Quiénes somos</a></li>
-</ul>
-</div>
-
-<!-- LEGAL -->
-<div class="col-lg-4">
-<h5>Información</h5>
-
-<p class="mb-3">
-Conocé nuestras políticas de compra, cambios y condiciones generales.
-</p>
-
-<a href="{{ route('terminos') }}" class="btn btn-footer">
-Términos y Condiciones
-</a>
-</div>
-
-</div>
-
-<!-- MEDIOS DE PAGO -->
-<div class="footer-pagos text-center mt-5">
-
-<h5 class="mb-3">Medios de pago</h5>
-
-<div class="pagos-grid">
-<span>💳 Visa</span>
-<span>💳 MasterCard</span>
-<span>💳 Naranja</span>
-<span>💳 Cabal</span>
-<span>💳 Mercado Pago</span>
-<span>🏦 Transferencia</span>
-
-</div>
-
-</div>
-
-<hr>
-
-<div class="footer-copy text-center">
-© 2026 Ohana Regalería · Todos los derechos reservados.
-</div>
+    <div class="footer-copy text-center">
+        © 2026 Ohana Regalería · Todos los derechos reservados.
+    </div>
 
 </div>
 </footer>
@@ -301,7 +212,7 @@ Swal.fire({
 Swal.fire({
     icon: 'success',
     title: '🌿 ¡Gracias por contactarnos!',
-    text: '{{ session('success_message') }}',
+    text: "{{ session('success_message') }}",
     confirmButtonColor: '#355E3B',
     background: '#FFF9F2'
 });

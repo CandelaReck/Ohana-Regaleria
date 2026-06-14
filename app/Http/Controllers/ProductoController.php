@@ -9,44 +9,61 @@ use App\Models\Categoria;
 class ProductoController extends Controller
 {
     // VISTA GENERAL - TODOS LOS PRODUCTOS
-    public function index()
-    {
-        $productos = Producto::with('categoria')->get();
-        return view('productos', compact('productos'));
-    }
+public function index()
+{
+    $productos = Producto::where('activo', true)
+                    ->where('stock', '>', 0)
+                    ->get();
+    return view('productos', compact('productos'));
+}
 
-    // ACCESORIOS
+// ACCESORIOS
 public function accesorios()
 {
-    $productos = Producto::where('categoria', 'Accesorios')->get();
+    $productos = Producto::where('categoria', 'Accesorios')
+                    ->where('activo', true)
+                    ->where('stock', '>', 0)
+                    ->get();
     return view('accesorios', compact('productos'));
 }
 
 // INDUMENTARIA
 public function indumentaria()
 {
-    $productos = Producto::where('categoria', 'Indumentaria')->get();
+    $productos = Producto::where('categoria', 'Indumentaria')
+                    ->where('activo', true)
+                    ->where('stock', '>', 0)
+                    ->get();
     return view('indumentaria', compact('productos'));
 }
 
 // COMBOS
 public function combos()
 {
-    $productos = Producto::where('categoria', 'Combos')->get();
+    $productos = Producto::where('categoria', 'Combos')
+                    ->where('activo', true)
+                    ->where('stock', '>', 0)
+                    ->get();
     return view('combos', compact('productos'));
 }
 
 // PAPELERIA
 public function papeleria()
 {
-    $productos = Producto::where('categoria', 'Papeleria')->get();
+    $productos = Producto::where('categoria', 'Papeleria')
+                    ->where('activo', true)
+                    ->where('stock', '>', 0)
+                    ->get();
     return view('papeleria', compact('productos'));
 }
 
 // DECO Y HOGAR
 public function decoHogar()
 {
-    $productos = Producto::where('categoria', 'Deco Hogar')->get();
+    $productos = Producto::where('categoria', 'Deco Hogar')
+                    ->where('activo', true)
+                    ->where('stock', '>', 0)
+                    ->get();
     return view('decoHogar', compact('productos'));
 }
 
@@ -170,10 +187,6 @@ public function update(Request $request, $id)
 
     return redirect()->route('admin.productos')->with('success', 'Producto actualizado correctamente.');
 }
-
-
-
-
 
 // BAJA LÓGICA
 public function desactivar($id)

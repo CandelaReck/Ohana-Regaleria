@@ -1494,3 +1494,9 @@ footer .btn-dark:hover { background: #b98b2f; }
   h1   { font-size: 32px; }
   .btn { padding: 10px 18px; font-size: .95rem; }
 }
+
+/* Fix grid */
+.row > * {
+    width: auto;
+    max-width: 100%;
+}
