@@ -32,9 +32,10 @@
                 <!-- FOTO -->
                 <div class="producto-img-box">
                     <img
-                        src="{{ $producto->url_imagen ?? asset('img/placeholder.jpg') }}"
-                        class="producto-img"
-                        alt="{{ $producto->nombre }}">
+    src="{{ $producto->url_imagen ?? asset('img/placeholder.jpg') }}"
+    class="producto-img"
+    alt="{{ $producto->nombre }}"
+    style="height: 250px; object-fit: cover; width: 100%;">
                 </div>
 
 <!-- INFO -->
