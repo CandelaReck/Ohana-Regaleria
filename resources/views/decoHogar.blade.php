@@ -31,7 +31,8 @@
 
                 <img src="{{ $producto->url_imagen ?? asset('img/placeholder.jpg') }}"
      class="card-img-top producto-foto"
-     alt="{{ $producto->nombre }}">
+     alt="{{ $producto->nombre }}"
+     style="height: 250px; object-fit: cover;">
 
 <div class="card-body text-center d-flex flex-column">
     <h5>{{ $producto->nombre }}</h5>

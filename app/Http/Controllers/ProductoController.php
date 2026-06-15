@@ -11,9 +11,7 @@ class ProductoController extends Controller
     // VISTA GENERAL - TODOS LOS PRODUCTOS
 public function index()
 {
-    $productos = Producto::where('activo', true)
-                    ->where('stock', '>', 0)
-                    ->get();
+    $productos = Producto::where('activo', true)->get();
     return view('productos', compact('productos'));
 }
 
@@ -22,7 +20,6 @@ public function accesorios()
 {
     $productos = Producto::where('categoria', 'Accesorios')
                     ->where('activo', true)
-                    ->where('stock', '>', 0)
                     ->get();
     return view('accesorios', compact('productos'));
 }
@@ -32,7 +29,6 @@ public function indumentaria()
 {
     $productos = Producto::where('categoria', 'Indumentaria')
                     ->where('activo', true)
-                    ->where('stock', '>', 0)
                     ->get();
     return view('indumentaria', compact('productos'));
 }
@@ -42,7 +38,6 @@ public function combos()
 {
     $productos = Producto::where('categoria', 'Combos')
                     ->where('activo', true)
-                    ->where('stock', '>', 0)
                     ->get();
     return view('combos', compact('productos'));
 }
@@ -52,7 +47,6 @@ public function papeleria()
 {
     $productos = Producto::where('categoria', 'Papeleria')
                     ->where('activo', true)
-                    ->where('stock', '>', 0)
                     ->get();
     return view('papeleria', compact('productos'));
 }
@@ -62,7 +56,6 @@ public function decoHogar()
 {
     $productos = Producto::where('categoria', 'Deco Hogar')
                     ->where('activo', true)
-                    ->where('stock', '>', 0)
                     ->get();
     return view('decoHogar', compact('productos'));
 }

@@ -107,7 +107,7 @@ Productos destacados
 <div class="col-md-4">
     <div class="card card-premium h-100">
 
-        <img src="{{ asset($producto->url_imagen) }}" class="card-img-top">
+        <img src="{{ $producto->url_imagen }}" class="card-img-top" style="height: 250px; object-fit: cover;">
 
         <div class="card-body text-center">
             <h5>{{ $producto->nombre }}</h5>

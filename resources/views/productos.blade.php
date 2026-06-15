@@ -52,7 +52,7 @@
                         ${{ number_format($producto->precio, 0, ',', '.') }}
                     </div>
 
-                    <form method="POST" action="{{ route('carrito.agregar') }}">
+                    <form class="form-agregar-carrito">
                         @csrf
                         <input type="hidden" name="producto_id" value="{{ $producto->id }}">
                         <input type="hidden" name="cantidad" value="1">
@@ -76,5 +76,51 @@
 </div>
 
 </section>
+
+<script>
+document.querySelectorAll('.form-agregar-carrito').forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const data = new FormData(form);
+        const btn = form.querySelector('button');
+        btn.disabled = true;
+        btn.textContent = 'Agregando...';
+
+        fetch('{{ route("carrito.agregar") }}', {
+            method: 'POST',
+            body: data,
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (!data.ok) {
+                btn.disabled = false;
+                btn.textContent = 'Sin stock';
+                btn.classList.remove('btn-dark');
+                btn.classList.add('btn-secondary');
+                return;
+            }
+            return fetch('{{ route("carrito.mini") }}');
+        })
+        .then(res => res && res.text())
+        .then(html => {
+            if (!html) return;
+            const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasCarrito'));
+            document.getElementById('carritoMiniContenido').innerHTML = html;
+            offcanvas.show();
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.textContent = 'Agregar al carrito';
+            }, 2000);
+        })
+        .catch(() => {
+            btn.disabled = false;
+            btn.textContent = 'Agregar al carrito';
+        });
+    });
+});
+</script>
 
 @endsection

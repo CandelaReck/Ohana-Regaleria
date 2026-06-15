@@ -30,6 +30,15 @@ class CarritoController extends Controller
             'precio_unitario' => 'required|numeric',
         ]);
 
+        $producto = \App\Models\Producto::findOrFail($request->producto_id);
+        
+        if ($producto->stock <= 0) {
+            if ($request->ajax()) {
+                return response()->json(['ok' => false, 'mensaje' => 'Este producto no tiene stock disponible.']);
+                }
+            return redirect()->back()->with('error', 'Este producto no tiene stock disponible.');
+        }
+
         if (auth()->check()) {
             // Usuario logueado → base de datos (igual que antes)
             $item = CarritoItem::where('user_id', auth()->id())
