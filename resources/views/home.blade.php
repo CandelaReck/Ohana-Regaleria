@@ -4,94 +4,56 @@
 
 <!-- HERO OHANA -->
 <section class="hero-premium">
-
 <div class="container">
-
 <div class="row align-items-center gy-5">
 
-<!-- TEXTO -->
-<div class="col-lg-6">
+    <!-- TEXTO -->
+    <div class="col-lg-6">
+        <span class="hero-badge">✨ Regalos con amor</span>
+        <h1>Regalos que <br> emocionan 💝</h1>
+        <p class="mt-4 mb-4">
+            Boxes sorpresa, detalles únicos y productos personalizados para momentos especiales.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+            <a href="{{ route('productos') }}" class="btn btn-primary btn-lg">Ver catálogo</a>
+            <a href="https://wa.me/5493794032869" class="btn btn-outline-light btn-lg hero-whatsapp">WhatsApp</a>
+        </div>
+        <div class="hero-mini-info mt-5">
+            <div>🚚 <span>Envíos a todo el país</span></div>
+            <div>🎁 <span>Packaging premium</span></div>
+            <div>💳 <span>Cuotas sin interés</span></div>
+        </div>
+    </div>
 
-<span class="hero-badge">
-✨ Regalos con amor
-</span>
-
-<h1>
-Regalos que <br> emocionan 💝
-</h1>
-
-<p class="mt-4 mb-4">
-Boxes sorpresa, detalles únicos y productos personalizados para momentos especiales.
-</p>
-
-<div class="d-flex gap-3 flex-wrap">
-
-<a href="{{ route('productos') }}" class="btn btn-primary btn-lg">
-Ver catálogo
-</a>
-
-    
-<a href="https://wa.me/5493794032869" class="btn btn-outline-light btn-lg hero-whatsapp">
-WhatsApp
-</a>
-
-</div>
-
-<div class="hero-mini-info mt-5">
-
-<div>
-🚚 <span>Envíos a todo el país</span>
-</div>
-
-<div>
-🎁 <span>Packaging premium</span>
-</div>
-
-<div>
-💳 <span>Cuotas sin interés</span>
-</div>
-
-</div>
-
-</div>
-
-<!-- SLIDER -->
-<div class="col-lg-6">
-
-<div id="heroSlider" class="carousel slide hero-slider" data-bs-ride="carousel">
-
-<div class="carousel-inner rounded-4 shadow-lg">
-
-<div class="carousel-item active">
-<img src="{{ asset('img/collarOro.jpeg') }}" class="d-block w-100 hero-slider-img">
-</div>
-
-<div class="carousel-item">
-<img src="{{ asset('img/comboSilk.jpeg') }}" class="d-block w-100 hero-slider-img">
-</div>
-
-<div class="carousel-item">
-<img src="{{ asset('img/juegoSabanas.jpeg') }}" class="d-block w-100 hero-slider-img">
-</div>
-
-</div>
-
-<button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
-<span class="slider-btn">‹</span>
-</button>
-
-<button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
-<span class="slider-btn">›</span>
-</button>
-
-</div>
-
-</div>
+    <!-- SLIDER -->
+    <div class="col-lg-6">
+        <div id="heroSlider" class="carousel slide hero-slider" data-bs-ride="carousel">
+            <div class="carousel-inner rounded-4 shadow-lg">
+                @foreach($productosSlider as $producto)
+                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                    <img src="{{ $producto->url_imagen ?? asset('img/placeholder.jpg') }}"
+                         class="d-block w-100 hero-slider-img"
+                         alt="{{ $producto->nombre }}">
+                    <div class="carousel-caption d-none d-md-block"
+                         style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 10px 16px;">
+                        <h5 style="color: white;">{{ $producto->nombre }}</h5>
+                        <p style="color: white;">${{ number_format($producto->precio, 0, ',', '.') }}</p>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
+                <span class="slider-btn">‹</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
+                <span class="slider-btn">›</span>
+            </button>
+        </div>
+    </div>
 
 </div>
 </div>
 </section>
-
 
 <!-- DESTACADOS -->
 <section class="py-5 bg-light">

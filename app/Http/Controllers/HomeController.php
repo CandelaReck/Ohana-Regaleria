@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        // Productos más vendidos para destacados
         $destacados = DB::table('pedido_items')
             ->join('pedidos', 'pedido_items.pedido_id', '=', 'pedidos.id')
             ->join('productos', 'pedido_items.producto_id', '=', 'productos.id')
@@ -21,15 +22,20 @@ class HomeController extends Controller
 
         if ($destacados->count() < 3) {
             $idsYaIncluidos = $destacados->pluck('id')->toArray();
-
             $relleno = Producto::whereNotIn('id', $idsYaIncluidos)
                 ->where('activo', true)
                 ->limit(3 - $destacados->count())
                 ->get(['id', 'nombre', 'precio', 'url_imagen']);
-
             $destacados = $destacados->concat($relleno);
         }
 
-        return view('home', compact('destacados'));
+        // Últimos productos para el slider
+        $productosSlider = Producto::where('activo', true)
+                            ->where('stock', '>', 0)
+                            ->latest()
+                            ->take(3)
+                            ->get();
+
+        return view('home', compact('destacados', 'productosSlider'));
     }
 }

@@ -31,24 +31,39 @@
                 </div>
 
                 <!-- INFO -->
-                <div class="producto-info">
-                    <span class="producto-mini-tag">Destacado</span>
-                    <h4>{{ $producto->nombre }}</h4>
-                    <p>{{ Str::limit($producto->descripcion, 80) }}</p>
-                    <div class="precio-producto">
-                        ${{ number_format($producto->precio, 0, ',', '.') }}
-                    </div>
-                    <form class="form-agregar-carrito">
-                        @csrf
-                        <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-                        <input type="hidden" name="cantidad" value="1">
-                        <input type="hidden" name="precio_unitario" value="{{ $producto->precio }}">
-                        <input type="hidden" name="nombre" value="{{ $producto->nombre }}">
-                        <button type="submit" class="btn btn-dark w-100">
-                            Agregar al carrito
-                        </button>
-                    </form>
-                </div>
+                <!-- INFO -->
+<div class="producto-info">
+    <span class="producto-mini-tag">Destacado</span>
+    <h4>{{ $producto->nombre }}</h4>
+    <p>{{ Str::limit($producto->descripcion, 80) }}</p>
+    <div class="precio-producto">
+        ${{ number_format($producto->precio, 0, ',', '.') }}
+    </div>
+
+    {{-- STOCK --}}
+<p class="small mb-2 
+    {{ $producto->stock == 0 ? 'text-danger fw-bold' : ($producto->stock <= 3 ? 'text-warning fw-bold' : 'text-muted') }}">
+    @if($producto->stock == 0)
+        🚫 Próximamente disponible
+    @elseif($producto->stock <= 3)
+        ⚠️ ¡Últimas {{ $producto->stock }} unidades!
+    @else
+        Stock: {{ $producto->stock }} unidades
+    @endif
+</p>
+
+    <form class="form-agregar-carrito">
+        @csrf
+        <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+        <input type="hidden" name="cantidad" value="1">
+        <input type="hidden" name="precio_unitario" value="{{ $producto->precio }}">
+        <input type="hidden" name="nombre" value="{{ $producto->nombre }}">
+        <button type="submit" class="btn btn-dark w-100"
+            {{ $producto->stock <= 0 ? 'disabled' : '' }}>
+            {{ $producto->stock <= 0 ? 'Sin stock' : 'Agregar al carrito' }}
+        </button>
+    </form>
+</div>
 
             </div>
         </div>
