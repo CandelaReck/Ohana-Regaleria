@@ -245,5 +245,6 @@ document.getElementById('offcanvasCarrito').addEventListener('show.bs.offcanvas'
 });
 </script>
 
+@stack('scripts')
 </body>
 </html>

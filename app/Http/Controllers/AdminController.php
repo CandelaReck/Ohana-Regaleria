@@ -225,6 +225,7 @@ public function ventas(Request $request)
         ->selectRaw('productos.nombre, productos.stock, SUM(pedido_items.cantidad) as unidades, SUM(pedido_items.cantidad * pedido_items.precio_unitario) as ingresos')
         ->groupBy('productos.id', 'productos.nombre', 'productos.stock')
         ->orderByDesc('unidades')
+        ->orderByDesc('ingresos') 
         ->limit(5)
         ->get();
 

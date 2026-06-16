@@ -14,9 +14,10 @@ class HomeController extends Controller
             ->join('pedidos', 'pedido_items.pedido_id', '=', 'pedidos.id')
             ->join('productos', 'pedido_items.producto_id', '=', 'productos.id')
             ->where('pedidos.estado', 'entregado')
-            ->selectRaw('productos.id, productos.nombre, productos.precio, productos.url_imagen, SUM(pedido_items.cantidad) as unidades')
+            ->selectRaw('productos.id, productos.nombre, productos.precio, productos.url_imagen, SUM(pedido_items.cantidad) as unidades, SUM(pedido_items.cantidad * pedido_items.precio_unitario) as ingresos')
             ->groupBy('productos.id', 'productos.nombre', 'productos.precio', 'productos.url_imagen')
             ->orderByDesc('unidades')
+            ->orderByDesc('ingresos')
             ->limit(3)
             ->get();
 

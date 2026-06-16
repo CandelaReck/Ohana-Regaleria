@@ -187,11 +187,14 @@
 </div>
 </section>
 
+
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
-    const diasLabels = @json($ingresosPorDia->pluck('fecha')->map(fn($f) => \Carbon\Carbon::parse($f)->format('d/m')));
-    const diasData   = @json($ingresosPorDia->pluck('total')->map(fn($v) => (int) $v));
+    // Ingresos por día
+    @if(!$ingresosPorDia->isEmpty())
+    const diasLabels = @json($chartLabels);
+    const diasData   = @json($chartData);
 
     new Chart(document.getElementById('lineChart'), {
         type: 'line',
@@ -200,10 +203,11 @@
             datasets: [{
                 label: 'Ingresos',
                 data: diasData,
-                borderColor: '#212529',
-                backgroundColor: 'rgba(33,37,41,0.07)',
+                borderColor: '#5F7A61',
+                backgroundColor: 'rgba(95, 122, 97, 0.1)',
                 borderWidth: 2,
-                pointRadius: 2,
+                pointRadius: 3,
+                pointBackgroundColor: '#3F5643',
                 fill: true,
                 tension: 0.4
             }]
@@ -217,9 +221,15 @@
             }
         }
     });
+    @endif
 
-    const pagoLabels = @json($porMetodoPago->pluck('metodo_pago')->map(fn($m) => ucfirst(str_replace('_', ' ', $m))));
-    const pagoData   = @json($porMetodoPago->pluck('cantidad'));
+    // Método de pago
+    @if(!$porMetodoPago->isEmpty())
+    const pagoLabelsRaw = @json($porMetodoPago->pluck('metodo_pago'));
+    const pagoData      = @json($porMetodoPago->pluck('cantidad'));
+    const pagoLabels    = pagoLabelsRaw.map(m =>
+        m.replace(/_/g, ' ').replace(/^\w/, c => c.toUpperCase())
+    );
 
     new Chart(document.getElementById('pagoChart'), {
         type: 'doughnut',
@@ -227,15 +237,19 @@
             labels: pagoLabels,
             datasets: [{
                 data: pagoData,
-                backgroundColor: ['#212529','#495057','#868e96','#ced4da','#adb5bd'],
-                borderWidth: 3
+                backgroundColor: ['#2F4637', '#3F5643', '#5F7A61', '#7E9A80', '#D4A94D'],
+                borderWidth: 3,
+                borderColor: '#FFF9F2'
             }]
         },
         options: {
             responsive: true,
-            plugins: { legend: { position: 'bottom', labels: { font: { size: 12 } } } }
+            plugins: {
+                legend: { position: 'bottom', labels: { font: { size: 12 } } }
+            }
         }
     });
+    @endif
 </script>
 @endpush
 @endsection@extends('layouts.app')
@@ -307,42 +321,42 @@
         @endif
     </div>
 
-    <div class="row g-4 mb-4">
-        <div class="col-md-6">
-            <div class="card shadow rounded-4 p-4 h-100">
-                <h6 class="mb-3">Método de pago</h6>
-                @if($porMetodoPago->isEmpty())
-                    <p class="text-muted text-center py-4">Sin datos para mostrar.</p>
-                @else
-                    <canvas id="pagoChart"></canvas>
-                @endif
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card shadow rounded-4 p-4 h-100">
-                <h6 class="mb-3">Productos más vendidos</h6>
-                <table class="table table-sm mb-0">
-                    <thead>
-                        <tr><th>#</th><th>Producto</th><th>Uds.</th><th>Ingresos</th></tr>
-                    </thead>
-                    <tbody>
-                        @forelse($topProductos as $i => $prod)
-                        <tr>
-                            <td>{{ $i + 1 }}</td>
-                            <td>{{ $prod->nombre }}</td>
-                            <td>{{ $prod->unidades }}</td>
-                            <td>${{ number_format($prod->ingresos, 0, ',', '.') }}</td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="4" class="text-muted text-center py-3">Sin datos en este período.</td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <div class="card shadow rounded-4 p-4 h-100" style="max-height: 320px;">
+            <h6 class="mb-3">Método de pago</h6>
+            @if($porMetodoPago->isEmpty())
+                <p class="text-muted text-center py-4">Sin datos para mostrar.</p>
+            @else
+                <canvas id="pagoChart"></canvas>
+            @endif
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="card shadow rounded-4 p-4 h-100" style="max-height: 320px;">
+            <h6 class="mb-3">Productos más vendidos</h6>
+            <table class="table table-sm mb-0">
+                <thead>
+                    <tr><th>#</th><th>Producto</th><th>Uds.</th><th>Ingresos</th></tr>
+                </thead>
+                <tbody>
+                    @forelse($topProductos as $i => $prod)
+                    <tr>
+                        <td>{{ $i + 1 }}</td>
+                        <td>{{ $prod->nombre }}</td>
+                        <td>{{ $prod->unidades }}</td>
+                        <td>${{ number_format($prod->ingresos, 0, ',', '.') }}</td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="4" class="text-muted text-center py-3">Sin datos en este período.</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
     {{-- FILTROS DE TABLA --}}
     <div class="card shadow rounded-4 p-4 mb-4">
