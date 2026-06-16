@@ -23,64 +23,85 @@ class CarritoController extends Controller
     }
 
     public function agregar(Request $request)
-    {
-        $request->validate([
-            'producto_id'     => 'required|exists:productos,id',
-            'cantidad'        => 'required|integer|min:1',
-            'precio_unitario' => 'required|numeric',
-        ]);
+{
+    $request->validate([
+        'producto_id'     => 'required|exists:productos,id',
+        'cantidad'        => 'required|integer|min:1',
+        'precio_unitario' => 'required|numeric',
+    ]);
 
-        $producto = \App\Models\Producto::findOrFail($request->producto_id);
-        
-        if ($producto->stock <= 0) {
-            if ($request->ajax()) {
-                return response()->json(['ok' => false, 'mensaje' => 'Este producto no tiene stock disponible.']);
-                }
-            return redirect()->back()->with('error', 'Este producto no tiene stock disponible.');
-        }
-
-        if (auth()->check()) {
-            // Usuario logueado → base de datos (igual que antes)
-            $item = CarritoItem::where('user_id', auth()->id())
-                ->where('producto_id', $request->producto_id)
-                ->first();
-
-            if ($item) {
-                $item->cantidad += $request->cantidad;
-                $item->save();
-            } else {
-                CarritoItem::create([
-                    'user_id'         => auth()->id(),
-                    'producto_id'     => $request->producto_id,
-                    'cantidad'        => $request->cantidad,
-                    'precio_unitario' => $request->precio_unitario,
-                ]);
-            }
-        } else {
-            // Guest → sesión
-            $carrito = session()->get('carrito', []);
-            $pid = $request->producto_id;
-
-            if (isset($carrito[$pid])) {
-                $carrito[$pid]['cantidad'] += $request->cantidad;
-            } else {
-                $carrito[$pid] = [
-                    'producto_id'     => $pid,
-                    'nombre'          => $request->nombre,
-                    'cantidad'        => $request->cantidad,
-                    'precio_unitario' => $request->precio_unitario,
-                ];
-            }
-
-            session()->put('carrito', $carrito);
-        }
-
+    $producto = \App\Models\Producto::findOrFail($request->producto_id);
+    
+    if ($producto->stock <= 0) {
         if ($request->ajax()) {
-            return response()->json(['ok' => true]);
+            return response()->json(['ok' => false, 'mensaje' => 'Este producto no tiene stock disponible.']);
         }
-        
-        return redirect()->back();
+        return redirect()->back()->with('error', 'Este producto no tiene stock disponible.');
     }
+
+    if (auth()->check()) {
+        $item = CarritoItem::where('user_id', auth()->id())
+            ->where('producto_id', $request->producto_id)
+            ->first();
+
+        // Cantidad total que quedaría en el carrito
+        $cantidadActual = $item ? $item->cantidad : 0;
+        $cantidadTotal  = $cantidadActual + $request->cantidad;
+
+        if ($cantidadTotal > $producto->stock) {
+            $mensaje = "Solo hay {$producto->stock} unidades disponibles de \"{$producto->nombre}\".";
+            if ($request->ajax()) {
+                return response()->json(['ok' => false, 'mensaje' => $mensaje]);
+            }
+            return redirect()->back()->with('error', $mensaje);
+        }
+
+        if ($item) {
+            $item->cantidad += $request->cantidad;
+            $item->save();
+        } else {
+            CarritoItem::create([
+                'user_id'         => auth()->id(),
+                'producto_id'     => $request->producto_id,
+                'cantidad'        => $request->cantidad,
+                'precio_unitario' => $request->precio_unitario,
+            ]);
+        }
+    } else {
+        $carrito = session()->get('carrito', []);
+        $pid = $request->producto_id;
+
+        $cantidadActual = isset($carrito[$pid]) ? $carrito[$pid]['cantidad'] : 0;
+        $cantidadTotal  = $cantidadActual + $request->cantidad;
+
+        if ($cantidadTotal > $producto->stock) {
+            $mensaje = "Solo hay {$producto->stock} unidades disponibles de \"{$producto->nombre}\".";
+            if ($request->ajax()) {
+                return response()->json(['ok' => false, 'mensaje' => $mensaje]);
+            }
+            return redirect()->back()->with('error', $mensaje);
+        }
+
+        if (isset($carrito[$pid])) {
+            $carrito[$pid]['cantidad'] += $request->cantidad;
+        } else {
+            $carrito[$pid] = [
+                'producto_id'     => $pid,
+                'nombre'          => $request->nombre,
+                'cantidad'        => $request->cantidad,
+                'precio_unitario' => $request->precio_unitario,
+            ];
+        }
+
+        session()->put('carrito', $carrito);
+    }
+
+    if ($request->ajax()) {
+        return response()->json(['ok' => true]);
+    }
+    
+    return redirect()->back();
+}
 
     public function actualizar(Request $request, $id)
     {

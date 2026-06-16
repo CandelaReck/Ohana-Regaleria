@@ -50,6 +50,14 @@ class PedidoController extends Controller
                    ->with('error', 'Tu carrito está vacío.');
         }
 
+        // Validar stock antes de procesar
+        foreach ($items as $item) {
+            if ($item->cantidad > $item->producto->stock) {
+                return redirect()->route('carrito.index')
+                    ->with('error', "No hay suficiente stock de \"{$item->producto->nombre}\". Stock disponible: {$item->producto->stock} unidades.");
+            }
+        }
+
         $subtotal = $items->sum(fn($item) => $item->precio_unitario * $item->cantidad);
 
         $pedido = Pedido::create([
@@ -64,23 +72,23 @@ class PedidoController extends Controller
         ]);
 
         foreach ($items as $item) {
-          $pedido->items()->create([
-            'producto_id'     => $item->producto_id,
-            'producto_nombre' => $item->producto->nombre,
-            'precio_unitario' => $item->precio_unitario,
-            'cantidad'        => $item->cantidad,
-            'subtotal'        => $item->precio_unitario * $item->cantidad,
+            $pedido->items()->create([
+                'producto_id'     => $item->producto_id,
+                'producto_nombre' => $item->producto->nombre,
+                'precio_unitario' => $item->precio_unitario,
+                'cantidad'        => $item->cantidad,
+                'subtotal'        => $item->precio_unitario * $item->cantidad,
             ]);
 
-        // ← Actualizar stock
+            // Actualizar stock
             $item->producto->decrement('stock', $item->cantidad);
         }
 
         CarritoItem::where('user_id', auth()->id())->delete();
 
         return redirect()->route('pedidos.show', $pedido->id)
-         ->with('compra_exitosa', true)
-         ->with('success', '¡Pedido realizado con éxito!');
+            ->with('compra_exitosa', true)
+            ->with('success', '¡Pedido realizado con éxito!');
     }
 
     public function show($id){
@@ -108,18 +116,16 @@ class PedidoController extends Controller
     }
 
     public function factura($id){
-    $pedido = Pedido::with('items')
-                ->where('user_id', auth()->id())
-                ->findOrFail($id);
+        $pedido = Pedido::with('items')
+                    ->where('user_id', auth()->id())
+                    ->findOrFail($id);
 
-    $logoPath = public_path('img/Logo.jpeg');
-    $logoBase64 = base64_encode(file_get_contents($logoPath));
-    $logoSrc = 'data:image/jpeg;base64,' . $logoBase64;
+        $logoPath = public_path('img/Logo.jpeg');
+        $logoBase64 = base64_encode(file_get_contents($logoPath));
+        $logoSrc = 'data:image/jpeg;base64,' . $logoBase64;
 
-    $pdf = Pdf::loadView('pedidos.factura', compact('pedido', 'logoSrc'));
+        $pdf = Pdf::loadView('pedidos.factura', compact('pedido', 'logoSrc'));
 
-    return $pdf->download('factura-pedido-' . $pedido->id . '.pdf');
+        return $pdf->download('factura-pedido-' . $pedido->id . '.pdf');
     }
-
-
 }
