@@ -44,8 +44,10 @@
                             @csrf
                             @method('PUT')
                             <input type="number" name="cantidad"
-                                   value="{{ $cantidad }}"
-                                   min="1" class="form-control carrito-cantidad">
+                                value="{{ $cantidad }}"
+                                min="1"
+                                max="{{ $esArray ? 999 : $item->producto->stock }}"
+                                class="form-control carrito-cantidad">
                             <button class="btn btn-sm btn-outline-secondary">Actualizar</button>
                         </form>
                         <div class="carrito-subtotal">
@@ -166,6 +168,26 @@
 </div>
 </section>
 
+@if(session('error'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'warning',
+            title: '¡Stock insuficiente!',
+            text: "{{ session('error') }}",
+            confirmButtonColor: '#3F5643',
+            confirmButtonText: 'Entendido',
+            background: '#FFF9F2',
+            iconColor: '#D4A94D',
+            customClass: {
+                title: 'fw-semibold',
+                confirmButton: 'px-4'
+            }
+        });
+    });
+</script>
+@endif
+
 <style>
 .carrito-section { background: var(--crema); }
 
@@ -281,6 +303,6 @@
     font-weight: 700;
     color: var(--dorado);
 }
-</style>
+</style> 
 
 @endsection

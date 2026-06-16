@@ -16,15 +16,23 @@ class PedidoAdminController extends Controller
 
     public function cambiarEstado(Request $request, $id)
     {
-        $request->validate([
-            'estado' => 'required|in:pendiente,confirmado,en_preparacion,enviado,entregado,cancelado',
-        ]);
+    $request->validate([
+        'estado' => 'required|in:pendiente,confirmado,en_preparacion,enviado,entregado,cancelado',
+    ]);
 
-        $pedido = Pedido::findOrFail($id);
-        $pedido->estado = $request->estado;
-        $pedido->save();
+    $pedido = Pedido::with('items.producto')->findOrFail($id);
 
-        return redirect()->route('admin.pedidos')
-                ->with('success', 'Estado actualizado correctamente.');
+    // Si se está cancelando, devolver stock
+    if ($request->estado === 'cancelado' && $pedido->estado !== 'cancelado') {
+        foreach ($pedido->items as $item) {
+            $item->producto->increment('stock', $item->cantidad);
+        }
+    }
+
+    $pedido->estado = $request->estado;
+    $pedido->save();
+
+    return redirect()->route('admin.pedidos')
+            ->with('success', 'Estado actualizado correctamente.');
     }
 }

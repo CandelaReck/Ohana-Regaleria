@@ -13,13 +13,13 @@ class PedidoController extends Controller
         $query = Pedido::where('user_id', auth()->id())
                 ->orderBy('created_at', 'desc');
                 
-                if ($request->filled('fecha_desde')) {
-                    $query->whereDate('created_at', '>=', $request->fecha_desde);
-                }
+        if ($request->filled('fecha_desde')) {
+            $query->whereDate('created_at', '>=', $request->fecha_desde);
+        }
 
-                if ($request->filled('fecha_hasta')) {
-                    $query->whereDate('created_at', '<=', $request->fecha_hasta);
-                }
+        if ($request->filled('fecha_hasta')) {
+            $query->whereDate('created_at', '<=', $request->fecha_hasta);
+        }
 
         $pedidos = $query->get();
 
@@ -50,7 +50,6 @@ class PedidoController extends Controller
                    ->with('error', 'Tu carrito está vacío.');
         }
 
-        // Validar stock antes de procesar
         foreach ($items as $item) {
             if ($item->cantidad > $item->producto->stock) {
                 return redirect()->route('carrito.index')
@@ -80,7 +79,6 @@ class PedidoController extends Controller
                 'subtotal'        => $item->precio_unitario * $item->cantidad,
             ]);
 
-            // Actualizar stock
             $item->producto->decrement('stock', $item->cantidad);
         }
 
@@ -100,12 +98,18 @@ class PedidoController extends Controller
     }
 
     public function cancelar($id){
-        $pedido = Pedido::where('user_id', auth()->id())
+        $pedido = Pedido::with('items.producto')
+                  ->where('user_id', auth()->id())
                   ->findOrFail($id);
 
         if (in_array($pedido->estado, ['enviado', 'entregado'])) {
             return redirect()->route('pedidos.index')
                     ->with('error', 'No podes cancelar un pedido que ya fue enviado o entregado.');
+        }
+
+        // Devolver stock
+        foreach ($pedido->items as $item) {
+            $item->producto->increment('stock', $item->cantidad);
         }
 
         $pedido->estado = 'cancelado';

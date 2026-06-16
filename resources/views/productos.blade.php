@@ -90,9 +90,14 @@ document.querySelectorAll('.form-agregar-carrito').forEach(function(form) {
         .then(data => {
             if (!data.ok) {
                 btn.disabled = false;
-                btn.textContent = 'Sin stock';
-                btn.classList.remove('btn-dark');
-                btn.classList.add('btn-secondary');
+                btn.textContent = 'Agregar al carrito';
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Stock insuficiente',
+                    text: data.mensaje,
+                    confirmButtonColor: '#3F5643',
+                    confirmButtonText: 'Entendido'
+                });
                 return;
             }
             return fetch('{{ route("carrito.mini") }}');
